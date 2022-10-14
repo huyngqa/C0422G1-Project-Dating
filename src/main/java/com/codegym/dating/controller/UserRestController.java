@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.*;
 public class UserRestController {
 @Autowired
 private IUserService iUserService;
-    @GetMapping("dto")
-    public ResponseEntity<UserDto>findByIdDto(@RequestParam int id) {
+    @GetMapping("{id}")
+    public ResponseEntity<UserDto>findById(@PathVariable int id) {
         UserDto userDto = this.iUserService.findByIdDto(id).orElse(null);
         if (userDto == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
