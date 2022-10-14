@@ -26,6 +26,9 @@ public class UserRestController {
                                                 Optional<String> name) {
         String keyword = name.orElse("");
         Page<UserDto> userDtoPage = userService.findAllSearchPage(pageable, keyword);
+        if (keyword.length() > 30 || keyword.matches("^\\W+$")) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         if (!userDtoPage.hasContent()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
