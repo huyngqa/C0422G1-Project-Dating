@@ -1,5 +1,6 @@
 package com.codegym.dating.controller;
 
+import com.codegym.dating.dto.PostDto;
 import com.codegym.dating.model.Account;
 import com.codegym.dating.model.AccountRole;
 import com.codegym.dating.model.composite.AccountRoleKey;
@@ -29,4 +30,5 @@ public class TestRestController {
         Optional<AccountRole> accountRole = iAccountRoleRepository.findById(new AccountRoleKey(1, 1));
         return new ResponseEntity<>(accountRole.get().getAccount().getEmail() + accountRole.get().getRole().getRoleName(), HttpStatus.OK);
     }
+
 }
