@@ -22,7 +22,7 @@ public interface IFriendListRepository extends JpaRepository<FriendList, Integer
             "        JOIN\n" +
             "    friend_list fl ON fl.id_user2 = u.id_user\n" +
             "WHERE\n" +
-            "    status = 6 AND id_user1 = 1;",nativeQuery = true)
+            "    status = 6 AND id_user1 = ?1",nativeQuery = true)
     List<FriendListDto> findAllRequestFriend(Integer id);
 
     @Query(value = "SET SQL_SAFE_UPDATES = 0;\n" +
@@ -31,7 +31,7 @@ public interface IFriendListRepository extends JpaRepository<FriendList, Integer
             "set status = 6\n" +
             "where status = 5 and ((id_user1=?1 and id_user2 = ?2) or (id_user1=?2 and id_user2 = ?1));\n" +
             "SET FOREIGN_KEY_CHECKS = 1;\n" +
-            "SET SQL_SAFE_UPDATES = 1;",nativeQuery = true)
+            "SET SQL_SAFE_UPDATES = 1",nativeQuery = true)
     void acceptRequest();
 
     @Query(value = "SET SQL_SAFE_UPDATES = 0;\n" +
