@@ -1,12 +1,8 @@
 package com.codegym.dating.controller;
 
 import com.codegym.dating.jwt.JwtTokenUtil;
-import com.codegym.dating.model.Account;
-import com.codegym.dating.model.User;
 import com.codegym.dating.payload.LoginRequest;
 import com.codegym.dating.payload.LoginResponse;
-import com.codegym.dating.service.IAccountService;
-import com.codegym.dating.service.IUserService;
 import com.codegym.dating.service.impl.AccountDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +11,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -47,4 +44,5 @@ public class SecurityRestController {
                         accountDetails.getId(),
                         roles));
     }
+
 }

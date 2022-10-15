@@ -15,4 +15,17 @@ public class UserService implements IUserService {
     public User findUserByIdAccount(Integer idAccount) {
         return iUserRepository.findByAccount_IdAccount(idAccount);
     }
+
+    @Override
+    public void updateAvatar(User user) {
+        this.iUserRepository.updateAvatar(user.getAvatar(), user.getIdUser());
+    }
+
+    @Override
+    public void updateStatusActive(User user) {
+        this.iUserRepository.updateStatusActive(user.getStatusActive().getId(), user.getIdUser());
+        System.out.println(user.getIdUser());
+    }
+
+
 }
