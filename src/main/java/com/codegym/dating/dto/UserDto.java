@@ -21,7 +21,7 @@ public interface UserDto {
 
     String getName();
 
-    Integer getStatusActive();
+    Integer idStatusActive();
 
     Integer getIdTypeUser();
 
