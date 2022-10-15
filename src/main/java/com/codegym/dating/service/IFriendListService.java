@@ -1,4 +1,4 @@
-package com.codegym.dating.service;
+package com.codegym.dating.dto;
 
 import com.codegym.dating.dto.RelationshipDto;
 import com.codegym.dating.model.FriendList;
