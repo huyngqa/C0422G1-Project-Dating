@@ -26,4 +26,9 @@ public interface IPostRepository extends JpaRepository<Post, Integer> {
             "from post as p\n" +
             "where p.id_post = 1", nativeQuery = true)
     Post findPostById(int id);
+
+    @Query(value ="update post as p \n" +
+            "set p.content= ?1,p.media=?2,p.time=?3\n" +
+            "where p.id_user=?4 and p.id_post=?5;", nativeQuery = true)
+    void updatePost(String content, String media,String timeUp, int idUserUp, int idPostUp);
 }
