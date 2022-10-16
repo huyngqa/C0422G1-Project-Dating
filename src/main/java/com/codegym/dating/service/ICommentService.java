@@ -2,7 +2,12 @@ package com.codegym.dating.service;
 
 import com.codegym.dating.model.Comment;
 
+import java.util.List;
+
 public interface ICommentService {
 
-    Comment addComment(Comment comments);
+    void addComment(Comment comments);
+
+    List<Comment> displayComment(Integer idPost);
+
 }

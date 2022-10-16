@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 public interface IUserRepository extends JpaRepository<User, Integer> {
+
     User findByAccount_IdAccount(Integer idAccount);
 
     @Modifying
