@@ -1,5 +1,6 @@
 package com.codegym.dating.service.impl;
 
+import com.codegym.dating.DTO.ReportDetailDto;
 import com.codegym.dating.DTO.UserReportDto;
 import com.codegym.dating.model.ReportDetails;
 import com.codegym.dating.model.User;
@@ -18,7 +19,7 @@ public class ReportDetailService implements IReportDetailsService {
     private IReportDetailsRepository iReportDetailsRepository;
 
     @Override
-    public List<ReportDetails> findByIdReportDetailUser(int id) {
+    public List<ReportDetailDto> findByIdReportDetailUser(int id) {
         return iReportDetailsRepository.findByIdReportDetail(id);
     }
 

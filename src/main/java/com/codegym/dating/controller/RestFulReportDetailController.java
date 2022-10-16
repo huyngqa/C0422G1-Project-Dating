@@ -1,6 +1,7 @@
 package com.codegym.dating.controller;
 
 import com.codegym.dating.DTO.ListUserDto;
+import com.codegym.dating.DTO.ReportDetailDto;
 import com.codegym.dating.model.ReportDetails;
 import com.codegym.dating.service.IReportDetailsService;
 import com.codegym.dating.service.IReportService;
@@ -23,7 +24,7 @@ public class RestFulReportDetailController {
 
     @GetMapping(value = "/list/warning/{id}")
     public ResponseEntity<?> getUserReportDetail(@PathVariable int id){
-        List<ReportDetails> reportDetails = iReportDetailsService.findByIdReportDetailUser(id);
+        List<ReportDetailDto> reportDetails = iReportDetailsService.findByIdReportDetailUser(id);
         return new ResponseEntity<>(reportDetails, HttpStatus.OK);
     }
 }

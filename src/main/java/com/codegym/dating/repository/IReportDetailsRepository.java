@@ -1,5 +1,6 @@
 package com.codegym.dating.repository;
 
+import com.codegym.dating.DTO.ReportDetailDto;
 import com.codegym.dating.DTO.UserReportDto;
 import com.codegym.dating.model.ReportDetails;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -8,16 +9,14 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface IReportDetailsRepository extends JpaRepository<ReportDetails, Integer> {
     @Transactional
-    @Query(value = "select * " +
-            "from report_details " +
-            "left join report on report.id_report = report_details.id_report " +
-            "left join user on user.id_user = report_details.id_reporter " +
-            "where user.id_user = ?1" ,nativeQuery = true)
-    List<ReportDetails> findByIdReportDetail(int id);
+    @Query(value = "select new com.codegym.dating.DTO.ReportDetailDto(rd.timeReport, r.nameReport, u.name) " +
+            "from ReportDetails rd left join Report r on r.idReport = rd.report.idReport " +
+            "left join User u on u.idUser = rd.reporter.idUser " +
+            "where u.idUser = :id")
+    List<ReportDetailDto> findByIdReportDetail(@Param("id") int id);
 
     @Query(value="SELECT " +
             "      new com.codegym.dating.DTO.UserReportDto(u.idUser, " +
