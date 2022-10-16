@@ -27,14 +27,12 @@ public class TestRestController {
 
         Account account = this.iAccountService.findByPassword(password);
 
-        if (account != null){
+        if (account != null) {
             account.setPassword(newPassword);
             iAccountService.updatePassword(account);
             return new ResponseEntity<>(account, HttpStatus.OK);
         }
-
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-
 
 }

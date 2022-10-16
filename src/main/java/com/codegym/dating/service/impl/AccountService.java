@@ -16,8 +16,7 @@ public class AccountService implements IAccountService {
     public Account findByPassword(String password) {
         return this.iAccountRepository.findByPassword(password);
     }
-
-
+    
     @Override
     public void updatePassword(Account account) {
         iAccountRepository.updatePassword(account);
