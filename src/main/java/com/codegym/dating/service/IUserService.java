@@ -7,7 +7,11 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.Optional;
 
+
 public interface IUserService {
-    Page<ListUserDto> findAll(Pageable pageable);
+
+//    Page<ListUserDto> findAll(String name,Pageable pageable);
+    Page<User> findAll(String name,Pageable pageable);
+    Page<User> findByTypeUser(String name, String typeUser,Pageable pageable);
     Optional<User> findByIdUser(int id);
 }

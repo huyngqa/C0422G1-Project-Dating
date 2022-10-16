@@ -13,13 +13,22 @@ import java.util.Optional;
 
 @Service
 public class UserService implements IUserService {
-
     @Autowired
     private IUserRepository iUserRepository;
 
+//    @Override
+//    public Page<ListUserDto> findAll(String name,Pageable pageable) {
+//        return iUserRepository.findAllByName(name,pageable);
+//    }
+
     @Override
-    public Page<ListUserDto> findAll( Pageable pageable) {
-        return iUserRepository.findAllByName(pageable);
+    public Page<User> findAll(String name, Pageable pageable) {
+        return iUserRepository.findByNameContainingOrderByIdUserAsc(name, pageable);
+    }
+
+    @Override
+    public Page<User> findByTypeUser(String name, String typeUser, Pageable pageable) {
+        return iUserRepository.findByTypeUser(name, typeUser, pageable);
     }
 
     @Override
