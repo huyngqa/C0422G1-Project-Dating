@@ -1,9 +1,14 @@
 package com.codegym.dating.service;
 
 import com.codegym.dating.model.User;
-import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
 
 public interface IUserService {
 
+    List<User> findAllUser();
+
     User findUserById(Integer id);
+
+    void saveUser(User user);
 }
