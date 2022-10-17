@@ -80,42 +80,6 @@ public class PostRestController_savePost {
                 .andExpect(status().is4xxClientError());
     }
 
-    @Test
-    public void savePost_media_13() throws Exception {
-        PostDto postDto = new PostDto();
-        postDto.setContent(null);
-        postDto.setMedia("abc");
-
-        User user = new User();
-        user.setIdUser(1);
-        postDto.setUser(user);
-
-        this.mockMvc.perform(MockMvcRequestBuilders.
-                        post("/api/users/posts/save")
-                        .content(this.objectMapper.writeValueAsString(postDto))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andDo(print())
-                .andExpect(status().is4xxClientError());
-    }
-
-    @Test
-    public void savePost_media_14() throws Exception {
-        PostDto postDto = new PostDto();
-        postDto.setContent("");
-        postDto.setMedia("abc");
-
-        User user = new User();
-        user.setIdUser(1);
-        postDto.setUser(user);
-
-        this.mockMvc.perform(MockMvcRequestBuilders.
-                        post("/api/users/posts/save")
-                        .content(this.objectMapper.writeValueAsString(postDto))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andDo(print())
-                .andExpect(status().is4xxClientError());
-    }
-
 
     @Test
     public void savePost_content_18() throws Exception {

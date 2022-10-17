@@ -16,7 +16,7 @@ import java.time.LocalDate;
 public class InvoiceDto {
     private Integer idInvoice;
     @NotBlank
-    @Pattern(regexp = "\\d")
+    @Pattern(regexp = "^\\d+$")
     private String price;
     private LocalDate time;
     private User user;

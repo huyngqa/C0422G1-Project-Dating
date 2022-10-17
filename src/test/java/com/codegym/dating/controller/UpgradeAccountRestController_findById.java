@@ -57,7 +57,7 @@ public class UpgradeAccountRestController_findById {
                 .andExpect(jsonPath("dateOfBirth").value("1999-04-08"))
                 .andExpect(jsonPath("avatar").value("chuacoanh"))
                 .andExpect(jsonPath("address").value("224 Lý Thái Tổ, Gia Lai"))
-                .andExpect(jsonPath("coin").value("30000"))
+                .andExpect(jsonPath("coin").value("44492"))
                 .andExpect(jsonPath("gender").value(true))
                 .andExpect(jsonPath("job").value("Đầu Bếp"))
                 .andExpect(jsonPath("joinDay").value("2018-11-11"))

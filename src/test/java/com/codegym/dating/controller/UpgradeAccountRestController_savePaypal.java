@@ -1,7 +1,6 @@
 package com.codegym.dating.controller;
 
 import com.codegym.dating.dto.InvoiceDto;
-import com.codegym.dating.model.Invoice;
 import com.codegym.dating.model.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -43,24 +42,7 @@ public class UpgradeAccountRestController_savePaypal {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
-    @Test
-    public void savePaypal_price_18() throws Exception {
 
-        InvoiceDto invoiceDto = new InvoiceDto();
-        invoiceDto.setPrice("123");
-
-        User user = new User();
-        user.setIdUser(9);
-        invoiceDto.setUser(user);
-
-        this.mockMvc
-                .perform(MockMvcRequestBuilders
-                        .post("/api/users/upgradeAccount/save")
-                        .content(this.objectMapper.writeValueAsString(invoiceDto))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andDo(print())
-                .andExpect(status().is2xxSuccessful());
-    }
     @Test
     public void savePaypal_price_14() throws Exception {
 
@@ -97,5 +79,24 @@ public class UpgradeAccountRestController_savePaypal {
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
+    }
+
+    @Test
+    public void savePaypal_price_18() throws Exception {
+
+        InvoiceDto invoiceDto = new InvoiceDto();
+        invoiceDto.setPrice("123");
+
+        User user = new User();
+        user.setIdUser(9);
+        invoiceDto.setUser(user);
+
+        this.mockMvc
+                .perform(MockMvcRequestBuilders
+                        .post("/api/users/upgradeAccount/save")
+                        .content(this.objectMapper.writeValueAsString(invoiceDto))
+                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andDo(print())
+                .andExpect(status().is2xxSuccessful());
     }
 }
