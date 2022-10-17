@@ -13,7 +13,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class HobbitRestController_findByIdUser {
+public class HobbitRestController_FindByIdUser {
     @Autowired
     private MockMvc mockMvc;
 
@@ -45,13 +45,14 @@ public class HobbitRestController_findByIdUser {
                 .andExpect(status().is4xxClientError());
     }
 
-    @Test
+    @Test  //200
     public void findAllHobbitByIdUser_id_4() throws Exception {
         this.mockMvc.perform(
                         MockMvcRequestBuilders.get(
                                 "/api/users/hobbits/{id}", "2"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful());
+        // Em không biết  cách lấy ra từng phần tử của list nên chỉ lấy đc status 200 thôi.
 
     }
 }
