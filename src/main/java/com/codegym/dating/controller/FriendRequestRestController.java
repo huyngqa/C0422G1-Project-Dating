@@ -13,7 +13,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("user")
+@RequestMapping("api/users")
 public class FriendRequestRestController {
     @Autowired
     private IFriendListService friendListService;
