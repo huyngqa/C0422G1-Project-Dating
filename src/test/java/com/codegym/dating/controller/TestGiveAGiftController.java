@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
@@ -141,14 +140,93 @@ public class TestGiveAGiftController {
 
 
     @Test
-    public void updateGiftUser() throws Exception {
+    public void updateGiftUser_idGift_19() throws Exception {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .get("/api/public/gift/gift/{idGift}", ""))
+                        .patch("/api/public/gift/saveGiftUser?idGift=" + null + "&idUserReceiver=1&idUserSender=2&quantity=1"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
 
+    @Test
+    public void updateGiftUser_idGift_20() throws Exception {
+
+        this.mockMvc
+                .perform(MockMvcRequestBuilders
+                        .patch("/api/public/gift/saveGiftUser?idGift=" + "&idUserReceiver=1&idUserSender=2&quantity=1"))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+    @Test
+    public void updateGiftUser_idUserReceiver_19() throws Exception {
+
+        this.mockMvc
+                .perform(MockMvcRequestBuilders
+                        .patch("/api/public/gift/saveGiftUser?idGift=1" + "&idUserReceiver=" + null + "&idUserSender=2&quantity=1"))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+    @Test
+    public void updateGiftUser_idUserReceiver_20() throws Exception {
+
+        this.mockMvc
+                .perform(MockMvcRequestBuilders
+                        .patch("/api/public/gift/saveGiftUser?idGift=1" + "&idUserReceiver=&idUserSender=2&quantity=1"))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+    @Test
+    public void updateGiftUser_idUserSender_19() throws Exception {
+
+        this.mockMvc
+                .perform(MockMvcRequestBuilders
+                        .patch("/api/public/gift/saveGiftUser?idGift=1" + "&idUserReceiver=1&idUserSender="+ null +"&quantity=1"))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+    @Test
+    public void updateGiftUser_idUserSender_20() throws Exception {
+
+        this.mockMvc
+                .perform(MockMvcRequestBuilders
+                        .patch("/api/public/gift/saveGiftUser?idGift=1" + "&idUserReceiver=1&idUserSender=&quantity=1"))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+    @Test
+    public void updateGiftUser_quantity_19() throws Exception {
+
+        this.mockMvc
+                .perform(MockMvcRequestBuilders
+                        .patch("/api/public/gift/saveGiftUser?idGift=1" + "&idUserReceiver=1&idUserSender=1&quantity="+ null))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+    @Test
+    public void updateGiftUser_quantity_20() throws Exception {
+
+        this.mockMvc
+                .perform(MockMvcRequestBuilders
+                        .patch("/api/public/gift/saveGiftUser?idGift=1" + "&idUserReceiver=1&idUserSender=1&quantity="))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+    @Test
+    public void updateGiftUser_24() throws Exception {
+
+        this.mockMvc
+                .perform(MockMvcRequestBuilders
+                        .patch("/api/public/gift/saveGiftUser?idGift=1&idUserReceiver=1&idUserSender=1&quantity=1"))
+                .andDo(print())
+                .andExpect(status().is2xxSuccessful());
+    }
 
 }
