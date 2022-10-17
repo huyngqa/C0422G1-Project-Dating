@@ -1,9 +1,8 @@
-package com.codegym.dating;
+package com.codegym.dating.controller;
 
-
-import com.codegym.dating.dto.StatusActiveDto;
-import com.codegym.dating.dto.TypeUserDto;
-import com.codegym.dating.dto.UserDto;
+import com.codegym.dating.dto.ClassUserDto;
+import com.codegym.dating.dto.ClassStatusActiveDto;
+import com.codegym.dating.dto.ClassTypeUserDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +17,10 @@ import java.time.LocalDate;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+
 @SpringBootTest
 @AutoConfigureMockMvc
-public class UserRestController_updateAvatar {
+public class UserRestController_updateStatusActive {
 
     @Autowired
     private MockMvc mockMvc;
@@ -29,9 +29,9 @@ public class UserRestController_updateAvatar {
     private ObjectMapper objectMapper;
 
     @Test
-    public void updateAvatar_id_19() throws Exception {
+    public void updateStatusActive_id_19() throws Exception {
 
-        UserDto userDto = new UserDto();
+        ClassUserDto userDto = new ClassUserDto();
         userDto.setName("Nguyễn Trần Thanh Trang");
         userDto.setDateOfBirth(LocalDate.parse("1970-11-07"));
         userDto.setGender(false);
@@ -42,48 +42,17 @@ public class UserRestController_updateAvatar {
         userDto.setJoinDay(LocalDate.parse("2021-01-01"));
         userDto.setCoin(1000);
 
-        StatusActiveDto statusActiveDto = new StatusActiveDto();
+        ClassStatusActiveDto statusActiveDto = new ClassStatusActiveDto();
         statusActiveDto.setId(1);
         userDto.setStatusActiveDto(statusActiveDto);
 
-        TypeUserDto typeUserDto = new TypeUserDto();
+        ClassTypeUserDto typeUserDto = new ClassTypeUserDto();
         typeUserDto.setIdTypeUser(1);
         userDto.setTypeUserDto(typeUserDto);
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .patch("/api/user/update_avatar/{id}","null")
-                            .content(this.objectMapper.writeValueAsString(userDto))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andDo(print())
-                .andExpect(status().is4xxClientError());
-    }
-
-    @Test
-    public void updateAvatar_id_20() throws Exception {
-
-        UserDto userDto = new UserDto();
-        userDto.setName("Nguyễn Trần Thanh Trang");
-        userDto.setDateOfBirth(LocalDate.parse("1970-11-07"));
-        userDto.setGender(false);
-        userDto.setAddress("28 Nguyễn Công Trứ , Phường An Hải Tây,Quận Sơn Trà , Thành Phố Đà Nẵng");
-        userDto.setJob("Hướng Dẫn Viên Du Lịch");
-        userDto.setMarried(false);
-        userDto.setAvatar("image.png");
-        userDto.setJoinDay(LocalDate.parse("2021-01-01"));
-        userDto.setCoin(1000);
-
-        StatusActiveDto statusActiveDto = new StatusActiveDto();
-        statusActiveDto.setId(1);
-        userDto.setStatusActiveDto(statusActiveDto);
-
-        TypeUserDto typeUserDto = new TypeUserDto();
-        typeUserDto.setIdTypeUser(1);
-        userDto.setTypeUserDto(typeUserDto);
-
-        this.mockMvc
-                .perform(MockMvcRequestBuilders
-                        .patch("/api/user/update_avatar/{id}","")
+                        .patch("/api/user/update_avatar/{id}", "null")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -91,9 +60,9 @@ public class UserRestController_updateAvatar {
     }
 
     @Test
-    public void updateAvatar_id_24() throws Exception {
+    public void updateStatusActive_id_20() throws Exception {
 
-        UserDto userDto = new UserDto();
+        ClassUserDto userDto = new ClassUserDto();
         userDto.setName("Nguyễn Trần Thanh Trang");
         userDto.setDateOfBirth(LocalDate.parse("1970-11-07"));
         userDto.setGender(false);
@@ -104,21 +73,88 @@ public class UserRestController_updateAvatar {
         userDto.setJoinDay(LocalDate.parse("2021-01-01"));
         userDto.setCoin(1000);
 
-        StatusActiveDto statusActiveDto = new StatusActiveDto();
+        ClassStatusActiveDto statusActiveDto = new ClassStatusActiveDto();
         statusActiveDto.setId(1);
         userDto.setStatusActiveDto(statusActiveDto);
 
-        TypeUserDto typeUserDto = new TypeUserDto();
+        ClassTypeUserDto typeUserDto = new ClassTypeUserDto();
         typeUserDto.setIdTypeUser(1);
         userDto.setTypeUserDto(typeUserDto);
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .patch("/api/user/update_avatar/{id}","1")
+                        .patch("/api/user/update_avatar/{id}", "")
+                        .content(this.objectMapper.writeValueAsString(userDto))
+                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+
+
+    @Test
+    public void updateStatusActive_id_21() throws Exception {
+
+        ClassUserDto userDto = new ClassUserDto();
+        userDto.setName("Nguyễn Trần Thanh Trang");
+        userDto.setDateOfBirth(LocalDate.parse("1970-11-07"));
+        userDto.setGender(false);
+        userDto.setAddress("28 Nguyễn Công Trứ , Phường An Hải Tây,Quận Sơn Trà , Thành Phố Đà Nẵng");
+        userDto.setJob("Hướng Dẫn Viên Du Lịch");
+        userDto.setMarried(false);
+        userDto.setAvatar("image.png");
+        userDto.setJoinDay(LocalDate.parse("2021-01-01"));
+        userDto.setCoin(1000);
+
+        ClassStatusActiveDto statusActiveDto = new ClassStatusActiveDto();
+        statusActiveDto.setId(1);
+        userDto.setStatusActiveDto(statusActiveDto);
+
+        ClassTypeUserDto typeUserDto = new ClassTypeUserDto();
+        typeUserDto.setIdTypeUser(1);
+        userDto.setTypeUserDto(typeUserDto);
+
+        this.mockMvc
+                .perform(MockMvcRequestBuilders
+                        .patch("/api/user/update_avatar/{id}", "n")
+                        .content(this.objectMapper.writeValueAsString(userDto))
+                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+
+    @Test
+    public void updateStatusActive_id_24() throws Exception {
+
+        ClassUserDto userDto = new ClassUserDto();
+        userDto.setName("Nguyễn Trần Thanh Trang");
+        userDto.setDateOfBirth(LocalDate.parse("1970-11-07"));
+        userDto.setGender(false);
+        userDto.setAddress("28 Nguyễn Công Trứ , Phường An Hải Tây,Quận Sơn Trà , Thành Phố Đà Nẵng");
+        userDto.setJob("Hướng Dẫn Viên Du Lịch");
+        userDto.setMarried(false);
+        userDto.setAvatar("image.png");
+        userDto.setJoinDay(LocalDate.parse("2021-01-01"));
+        userDto.setCoin(1000);
+
+        ClassStatusActiveDto statusActiveDto = new ClassStatusActiveDto();
+        statusActiveDto.setId(1);
+        userDto.setStatusActiveDto(statusActiveDto);
+
+        ClassTypeUserDto typeUserDto = new ClassTypeUserDto();
+        typeUserDto.setIdTypeUser(1);
+        userDto.setTypeUserDto(typeUserDto);
+
+        this.mockMvc
+                .perform(MockMvcRequestBuilders
+                        .patch("/api/users/update_avatar/{id}", "1")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful());
     }
+
+
 
 }

@@ -1,10 +1,10 @@
 package com.codegym.dating.dto;
 
-public class StatusActiveDto {
+public class ClassStatusActiveDto {
     private Integer id ;
     private String name;
 
-    public StatusActiveDto() {
+    public ClassStatusActiveDto() {
     }
 
     public Integer getId() {

@@ -40,7 +40,7 @@ public class CommentRestController {
         new CommentDto().validate(commentDto, bindingResult);
 
         if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
         Comment comment = new Comment();

@@ -16,9 +16,9 @@ public class ClassUserDto {
     private String avatar;
     private LocalDate joinDay;
     private Integer coin;
-    private StatusActiveDto statusActiveDto;
+    private ClassStatusActiveDto statusActiveDto;
     private Account account;
-    private TypeUserDto typeUserDto;
+    private ClassTypeUserDto typeUserDto;
 
     public ClassUserDto() {
     }
@@ -103,11 +103,11 @@ public class ClassUserDto {
         this.coin = coin;
     }
 
-    public StatusActiveDto getStatusActiveDto() {
+    public ClassStatusActiveDto getStatusActiveDto() {
         return statusActiveDto;
     }
 
-    public void setStatusActiveDto(StatusActiveDto statusActiveDto) {
+    public void setStatusActiveDto(ClassStatusActiveDto statusActiveDto) {
         this.statusActiveDto = statusActiveDto;
     }
 
@@ -119,11 +119,11 @@ public class ClassUserDto {
         this.account = account;
     }
 
-    public TypeUserDto getTypeUserDto() {
+    public ClassTypeUserDto getTypeUserDto() {
         return typeUserDto;
     }
 
-    public void setTypeUserDto(TypeUserDto typeUserDto) {
+    public void setTypeUserDto(ClassTypeUserDto typeUserDto) {
         this.typeUserDto = typeUserDto;
     }
 }

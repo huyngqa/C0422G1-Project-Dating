@@ -1,10 +1,10 @@
 package com.codegym.dating.dto;
 
-public class TypeUserDto {
+public class ClassTypeUserDto {
     private Integer idTypeUser;
     private String typeUserName;
 
-    public TypeUserDto() {
+    public ClassTypeUserDto() {
     }
 
     public Integer getIdTypeUser() {
