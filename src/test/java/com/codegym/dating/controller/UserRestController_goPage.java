@@ -18,6 +18,7 @@ public class UserRestController_goPage {
     @Autowired
     private MockMvc mockMvc;
 
+//  Đường dẫn sai
     @Test
     public void getPage() throws Exception {
 
@@ -27,6 +28,8 @@ public class UserRestController_goPage {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
+//    Bị null
     @Test
     public void getPage_search_1() throws Exception {
 
@@ -36,6 +39,8 @@ public class UserRestController_goPage {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
+//  Lỗi ký tự đặc biệt
     @Test
     public void getPage_search_2() throws Exception {
 
@@ -45,12 +50,25 @@ public class UserRestController_goPage {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
+//    Lỗi quá 30 ký tự
     @Test
     public void getPage_search_3() throws Exception {
 
         this.mockMvc.perform(
                         MockMvcRequestBuilders.get(
                                 "/api/public/pageSearch/?name=" +"tradsdfasffgfggggggggggggggggggggggggggggggggasawertwetttttttttttttttttttttttt"))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+//    Lỗi không có trong DB
+    @Test
+    public void getPage_search_5() throws Exception {
+
+        this.mockMvc.perform(
+                        MockMvcRequestBuilders.get(
+                                "/api/public/pageSearch/?name=" +"tt"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
