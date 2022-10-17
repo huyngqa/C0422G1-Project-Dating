@@ -32,7 +32,7 @@ public class UserRestController_goPage {
 
         this.mockMvc.perform(
                         MockMvcRequestBuilders.get(
-                                "/api/public/pageSearch/?name=", "null"))
+                                "/api/public/pageSearch/?name="+ "null"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
