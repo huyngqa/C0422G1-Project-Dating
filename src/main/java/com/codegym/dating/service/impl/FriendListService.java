@@ -19,12 +19,12 @@ public class FriendListService implements IFriendListService {
     }
 
     @Override
-    public void acceptRequest() {
-        friendListRepository.acceptRequest();
+    public void acceptRequest(Integer idUser1 , Integer idUser2) {
+        friendListRepository.acceptRequest(idUser1,idUser2);
     }
 
     @Override
-    public void deniedRequest() {
-        friendListRepository.deniedRequest();
+    public void deniedRequest(Integer idUser1 , Integer idUser2) {
+        friendListRepository.deniedRequest(idUser1,idUser2);
     }
 }

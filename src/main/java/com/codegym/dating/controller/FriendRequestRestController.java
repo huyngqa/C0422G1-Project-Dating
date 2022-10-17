@@ -18,8 +18,8 @@ public class FriendRequestRestController {
     @Autowired
     private IFriendListService friendListService;
 
-    @GetMapping("/request")
-    public ResponseEntity<List<FriendListDto>> findAllRequest(@RequestParam int id){
+    @GetMapping("request/{id}")
+    public ResponseEntity<List<FriendListDto>> findAllRequest(@PathVariable int id){
         List<FriendListDto> friendListDto = this.friendListService.findAllRequest(id);
         if (friendListDto.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -27,14 +27,16 @@ public class FriendRequestRestController {
         return new ResponseEntity<>(friendListDto,HttpStatus.OK);
 
     }
-    @PostMapping("/accept")
-    public ResponseEntity<Void> accreptRequest(){
-        friendListService.acceptRequest();
+    @PatchMapping ("accept/{id1}/{id2}")
+    public ResponseEntity<Void> acceptRequest(@PathVariable int id1,
+                                               @PathVariable int id2){
+        friendListService.acceptRequest(id1,id2);
        return new ResponseEntity<>(HttpStatus.OK);
     }
-    @PostMapping("/denied")
-    public ResponseEntity<Void> deniedRequest(){
-        friendListService.deniedRequest();
+    @PatchMapping("denied/{id1}/{id2}")
+    public ResponseEntity<Void> deniedRequest(@PathVariable Integer id1,
+                                              @PathVariable Integer id2){
+        friendListService.deniedRequest(id1,id2);
         return new ResponseEntity<>(HttpStatus.OK);
 
     }

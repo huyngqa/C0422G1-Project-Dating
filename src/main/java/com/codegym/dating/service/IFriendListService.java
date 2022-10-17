@@ -9,6 +9,6 @@ import java.util.Optional;
 
 public interface IFriendListService {
     List<FriendListDto> findAllRequest(int id);
-    void acceptRequest();
-    void deniedRequest();
+    void acceptRequest(Integer idUser1 , Integer idUser2);
+    void deniedRequest(Integer idUser1 , Integer idUser2);
 }
