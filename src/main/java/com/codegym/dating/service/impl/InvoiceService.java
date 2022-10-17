@@ -20,9 +20,9 @@ public class InvoiceService implements IInvoiceService {
 
 
     @Override
-    public void savePaypal(Invoice invoice, Integer id) {
+    public void savePaypal(Invoice invoice) {
         iInvoiceRepository.savePaypal(invoice.getPrice(), LocalDate.now(),invoice.getUser().getIdUser());
-        User user = iUserService.findUserById(id);
-        iUserService.updateCoin(user.getCoin() + invoice.getPrice(),id);
+        User user = iUserService.findUserById(invoice.getUser().getIdUser());
+        iUserService.updateCoin(user.getCoin() + invoice.getPrice(),invoice.getUser().getIdUser());
     }
 }

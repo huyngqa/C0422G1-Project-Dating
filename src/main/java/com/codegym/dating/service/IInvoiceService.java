@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface IInvoiceService {
-    void savePaypal(Invoice invoice, Integer id);
+    void savePaypal(Invoice invoice);
 }

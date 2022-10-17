@@ -2,8 +2,10 @@ package com.codegym.dating.controller;
 
 import com.codegym.dating.dto.PostDto;
 import com.codegym.dating.model.Post;
+import com.codegym.dating.model.User;
 import com.codegym.dating.repository.IPostRepository;
 import com.codegym.dating.service.IPostService;
+import com.codegym.dating.service.IUserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,11 +22,21 @@ public class PostRestController {
     @Autowired
     private IPostService iPostService;
 
+    @Autowired
+    private IUserService iUserService;
+
     @PostMapping("/save")
     public ResponseEntity<Void> savePost(@RequestBody @Valid PostDto postDto, BindingResult bindingResult){
         new PostDto().validate(postDto, bindingResult);
+
+        User user = iUserService.findUserById(postDto.getUser().getIdUser());
+
+        if (user==null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
         if (bindingResult.hasErrors()){
-            return new ResponseEntity<>(HttpStatus.FOUND);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         Post post = new Post();
         BeanUtils.copyProperties(postDto,post);
