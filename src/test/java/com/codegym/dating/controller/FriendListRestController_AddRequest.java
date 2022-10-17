@@ -19,7 +19,7 @@ public class FriendListRestController_AddRequest {
     @Test  //404
     public void  addRequest_idUser1_1() throws Exception {
         this.mockMvc.perform(
-                        MockMvcRequestBuilders.get(
+                        MockMvcRequestBuilders.post(
                                 "/api/users/friendList/addRequest/{idUser1}/{idUser2}",null,"1"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -28,7 +28,7 @@ public class FriendListRestController_AddRequest {
     @Test //404
     public void  addRequest_idUser1_2() throws Exception {
         this.mockMvc.perform(
-                        MockMvcRequestBuilders.get(
+                        MockMvcRequestBuilders.post(
                                 "/api/users/friendList/addRequest/{idUser1}/{idUser2}","","1"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -37,7 +37,7 @@ public class FriendListRestController_AddRequest {
     @Test //404
     public void  addRequest_idUser1_3() throws Exception {
         this.mockMvc.perform(
-                        MockMvcRequestBuilders.get(
+                        MockMvcRequestBuilders.post(
                                 "/api/users/friendList/addRequest/{idUser1}/{idUser2}","cdfvdf","1"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -55,7 +55,7 @@ public class FriendListRestController_AddRequest {
     @Test  //404
     public void  addRequest_idUser2_1() throws Exception {
         this.mockMvc.perform(
-                        MockMvcRequestBuilders.get(
+                        MockMvcRequestBuilders.post(
                                 "/api/users/friendList/addRequest/{idUser1}/{idUser2}","1",null))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -64,7 +64,7 @@ public class FriendListRestController_AddRequest {
     @Test //404
     public void  addRequest_idUser2_2() throws Exception {
         this.mockMvc.perform(
-                        MockMvcRequestBuilders.get(
+                        MockMvcRequestBuilders.post(
                                 "/api/users/friendList/addRequest/{idUser1}/{idUser2}","1",""))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -73,7 +73,7 @@ public class FriendListRestController_AddRequest {
     @Test //404
     public void  addRequest_idUser2_3() throws Exception {
         this.mockMvc.perform(
-                        MockMvcRequestBuilders.get(
+                        MockMvcRequestBuilders.post(
                                 "/api/users/friendList/addRequest/{idUser1}/{idUser2}","1","cdfvdf"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
