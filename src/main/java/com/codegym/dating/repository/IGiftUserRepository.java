@@ -17,13 +17,13 @@ public interface IGiftUserRepository extends JpaRepository<GiftUser, GiftUserKey
 
     @Modifying
     @Transactional
-    @Query(value = "update gift_user set quantity = quantity + :quantity where id_gift = :idGift && id_user_receiver = :idUserReceiver && id_user_sender = :idUserSender ", nativeQuery = true)
+    @Query(value = "CALL `dating_c04`.update_give_a_gift(:idGift, :idUserSender, :idUserReceiver, :quantity)", nativeQuery = true)
     void updateGiveAGift(@Param("idGift") Integer idGift, @Param("idUserReceiver") Integer idUserReceiver, @Param("idUserSender") Integer idUserSender, @Param("quantity") Integer quantity);
 
     @Modifying
     @Transactional
-    @Query(value = "insert into gift_user (id_gift, id_user_receiver, id_user_sender, quantity) " +
-            " value (:idGift, :idUserReceiver, :idUserSender, :quantity) ", nativeQuery = true)
+    @Query(value = "CALL `dating_c04`.create_give_a_gift(:idGift, :idUserSender, :idUserReceiver, :quantity);", nativeQuery = true)
     void saveGiveAGift(@Param("idGift") Integer idGift, @Param("idUserReceiver") Integer idUserReceiver, @Param("idUserSender") Integer idUserSender, @Param("quantity") Integer quantity);
+
 
 }

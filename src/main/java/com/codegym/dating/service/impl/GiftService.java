@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GiftService implements IGiftService {
@@ -17,5 +18,10 @@ public class GiftService implements IGiftService {
     @Override
     public List<Gift> findAllGift() {
         return giftRepository.findAllGift();
+    }
+
+    @Override
+    public Optional<Gift> findById(Integer idGift) {
+        return giftRepository.findById(idGift);
     }
 }
