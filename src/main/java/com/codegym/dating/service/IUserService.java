@@ -1,7 +1,12 @@
 package com.codegym.dating.service;
 
-import com.codegym.dating.model.User;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.codegym.dating.dto.UserDto;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import java.util.List;
 
 public interface IUserService {
+    Page<UserDto> findAllSearchPage(Pageable pageable, String name);
+
 }
