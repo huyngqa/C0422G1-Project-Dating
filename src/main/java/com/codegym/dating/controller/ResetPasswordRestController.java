@@ -6,14 +6,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping("/rest")
+@RequestMapping("api/public/account")
 public class ResetPasswordRestController {
 
     @Autowired
     private IAccountService iAccountService;
+
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     @PatchMapping("/checkPassword/{password}/{newPassword}")
     public ResponseEntity<?> checkPassword(@PathVariable String password,
@@ -22,7 +28,7 @@ public class ResetPasswordRestController {
         Account account = this.iAccountService.findByPassword(password);
 
         if (account != null) {
-            account.setPassword(newPassword);
+            account.setPassword(passwordEncoder().encode(newPassword));
             iAccountService.updatePassword(account);
             return new ResponseEntity<>(account, HttpStatus.OK);
         }
