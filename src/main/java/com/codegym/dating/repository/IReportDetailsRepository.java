@@ -14,7 +14,7 @@ import java.util.List;
 
 public interface IReportDetailsRepository extends JpaRepository<ReportDetails, Integer> {
     @Transactional
-    @Query(value = "select new com.codegym.dating.DTO.ReportDetailDto(rd.timeReport, r.nameReport, rd.reporter.name) " +
+    @Query(value = "select new com.codegym.dating.DTO.ReportDetailDto(u.idUser, rd.timeReport, r.nameReport, rd.reporter.name) " +
             "from ReportDetails rd left join Report r on r.idReport = rd.report.idReport " +
             "left join User u on u.idUser = rd.reporter.idUser " +
             "where u.idUser = :id and rd.status = 9")

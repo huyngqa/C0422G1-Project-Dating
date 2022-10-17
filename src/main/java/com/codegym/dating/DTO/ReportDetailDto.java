@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ReportDetailDto {
+    private int idUser;
     private LocalDateTime timeReport;
     private String nameReport;
     private String username;

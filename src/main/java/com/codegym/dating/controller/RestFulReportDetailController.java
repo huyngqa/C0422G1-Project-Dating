@@ -19,7 +19,12 @@ public class RestFulReportDetailController {
     @GetMapping(value = "/list/warning/{id}")
     public ResponseEntity<?> getUserReportDetail(@PathVariable int id){
         List<ReportDetailDto> reportDetails = iReportDetailsService.findByIdReportDetailUser(id);
-        return new ResponseEntity<>(reportDetails, HttpStatus.OK);
+        if(reportDetails.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        else {
+            return new ResponseEntity<>(reportDetails, HttpStatus.OK);
+        }
     }
 
 }
