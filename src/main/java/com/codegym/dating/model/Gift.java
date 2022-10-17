@@ -1,5 +1,6 @@
 package com.codegym.dating.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,5 +21,6 @@ public class Gift {
     private String giftName;
     private Integer price;
     @OneToMany(mappedBy = "gift")
+    @JsonBackReference
     List<GiftUser> giftUsers;
 }
