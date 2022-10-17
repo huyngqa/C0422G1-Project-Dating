@@ -20,14 +20,14 @@ public class UserRestController {
     @Autowired
     private IUserService iUserService ;
 
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity<Page<User>> userPage(@RequestParam Optional<String> nameUser,
                                                Optional<String>dateOfBirth,
                                                Optional<String>address,
                                                Optional<String>job,
                                                Optional<String>gender,
                                                Optional<String>hobbit,
-                                               @PageableDefault (size = 5) Pageable pageable){
+                                               @PageableDefault(size = 20) Pageable pageable){
         String nameUser1 = nameUser.orElse("");
         String dateOfBirth1 = dateOfBirth.orElse("1970");
         String address1 = address.orElse("");
