@@ -1,7 +1,6 @@
 package com.codegym.dating.repository;
 
 import com.codegym.dating.dto.HobbitDto;
-import com.codegym.dating.dto.PostDto;
 import com.codegym.dating.model.UserHobbit;
 import com.codegym.dating.model.composite.UserHobbitKey;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -11,7 +11,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("hobbits")
+@RequestMapping("api/users/hobbits")
 public class HobbitRestController {
     @Autowired
     private IUserHobbitService iUserHobbitService;
