@@ -12,7 +12,7 @@ public class UserService implements IUserService {
     @Autowired
     private IUserRepository iUserRepository;
     @Override
-    public User findByUser(Integer id) {
+    public User findUserById(Integer id) {
         return iUserRepository.findByIdNativeQuery(id);
     }
 

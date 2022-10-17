@@ -23,7 +23,7 @@ public class UpgradeAccountRestController {
 
     @GetMapping("/detailUser/{idUser}")
     public ResponseEntity<User> findById(@PathVariable Integer idUser) {
-        return new ResponseEntity<>(iUserService.findByUser(idUser), HttpStatus.OK);
+        return new ResponseEntity<>(iUserService.findUserById(idUser), HttpStatus.OK);
     }
 
     @PostMapping("/save")

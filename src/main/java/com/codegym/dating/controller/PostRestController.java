@@ -20,8 +20,6 @@ public class PostRestController {
     @Autowired
     private IPostService iPostService;
 
-    @Autowired
-    private IPostRepository iPostRepository;
     @PostMapping("/save")
     public ResponseEntity<Void> savePost(@RequestBody @Valid PostDto postDto, BindingResult bindingResult){
         new PostDto().validate(postDto, bindingResult);
