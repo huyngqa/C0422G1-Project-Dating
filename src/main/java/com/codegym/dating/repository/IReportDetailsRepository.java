@@ -15,7 +15,7 @@ public interface IReportDetailsRepository extends JpaRepository<ReportDetails, I
     @Query(value = "select new com.codegym.dating.DTO.ReportDetailDto(rd.timeReport, r.nameReport, u.name) " +
             "from ReportDetails rd left join Report r on r.idReport = rd.report.idReport " +
             "left join User u on u.idUser = rd.reporter.idUser " +
-            "where u.idUser = :id")
+            "where rd.report.idReport = :id and rd.status = 9")
     List<ReportDetailDto> findByIdReportDetail(@Param("id") int id);
 
     @Query(value="SELECT " +

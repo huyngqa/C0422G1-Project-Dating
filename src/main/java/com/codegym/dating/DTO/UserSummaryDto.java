@@ -18,12 +18,4 @@ public class UserSummaryDto {
     private LocalDate joinDate;
     private String typeUser;
     private long quantity;
-
-    public UserSummaryDto(Integer idUser, String name, Integer coin, LocalDate joinDate, String typeUser) {
-        this.idUser = idUser;
-        this.name = name;
-        this.coin = coin;
-        this.joinDate = joinDate;
-        this.typeUser = typeUser;
-    }
 }
