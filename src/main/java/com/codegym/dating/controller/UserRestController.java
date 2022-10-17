@@ -29,11 +29,17 @@ public class UserRestController {
                                                Optional<String>hobbit,
                                                @PageableDefault(size = 20) Pageable pageable){
         String nameUser1 = nameUser.orElse("");
-        String dateOfBirth1 = dateOfBirth.orElse("1970");
+
+        String dateOfBirth1 = dateOfBirth.orElse("");
+
         String address1 = address.orElse("");
+
         String job1 = job.orElse("");
+
         String gender1 = gender.orElse("");
+
         String hobbit1 = hobbit.orElse("");
+
         Page<User>users = this.iUserService.userPage(
                  nameUser1,
                 dateOfBirth1,
