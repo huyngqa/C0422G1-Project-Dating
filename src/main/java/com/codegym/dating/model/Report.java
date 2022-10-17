@@ -18,6 +18,4 @@ public class Report {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idReport;
     private String nameReport;
-    @OneToMany(mappedBy = "report")
-    private List<ReportUser> reportUserList;
 }

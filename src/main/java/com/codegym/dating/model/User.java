@@ -52,8 +52,4 @@ public class User {
     private List<GiftUser> giftSenders;
     @OneToMany(mappedBy = "receiver")
     private List<GiftUser> giftReceiver;
-    @OneToMany(mappedBy = "reported")
-    private List<ReportUser> reportUsersReported;
-    @OneToMany(mappedBy = "reporter")
-    private List<ReportUser> reportUsersReporter;
 }

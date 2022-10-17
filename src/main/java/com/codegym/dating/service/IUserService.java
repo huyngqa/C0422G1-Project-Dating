@@ -9,7 +9,4 @@ import java.util.List;
 public interface IUserService {
     Page<UserDto> findAllSearchPage(Pageable pageable, String name);
 
-    List<UserDto> findAllSearch(String keyword);
-
-    Page<UserDto> findAllPage(Pageable pageable);
 }

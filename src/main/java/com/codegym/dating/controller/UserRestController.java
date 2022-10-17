@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -36,32 +35,6 @@ public class UserRestController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(userDtoPage, HttpStatus.OK);
-        }
-    }
-
-    @GetMapping("/list")
-    public ResponseEntity<Page<UserDto>> goPage(@PageableDefault(5) Pageable pageable
-    ) {
-
-        Page<UserDto> userDtoPage = userService.findAllPage(pageable);
-        if (!userDtoPage.hasContent()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } else {
-            return new ResponseEntity<>(userDtoPage, HttpStatus.OK);
-        }
-    }
-
-    @GetMapping("/search")
-    public ResponseEntity<List<UserDto>> goSearch(Optional<String> name) {
-        String keyword = name.orElse("");
-        List<UserDto> userDtoList = userService.findAllSearch(keyword);
-        if (keyword.length() > 30 || keyword.matches("^\\W+$")) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-        if (userDtoList.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } else {
-            return new ResponseEntity<>(userDtoList, HttpStatus.OK);
         }
     }
 }
