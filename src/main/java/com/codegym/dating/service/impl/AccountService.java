@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AccountService implements IAccountService {
 
@@ -18,6 +20,11 @@ public class AccountService implements IAccountService {
     @Override
     public Account findAccountByEmail(String email) {
         return iAccountRepository.findByEmail(email);
+    }
+
+    @Override
+    public List<Account> findAllAccount() {
+        return this.iAccountRepository.findAllAccount();
     }
 
     @Override
@@ -33,5 +40,10 @@ public class AccountService implements IAccountService {
         account.setStatus(0);
 
         this.iAccountRepository.saveAccount(account);
+    }
+
+    @Override
+    public void updateAccount(Account account) {
+        this.iAccountRepository.updateAccount(account);
     }
 }
