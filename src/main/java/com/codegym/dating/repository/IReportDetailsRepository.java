@@ -55,4 +55,5 @@ public interface IReportDetailsRepository extends JpaRepository<ReportDetails, R
             "report_details.time_report,report_details.status)" +
             "values (?1,?2,?3,?4,8)", nativeQuery = true)
     void createReportDetails(Integer report, Integer post, Integer reporter, LocalDateTime timeReport);
+
 }
