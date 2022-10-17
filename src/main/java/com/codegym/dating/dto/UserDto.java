@@ -10,6 +10,7 @@ import lombok.Setter;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 
 @Getter
@@ -25,6 +26,7 @@ public class UserDto implements Validator {
     private String address;
     private String job;
     private Boolean married;
+    @NotBlank
     private String avatar;
     private LocalDate joinDay;
     private Integer coin;

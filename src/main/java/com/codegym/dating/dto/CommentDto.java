@@ -6,8 +6,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
+
+import javax.validation.constraints.NotBlank;
 
 @Setter
 @Getter
@@ -16,6 +19,8 @@ import org.springframework.validation.Validator;
 public class CommentDto implements Validator {
 
     private Integer idComment;
+    @NotBlank
+    @Length(min = 1, max = 450)
     private String content;
     private Post post;
     private User user;
