@@ -15,10 +15,4 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
 
     @Query(value = "select * from user where id_user = :id", nativeQuery = true)
     User findUserById(Integer id);
-
-    @Modifying
-    @Transactional
-    @Query(value = "insert into user (avatar, name, gender, date_of_birth, job, address, married, id_type_user, join_day) " +
-            "value (:#{#user.avatar}, :#{#user.name},:#{#user.gender}, :#{#user.dateOfBirth},:#{#user.job}, :#{#user.address},:#{#user.married}, :#{#user.typeUser.idTypeUser}, :#{#user.joinDay})",nativeQuery = true)
-    void saveUser(User user);
 }

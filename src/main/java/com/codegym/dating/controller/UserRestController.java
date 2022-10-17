@@ -59,6 +59,7 @@ public class UserRestController {
 
         if (account != null){
             if (account.getStatus() == 0){
+
                 // validate
                 new UserDto().validate(userDto, bindingResult);
 
@@ -74,10 +75,8 @@ public class UserRestController {
                 // save user
                 User user = new User();
                 BeanUtils.copyProperties(userDto, user);
-                this.iUserService.saveUser(user);
 
-                // save hobbit and target
-                User newUser = this.iUserService.findAllUser().get(this.iUserService.findAllUser().size() - 1);
+                User newUser = this.iUserService.saveUser(user);
 
                 for (UserHobbit userHobbit : userDto.getUserHobbits()) {
                     userHobbit.getId().setIdUser(newUser.getIdUser());

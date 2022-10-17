@@ -31,13 +31,13 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void saveUser(User user) {
+    public User saveUser(User user) {
 
         TypeUser typeUser = this.iTypeUserRepository.findTypeUserById(1);
         user.setTypeUser(typeUser);
 
         user.setJoinDay(String.valueOf(LocalDate.now()));
 
-        this.iUserRepository.saveUser(user);
+        return this.iUserRepository.save(user);
     }
 }

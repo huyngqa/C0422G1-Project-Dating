@@ -7,10 +7,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Range;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import javax.validation.constraints.Email;
+import javax.validation.constraints.*;
 import java.util.Set;
 
 @Getter
@@ -26,6 +27,8 @@ public class AccountDto implements Validator {
 
     private String phone;
 
+    @Min(value = 6, message = "Mật khẩu yếu !")
+    @Max(value = 50, message = "Mật khẩu quá dài !")
     private String password;
 
     private Integer status;

@@ -10,5 +10,5 @@ public interface IUserService {
 
     User findUserById(Integer id);
 
-    void saveUser(User user);
+    User saveUser(User user);
 }
