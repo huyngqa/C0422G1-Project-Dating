@@ -1,5 +1,6 @@
 package com.codegym.dating.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,4 @@ public class Report {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idReport;
     private String nameReport;
-    @OneToMany(mappedBy = "report")
-    private List<ReportUser> reportUserList;
 }
