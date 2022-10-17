@@ -1,5 +1,6 @@
 package com.codegym.dating.model;
 
+import com.codegym.dating.common.AuthenticationProvider;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,8 @@ public class Account {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_user")
     private User user;
+    @Enumerated(EnumType.STRING)
+    private AuthenticationProvider authProvider;
     @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
     private Set<AccountRole> accountRoles;
 }

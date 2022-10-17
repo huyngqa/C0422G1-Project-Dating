@@ -4,5 +4,4 @@ import com.codegym.dating.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface IUserRepository extends JpaRepository<User, Integer> {
-    User findByAccount_IdAccount(Integer idAccount);
 }

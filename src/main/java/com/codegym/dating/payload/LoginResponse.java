@@ -1,8 +1,5 @@
 package com.codegym.dating.payload;
 
-import com.codegym.dating.model.Account;
-import com.codegym.dating.model.Role;
-import com.codegym.dating.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

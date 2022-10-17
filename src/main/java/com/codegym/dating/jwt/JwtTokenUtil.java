@@ -25,18 +25,12 @@ public class JwtTokenUtil implements Serializable {
     }
 
     public String generateJwtToken(String username) {
-
         return Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date((new Date()).getTime() + JWT_TOKEN_VALIDITY))
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact();
-    }
-
-    //get expiration date from jwt token
-    public Date getExpirationDateFromToken(String token) {
-        return getClaimFromToken(token, Claims::getExpiration);
     }
 
     public <T> T getClaimFromToken(String token, Function<Claims, T> claimsResolver) {
