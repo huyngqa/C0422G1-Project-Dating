@@ -50,9 +50,12 @@ public interface IReportDetailsRepository extends JpaRepository<ReportDetails, I
             "values (?1,?2,?3,?4,8)", nativeQuery = true)
     void createReportDetails(Integer report, Integer post, Integer reporter, LocalDateTime timeReport);
 
+<<<<<<< HEAD
 
     @Modifying
     @Transactional
     @Query(value = "update report_details set report_details.status = 13 where report_details.id = ?1 ", nativeQuery = true)
     void deleteReportDetails (Integer id);
+=======
+>>>>>>> 2feb9fa9a21e6d67c8df8671a33edd00c8bc5876
 }
