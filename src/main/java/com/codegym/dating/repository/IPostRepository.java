@@ -27,7 +27,6 @@ public interface IPostRepository extends JpaRepository<Post, Integer> {
     List<IPostDto> getPostList(int id);
 
 
-
     @Query(value = "select p.content as ContentDto,\n" +
             "        p.id_user as IdDto,\n" +
             "        p.media as MediaDto,\n" +
