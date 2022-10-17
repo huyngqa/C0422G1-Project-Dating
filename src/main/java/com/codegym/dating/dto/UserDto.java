@@ -1,19 +1,30 @@
 package com.codegym.dating.dto;
 
-public interface
-UserDto {
+import java.time.LocalDate;
 
-     String getName();
-
-     Boolean getGender();
+public interface UserDto {
+    Integer getIdUser();
 
     String getAddress();
 
-     String getJob();
+    String getAvatar();
 
-     String getAvatar();
+    Integer getCoin();
 
-     Integer getCoin();
+    LocalDate getDateOfBirth();
 
+    Boolean getGender();
+
+    String getJob();
+
+    LocalDate getJoinDay();
+
+    String getName();
+
+    Boolean getMarried();
+
+    Integer idStatusActive();
+
+    Integer getIdTypeUser();
 
 }
