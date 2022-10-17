@@ -7,12 +7,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/rest")
 public class TestRestController {
 
-    @Autowired
-    private IAccountService iAccountService;
+//    @Autowired
+//    private IAccountService iAccountService;
 
 //    @GetMapping("/test")
 //    public ResponseEntity<String> listResponseEntity() {
@@ -21,18 +22,6 @@ public class TestRestController {
 //        return new ResponseEntity<>(accountRole.get().getAccount().getEmail() + accountRole.get().getRole().getRoleName(), HttpStatus.OK);
 //    }
 
-    @PatchMapping("/checkPassword/{password}/{newPassword}")
-    public ResponseEntity<?> checkPassword(@PathVariable String password,
-                                           @PathVariable String newPassword) {
 
-        Account account = this.iAccountService.findByPassword(password);
-
-        if (account != null) {
-            account.setPassword(newPassword);
-            iAccountService.updatePassword(account);
-            return new ResponseEntity<>(account, HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
 
 }
