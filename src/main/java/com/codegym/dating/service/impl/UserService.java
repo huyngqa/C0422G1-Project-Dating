@@ -1,6 +1,5 @@
 package com.codegym.dating.service.impl;
 
-import com.codegym.dating.DTO.ListUserDto;
 import com.codegym.dating.model.User;
 import com.codegym.dating.repository.IUserRepository;
 import com.codegym.dating.service.IUserService;
@@ -16,14 +15,9 @@ public class UserService implements IUserService {
     @Autowired
     private IUserRepository iUserRepository;
 
-//    @Override
-//    public Page<ListUserDto> findAll(String name,Pageable pageable) {
-//        return iUserRepository.findAllByName(name,pageable);
-//    }
-
     @Override
     public Page<User> findAll(String name, Pageable pageable) {
-        return iUserRepository.findByNameContainingOrderByIdUserAsc(name, pageable);
+        return iUserRepository.findByNameContaining(name, pageable);
     }
 
     @Override
@@ -34,5 +28,10 @@ public class UserService implements IUserService {
     @Override
     public Optional<User> findByIdUser(int id) {
         return iUserRepository.findById(id);
+    }
+
+    @Override
+    public void updateWarningUser(Integer id, User user) {
+        iUserRepository.updateStatusUserWarning(user.getAccount().getStatus(),id);
     }
 }

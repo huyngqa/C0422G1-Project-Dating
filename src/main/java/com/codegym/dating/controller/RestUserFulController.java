@@ -12,14 +12,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 import java.util.stream.Collectors;
-
+@CrossOrigin
 @RestController
 @RequestMapping(value = "api/admin")
 public class RestUserFulController {
@@ -30,7 +27,7 @@ public class RestUserFulController {
     private IReportDetailsService reportDetailsService;
 
     @GetMapping(value = "/list/user")
-    public ResponseEntity<Page<UserSummaryDto>> findAll(@PageableDefault(page =0,size = 5) Pageable pageable,
+    public ResponseEntity<Page<UserSummaryDto>> getAllAndSearchUser(@PageableDefault(page =0,size = 5) Pageable pageable,
                                               @RequestParam Optional<String> name, @RequestParam String typeUser){
         String nameVal = name.orElse("");
         Page<User> userPage;
@@ -64,5 +61,11 @@ public class RestUserFulController {
         else {
             return new ResponseEntity<>(userSummaryDtos, HttpStatus.OK);
         }
+    }
+
+    @PatchMapping("list/update/{id}")
+    public ResponseEntity<Void> updatePatient(@RequestBody User user, @PathVariable Integer id) {
+        iUserService.updateWarningUser(id,user);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

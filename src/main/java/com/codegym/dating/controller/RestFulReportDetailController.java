@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "api/admin")
 public class RestFulReportDetailController {
+
     @Autowired
     private IReportDetailsService iReportDetailsService;
 
@@ -20,4 +21,5 @@ public class RestFulReportDetailController {
         List<ReportDetailDto> reportDetails = iReportDetailsService.findByIdReportDetailUser(id);
         return new ResponseEntity<>(reportDetails, HttpStatus.OK);
     }
+
 }
