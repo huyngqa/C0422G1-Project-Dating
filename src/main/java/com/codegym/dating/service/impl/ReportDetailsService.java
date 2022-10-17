@@ -16,7 +16,7 @@ public class ReportDetailsService implements IReportDetailsService {
 
 
     @Override
-    public Page<ReportDetails> findAll(Pageable pageable) {
+    public Page<ReportDetailsDto> findAll(Pageable pageable) {
         return reportDetailsRepository.findByAllReportUser(pageable);
     }
 
@@ -29,5 +29,15 @@ public class ReportDetailsService implements IReportDetailsService {
     public void save(ReportDetails reportDetails) {
         reportDetailsRepository.createReportDetails(reportDetails.getReport().getIdReport(), reportDetails.getPost().getIdPost(),
                 reportDetails.getReporter().getIdUser(),reportDetails.getTimeReport());
+    }
+
+    @Override
+    public void delete(ReportDetails reportDetails) {
+        reportDetailsRepository.deleteReportDetails(reportDetails.getStatus());
+    }
+
+    @Override
+    public ReportDetails findById(Integer id) {
+        return reportDetailsRepository.findReportDetailsByID(id);
     }
 }

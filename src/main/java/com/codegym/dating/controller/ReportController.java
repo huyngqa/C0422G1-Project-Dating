@@ -35,8 +35,8 @@ public class ReportController {
 
 
         @GetMapping("/report-detail")
-    public ResponseEntity<Page<ReportDetails>> getAllReportUser(@PageableDefault(3) Pageable pageable) {
-        Page<ReportDetails> stationPage = reportDetailsService.findAll(pageable);
+    public ResponseEntity<Page<ReportDetailsDto>> getAllReportUser(@PageableDefault(3) Pageable pageable) {
+        Page<ReportDetailsDto> stationPage = reportDetailsService.findAll(pageable);
         if (!stationPage.hasContent()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -54,4 +54,24 @@ public class ReportController {
         reportDetailsService.save(reportDetails);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @PatchMapping("/delete/{id}")
+    public ResponseEntity<Void> delete(@PathVariable("id") Integer id, @RequestBody ReportDetails reportDetails) {
+        reportDetailsService.delete(reportDetails);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
+    @GetMapping(value = "/detail/{id}")
+    public ResponseEntity<ReportDetails> getInfoReport(@PathVariable Integer id) {
+
+        ReportDetails reportDetailsObj = this.reportDetailsService.findById(id);
+
+        if (reportDetailsObj == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>(reportDetailsObj, HttpStatus.OK);
+    }
+
 }

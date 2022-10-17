@@ -7,11 +7,11 @@ import com.codegym.dating.model.User;
 import java.time.LocalDateTime;
 
 public interface ReportDetailsDto {
-    Integer getId();
-    Post getPost();
-    User getReporter();
-    Report getReport();
+    Integer getIdReportDetails();
+    Integer getPost();
+    Integer getReporter();
+    Integer getReport();
     Integer getStatus();
-    LocalDateTime getTimeReport();
     Integer getUserPost();
+    LocalDateTime getTimeReport();
 }
