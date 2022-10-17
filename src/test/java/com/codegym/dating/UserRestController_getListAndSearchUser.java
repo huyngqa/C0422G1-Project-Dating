@@ -19,6 +19,23 @@ public class UserRestController_getListAndSearchUser {
     private MockMvc mockMvc;
 
     @Test
+    public void getListAndSearchUser_6() throws Exception {
+
+        this.mockMvc.perform(
+                        MockMvcRequestBuilders
+                                .get("/api/admin/list/user?typeUser=&name=&page=0"))
+                .andDo(print())
+                .andExpect(status().is2xxSuccessful())
+                .andExpect(jsonPath("totalPages").value(4))
+                .andExpect(jsonPath("totalElements").value(20))
+                .andExpect(jsonPath("content[4].name").value("Phạm Hữu Minh Tâm"))
+                .andExpect(jsonPath("content[4].coin").value("1356"))
+                .andExpect(jsonPath("content[4].joinDate").value("2020-04-12"))
+                .andExpect(jsonPath("content[4].typeUser").value("Basic"))
+                .andExpect(jsonPath("content[4].quantity").value("3"));
+    }
+
+    @Test
     public void getListAndSearchUser_7() throws Exception {
 
         this.mockMvc.perform(
@@ -39,33 +56,15 @@ public class UserRestController_getListAndSearchUser {
     }
 
 
-//    @Test
-//    public void getListAndSearchUser_10() throws Exception {
-//
-//        this.mockMvc.perform(
-//                        MockMvcRequestBuilders
-//                                .get("/api/admin/list/"))
-//                .andDo(print())
-//                .andExpect(status().is4xxClientError());
-//    }
-
     @Test
     public void getListAndSearchUser_11() throws Exception {
 
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/api/admin/list/user?typeUser=&name=&page=0"))
+                                .get("/api/admin/list/user?typeUser=Vip&name=Nghĩa"))
                 .andDo(print())
-                .andExpect(status().is2xxSuccessful())
-                .andExpect(jsonPath("totalPages").value(4))
-                .andExpect(jsonPath("totalElements").value(20))
-                .andExpect(jsonPath("content[4].name").value("Phạm Hữu Minh Tâm"))
-                .andExpect(jsonPath("content[4].coin").value("1356"))
-                .andExpect(jsonPath("content[4].joinDate").value("2020-04-12"))
-                .andExpect(jsonPath("content[4].typeUser").value("Basic"))
-                .andExpect(jsonPath("content[4].quantity").value("3"));
+                .andExpect(status().isOk());
     }
-
 
     @Test
     public void getListAndSearchUser_name_7() throws Exception {
