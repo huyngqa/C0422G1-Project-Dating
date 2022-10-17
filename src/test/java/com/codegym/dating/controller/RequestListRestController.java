@@ -22,8 +22,32 @@ public class RequestListRestController {
     @Autowired
     private ObjectMapper objectMapper;
 
+    // Không có tham số nên không xác định được ai là người nhận
     @Test
-    public void getListStudent_5() throws Exception {
+    public void getListRequest1() throws Exception {
+
+        this.mockMvc.perform(
+                        MockMvcRequestBuilders
+                                .get("/api/users/request/{id}",""))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+
+    // Không có tham số nên không xác định được ai là người nhận
+    @Test
+    public void getListRequest_2() throws Exception {
+
+        this.mockMvc.perform(
+                        MockMvcRequestBuilders
+                                .get("/api/users/request/{id}",null))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+    // Lấy được list của khách hàng có user có id=1
+    @Test
+    public void getListRequest_3() throws Exception {
 
         this.mockMvc.perform(
                         MockMvcRequestBuilders
