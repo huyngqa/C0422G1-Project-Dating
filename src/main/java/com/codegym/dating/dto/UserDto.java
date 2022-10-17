@@ -21,6 +21,8 @@ public interface UserDto {
 
     String getName();
 
+    Boolean getMarried();
+
     Integer idStatusActive();
 
     Integer getIdTypeUser();

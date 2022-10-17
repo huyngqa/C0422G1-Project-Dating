@@ -1,9 +1,7 @@
 package com.codegym.dating.controller;
 
 import com.codegym.dating.dto.HobbitDto;
-import com.codegym.dating.dto.UserDto;
 import com.codegym.dating.service.IUserHobbitService;
-import com.codegym.dating.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,4 +23,5 @@ public class HobbitRestController {
         }
         return new ResponseEntity<>(hobbitDtoList,HttpStatus.OK);
     }
+
 }

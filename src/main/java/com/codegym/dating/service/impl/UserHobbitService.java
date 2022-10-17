@@ -15,4 +15,5 @@ public class UserHobbitService implements IUserHobbitService {
     public List<HobbitDto> findAllByIdUser(Integer id) {
         return this.iUserHobbitRepository.findAllByIdUser(id);
     }
+
 }

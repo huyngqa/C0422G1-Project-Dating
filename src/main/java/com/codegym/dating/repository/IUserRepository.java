@@ -18,13 +18,14 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             "    gender,\n" +
             "    job,\n" +
             "    join_day AS joinDay,\n" +
+            "    married,\n" +
             "    name,\n" +
             "    id_status_active AS idStatusActive,\n" +
             "    id_type_user AS idTypeUser\n" +
             "FROM\n" +
             "    user\n" +
             "WHERE\n" +
-            "    id_user = ?1", nativeQuery = true)
+            "    id_user = ?1\n", nativeQuery = true)
         Optional<UserDto> findByIdDto(Integer id);
 
 
