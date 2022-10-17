@@ -1,6 +1,7 @@
 package com.codegym.dating.dto;
 
-public interface UserDto {
+public interface
+UserDto {
 
      String getName();
 
