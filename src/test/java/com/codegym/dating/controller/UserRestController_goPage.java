@@ -23,7 +23,7 @@ public class UserRestController_goPage {
 
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/api/public/pageSearch/"))
+                                .get("/api/public/pageSearch/a"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -70,6 +70,23 @@ public class UserRestController_goPage {
                 .andExpect(jsonPath("content[4].coin").value("5773"))
                 .andExpect(jsonPath("content[4].avatar").value("chuacoanh"))
                 .andExpect(jsonPath("content[4].job").value("Nhân Viên Bán Hàng"));
+    }
+  @Test
+    public void getPage_search_4() throws Exception {
+
+        this.mockMvc.perform(
+                        MockMvcRequestBuilders
+                                .get("/api/public/pageSearch?search=" +"a"))
+                .andDo(print())
+                .andExpect(status().is2xxSuccessful())
+                .andExpect(jsonPath("totalPages").value(4))
+                .andExpect(jsonPath("totalElements").value(20))
+                .andExpect(jsonPath("content[1].name").value("Trần Thào Nhiên"))
+                .andExpect(jsonPath("content[1].gender").value("false"))
+                .andExpect(jsonPath("content[1].address").value("43 Trương Hán Siêu , Phường An Hài Bắc , Quận Sơn Trà , Thành Phố Đà Nẵng"))
+                .andExpect(jsonPath("content[1].coin").value("3453"))
+                .andExpect(jsonPath("content[1].avatar").value("chuacoanh"))
+                .andExpect(jsonPath("content[1].job").value("Nhân Viên Văn Phòng"));
     }
 
 }
