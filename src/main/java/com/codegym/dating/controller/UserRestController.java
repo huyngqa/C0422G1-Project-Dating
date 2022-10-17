@@ -56,9 +56,7 @@ public class UserRestController {
 
         this.iUserService.updateAvatar(user);
 
-
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
-
 
 }

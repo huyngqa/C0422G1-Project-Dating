@@ -40,12 +40,12 @@ public class CommentRestController {
         new CommentDto().validate(commentDto, bindingResult);
 
         if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(HttpStatus.FOUND);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
 
         Comment comment = new Comment();
 
-        BeanUtils.copyProperties(commentDto, comment);
+        BeanUtils.copyProperties(commentDto,comment);
 
         this.icommentService.addComment(comment);
 
