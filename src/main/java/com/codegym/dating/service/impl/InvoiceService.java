@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Service
 public class InvoiceService implements IInvoiceService {
@@ -20,8 +21,8 @@ public class InvoiceService implements IInvoiceService {
 
     @Override
     public void savePaypal(Invoice invoice, Integer id) {
-        iInvoiceRepository.savePaypal(invoice.getPrice(),LocalDate.now(),invoice.getUser().getIdUser());
-        User user = iUserService.findByUser(id);
+        iInvoiceRepository.savePaypal(invoice.getPrice(), LocalDate.now(),invoice.getUser().getIdUser());
+        User user = iUserService.findUserById(id);
         iUserService.updateCoin(user.getCoin() + invoice.getPrice(),id);
     }
 }
