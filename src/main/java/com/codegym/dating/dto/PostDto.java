@@ -1,8 +1,33 @@
 package com.codegym.dating.dto;
 
-public interface PostDto {
-   Integer getIdDto();
-   String getContentDto();
-   String getMediaDto();
-   String getTimeDto();
+import com.codegym.dating.model.User;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
+
+import java.time.LocalDateTime;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class PostDto implements Validator {
+    private Integer idPost;
+    private String content;
+    private String media;
+    private LocalDateTime time;
+    private User user;
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+      PostDto postDto =(PostDto) target;
+    }
 }
