@@ -38,6 +38,7 @@ public class PostRestController_findByIdPost {
         this.mockMvc.perform(MockMvcRequestBuilders.get("/post/findPost/{id}","30"))
                 .andDo(print()).andExpect(status().is4xxClientError());
     }
+<<<<<<< HEAD
 
     @Test
     public void findById_4() throws Exception{
@@ -53,4 +54,6 @@ public class PostRestController_findByIdPost {
 
     }
 
+=======
+>>>>>>> origin/PhuLH-baidang
 }
