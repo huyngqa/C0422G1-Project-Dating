@@ -1,17 +1,22 @@
 package com.codegym.dating.controller;
 
 import com.codegym.dating.model.Account;
+import com.codegym.dating.model.JwtRequest;
 import com.codegym.dating.service.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Objects;
+import java.util.Optional;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping("api/public/account")
+@RequestMapping("api/users/account")
 public class ResetPasswordRestController {
 
     @Autowired
@@ -34,5 +39,25 @@ public class ResetPasswordRestController {
         }
 
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+
+    @PostMapping("/changePassword/{idAccount}")
+    public ResponseEntity<?> doResetPassword(@RequestBody JwtRequest authenticationRequest,
+                                             @PathVariable Integer idAccount) {
+        Optional<Account> account = iAccountService.findById(idAccount);
+
+
+        if (account.isPresent()) {
+            if (BCrypt.checkpw(authenticationRequest.getPassword(), account.get().getPassword())) {
+                if (!Objects.equals(authenticationRequest.getNewPassword(), "")) {
+                    iAccountService.saveNewPassword(passwordEncoder().encode(authenticationRequest.getNewPassword()), idAccount);
+                    return new ResponseEntity<>(HttpStatus.OK);
+                }
+            }
+        }
+
+
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 }
