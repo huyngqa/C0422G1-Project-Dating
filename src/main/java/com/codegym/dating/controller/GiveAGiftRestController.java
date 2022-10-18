@@ -27,7 +27,6 @@ public class GiveAGiftRestController {
     @Autowired
     private IUserService userService;
 
-
     /*List Gift*/
     @GetMapping("/listGift")
     public ResponseEntity<List<Gift>> goListGift() {
@@ -64,7 +63,8 @@ public class GiveAGiftRestController {
 
     /*Method tặng quà cho user*/
     @PatchMapping("/saveGiftUser")
-    public ResponseEntity<Void> updateGiftUser(@RequestParam Integer idGift, @RequestParam Integer idUserReceiver, @RequestParam Integer idUserSender, @RequestParam Integer quantity) {
+    public ResponseEntity<Void> updateGiftUser(@RequestParam Integer idGift, @RequestParam Integer idUserReceiver,
+                                               @RequestParam Integer idUserSender, @RequestParam Integer quantity) {
         this.giftUserService.updateGiveAGift(idGift, idUserReceiver, idUserSender, quantity);
         return new ResponseEntity<>(HttpStatus.OK);
     }
