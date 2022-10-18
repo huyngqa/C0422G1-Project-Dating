@@ -87,4 +87,13 @@ public class FriendListRestController_AddRequest {
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful());
     }
+
+    @Test  // user1 and user2 are friend=> not Accept
+    public void  addRequest_idUser2_idUser1() throws Exception {
+        this.mockMvc.perform(
+                        MockMvcRequestBuilders.post(
+                                "/api/users/friendList/addRequest/{idUser1}/{idUser2}","1","2"))
+                .andDo(print())
+                .andExpect(status().isNotAcceptable());
+    }
 }

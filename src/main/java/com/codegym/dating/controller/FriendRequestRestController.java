@@ -19,6 +19,10 @@ public class FriendRequestRestController {
 
     @PostMapping("addRequest/{idUser1}/{idUser2}")
     public ResponseEntity<Void>addRequest(@PathVariable int idUser1, @PathVariable int idUser2){
+        boolean isFriend = this.iFriendListService.checkFriend(idUser1,idUser2);
+        if (isFriend){
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+        }
         this.iFriendListService.addRequest(idUser1,idUser2);
         return new ResponseEntity<>(HttpStatus.OK);
     }

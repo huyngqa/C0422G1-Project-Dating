@@ -9,16 +9,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 public interface IFriendListRepository extends JpaRepository<FriendList, Integer> {
-    @Query(value = "SELECT \n" +
-            "    id, status, id_user1 AS idUser1, id_user2 AS idUser2\n" +
-            "FROM\n" +
-            "    friend_list\n" +
-            "WHERE\n" +
-            "    id_user1 IN (?1 , ?2)\n" +
-            "        AND id_user2 IN (?1 , ?2)", nativeQuery = true)
-    FriendListDto checkFriend(Integer idUser1, Integer idUser2);
+        @Query(value = "SELECT \n" +
+                "    id, status, id_user1 AS idUser1, id_user2 AS idUser2\n" +
+                "FROM\n" +
+                "    friend_list\n" +
+                "WHERE\n" +
+                "    id_user1 IN (?1 , ?2)\n" +
+                "        AND id_user2 IN (?1 , ?2)", nativeQuery = true)
+        FriendListDto checkFriend(Integer idUser1, Integer idUser2);
 
-    @Modifying
-    @Query(value = "INSERT INTO `dating_c04`.`friend_list` (`status`, `id_user1`, `id_user2`) VALUES ('5', ?1, ?2)", nativeQuery = true)
-    void addRequest(Integer idUser1, Integer idUser2);
+        @Modifying
+        @Query(value = "INSERT INTO `dating_c04`.`friend_list` (`status`, `id_user1`, `id_user2`) VALUES ('5', ?1, ?2)", nativeQuery = true)
+        void addRequest(Integer idUser1, Integer idUser2);
 }
