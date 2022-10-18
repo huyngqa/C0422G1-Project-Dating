@@ -18,7 +18,7 @@ public class UserRestController_goPage {
     @Autowired
     private MockMvc mockMvc;
 
-//  Đường dẫn sai
+
     @Test
     public void getPage() throws Exception {
 
@@ -29,9 +29,8 @@ public class UserRestController_goPage {
                 .andExpect(status().is4xxClientError());
     }
 
-//    Bị null
     @Test
-    public void getPage_search_1() throws Exception {
+    public void getPage_search_7() throws Exception {
 
         this.mockMvc.perform(
                         MockMvcRequestBuilders.get(
@@ -40,9 +39,9 @@ public class UserRestController_goPage {
                 .andExpect(status().is4xxClientError());
     }
 
-//  Lỗi ký tự đặc biệt
+
     @Test
-    public void getPage_search_2() throws Exception {
+    public void getPage_search_8() throws Exception {
 
         this.mockMvc.perform(
                         MockMvcRequestBuilders.get(
@@ -51,9 +50,8 @@ public class UserRestController_goPage {
                 .andExpect(status().is4xxClientError());
     }
 
-//    Lỗi quá 30 ký tự
     @Test
-    public void getPage_search_3() throws Exception {
+    public void getPage_search_9() throws Exception {
 
         this.mockMvc.perform(
                         MockMvcRequestBuilders.get(
@@ -62,9 +60,9 @@ public class UserRestController_goPage {
                 .andExpect(status().is4xxClientError());
     }
 
-//    Lỗi không có trong DB
+
     @Test
-    public void getPage_search_5() throws Exception {
+    public void getPage_search_10() throws Exception {
 
         this.mockMvc.perform(
                         MockMvcRequestBuilders.get(
@@ -73,7 +71,7 @@ public class UserRestController_goPage {
                 .andExpect(status().is4xxClientError());
     }
     @Test
-    public void getPage_page_1() throws Exception {
+    public void getPage_page_11() throws Exception {
 
         this.mockMvc.perform(
                         MockMvcRequestBuilders
@@ -90,7 +88,7 @@ public class UserRestController_goPage {
                 .andExpect(jsonPath("content[4].job").value("Nhân Viên Bán Hàng"));
     }
   @Test
-    public void getPage_search_4() throws Exception {
+    public void getPage_search_11() throws Exception {
 
         this.mockMvc.perform(
                         MockMvcRequestBuilders

@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface IUserService {
-    Page<UserDto> findAllSearchPage(Pageable pageable, String name);
+    Page<UserDto> findAllPage(Pageable pageable);
 
+    List<UserDto> findAllSearch(String name);
 }
