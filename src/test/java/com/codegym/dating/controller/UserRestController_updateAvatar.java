@@ -91,6 +91,104 @@ public class UserRestController_updateAvatar {
     }
 
     @Test
+    public void updateAvatar_avatar_20() throws Exception {
+
+        ClassUserDto userDto = new ClassUserDto();
+        userDto.setName("Nguyễn Trần Thanh Trang");
+        userDto.setDateOfBirth(LocalDate.parse("1970-11-07"));
+        userDto.setGender(false);
+        userDto.setAddress("28 Nguyễn Công Trứ , Phường An Hải Tây,Quận Sơn Trà , Thành Phố Đà Nẵng");
+        userDto.setJob("Hướng Dẫn Viên Du Lịch");
+        userDto.setMarried(false);
+        userDto.setAvatar("");
+        userDto.setJoinDay(LocalDate.parse("2021-01-01"));
+        userDto.setCoin(1000);
+
+        ClassStatusActiveDto statusActiveDto = new ClassStatusActiveDto();
+        statusActiveDto.setId(1);
+        userDto.setStatusActiveDto(statusActiveDto);
+
+        ClassTypeUserDto typeUserDto = new ClassTypeUserDto();
+        typeUserDto.setIdTypeUser(1);
+        userDto.setTypeUserDto(typeUserDto);
+
+        this.mockMvc
+                .perform(MockMvcRequestBuilders
+                        .patch("/api/users/update_avatar/{id}", "1")
+                        .content(this.objectMapper.writeValueAsString(userDto))
+                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+
+    @Test
+    public void updateAvatar_avatar_19() throws Exception {
+
+        ClassUserDto userDto = new ClassUserDto();
+        userDto.setName("Nguyễn Trần Thanh Trang");
+        userDto.setDateOfBirth(LocalDate.parse("1970-11-07"));
+        userDto.setGender(false);
+        userDto.setAddress("28 Nguyễn Công Trứ , Phường An Hải Tây,Quận Sơn Trà , Thành Phố Đà Nẵng");
+        userDto.setJob("Hướng Dẫn Viên Du Lịch");
+        userDto.setMarried(false);
+        userDto.setAvatar(null);
+        userDto.setJoinDay(LocalDate.parse("2021-01-01"));
+        userDto.setCoin(1000);
+
+        ClassStatusActiveDto statusActiveDto = new ClassStatusActiveDto();
+        statusActiveDto.setId(1);
+        userDto.setStatusActiveDto(statusActiveDto);
+
+        ClassTypeUserDto typeUserDto = new ClassTypeUserDto();
+        typeUserDto.setIdTypeUser(1);
+        userDto.setTypeUserDto(typeUserDto);
+
+        this.mockMvc
+                .perform(MockMvcRequestBuilders
+                        .patch("/api/users/update_avatar/{id}", "1")
+                        .content(this.objectMapper.writeValueAsString(userDto))
+                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+    @Test
+    public void updateAvatar_avatar_24() throws Exception {
+
+        ClassUserDto userDto = new ClassUserDto();
+        userDto.setName("Nguyễn Trần Thanh Trang");
+        userDto.setDateOfBirth(LocalDate.parse("1970-11-07"));
+        userDto.setGender(false);
+        userDto.setAddress("28 Nguyễn Công Trứ , Phường An Hải Tây,Quận Sơn Trà , Thành Phố Đà Nẵng");
+        userDto.setJob("Hướng Dẫn Viên Du Lịch");
+        userDto.setMarried(false);
+        userDto.setAvatar("anhdep.png");
+        userDto.setJoinDay(LocalDate.parse("2021-01-01"));
+        userDto.setCoin(1000);
+
+        ClassStatusActiveDto statusActiveDto = new ClassStatusActiveDto();
+        statusActiveDto.setId(1);
+        userDto.setStatusActiveDto(statusActiveDto);
+
+        ClassTypeUserDto typeUserDto = new ClassTypeUserDto();
+        typeUserDto.setIdTypeUser(1);
+        userDto.setTypeUserDto(typeUserDto);
+
+        this.mockMvc
+                .perform(MockMvcRequestBuilders
+                        .patch("/api/users/update_avatar/{id}", "1")
+                        .content(this.objectMapper.writeValueAsString(userDto))
+                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+
+
+
+
+    @Test
     public void updateAvatar_id_24() throws Exception {
 
         ClassUserDto userDto = new ClassUserDto();

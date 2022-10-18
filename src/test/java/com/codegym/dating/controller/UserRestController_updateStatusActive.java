@@ -91,7 +91,6 @@ public class UserRestController_updateStatusActive {
     }
 
 
-
     @Test
     public void updateStatusActive_id_21() throws Exception {
 
@@ -123,7 +122,7 @@ public class UserRestController_updateStatusActive {
                 .andExpect(status().is4xxClientError());
     }
 
-
+    
     @Test
     public void updateStatusActive_id_24() throws Exception {
 

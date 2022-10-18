@@ -26,7 +26,7 @@ public class CommentController_CreateComment {
     private ObjectMapper objectMapper;
 
     @Test
-    public void CreateComment_13() throws Exception {
+    public void CreateComment_content_13() throws Exception {
 
 
         ClassCommentDto commentDto = new ClassCommentDto();
@@ -51,7 +51,7 @@ public class CommentController_CreateComment {
     }
 
     @Test
-    public void CreateComment_14() throws Exception {
+    public void CreateComment_content_14() throws Exception {
 
         ClassCommentDto commentDto = new ClassCommentDto();
 
@@ -75,7 +75,7 @@ public class CommentController_CreateComment {
     }
 
     @Test
-    public void CreateComment_18() throws Exception {
+    public void CreateComment_content_18() throws Exception {
 
         ClassCommentDto commentDto = new ClassCommentDto();
 
