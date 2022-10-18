@@ -1,6 +1,7 @@
 package com.codegym.dating.repository;
 
 import com.codegym.dating.dto.FriendListDto;
+import com.codegym.dating.dto.RelationshipDto;
 import com.codegym.dating.model.FriendList;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -16,7 +17,7 @@ public interface IFriendListRepository extends JpaRepository<FriendList, Integer
                 "WHERE\n" +
                 "    id_user1 IN (?1 , ?2)\n" +
                 "        AND id_user2 IN (?1 , ?2)", nativeQuery = true)
-        FriendListDto checkFriend(Integer idUser1, Integer idUser2);
+        RelationshipDto checkFriend(Integer idUser1, Integer idUser2);
 
         @Modifying
         @Query(value = "INSERT INTO `dating_c04`.`friend_list` (`status`, `id_user1`, `id_user2`) VALUES ('5', ?1, ?2)", nativeQuery = true)

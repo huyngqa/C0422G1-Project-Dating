@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface IUserHobbitRepository extends JpaRepository<UserHobbit, UserHobbitKey> {
     @Query(value = "SELECT \n" +
-            "    h.hobbit_name AS name\n" +
+            "    h.hobbit_name AS hobbitName\n" +
             "FROM\n" +
             "    hobbit h\n" +
             "        JOIN\n" +
