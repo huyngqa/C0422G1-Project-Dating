@@ -83,7 +83,7 @@ public class FriendListRestController_AddRequest {
     public void  addRequest_idUser2_4() throws Exception {
         this.mockMvc.perform(
                         MockMvcRequestBuilders.post(
-                                "/api/users/friendList/addRequest/{idUser1}/{idUser2}","1","20"))
+                                "/api/users/friendList/addRequest/{idUser1}/{idUser2}","13","18"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful());
     }
