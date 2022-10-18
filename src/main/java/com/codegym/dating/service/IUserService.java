@@ -10,4 +10,7 @@ public interface IUserService {
     Page<UserDto> findAllPage(Pageable pageable);
 
     List<UserDto> findAllSearch(String name);
+
+
+    Page<UserDto> findAllSearchPage(Pageable pageable, String name);
 }

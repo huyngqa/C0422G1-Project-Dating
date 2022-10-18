@@ -25,4 +25,9 @@ public class UserService implements IUserService {
     public List<UserDto> findAllSearch(String name) {
         return userRepository.getAllSearch( '%' + name + '%');
     }
+
+    @Override
+    public Page<UserDto> findAllSearchPage(Pageable pageable, String name) {
+        return userRepository.getAllSearchPage(pageable,'%' + name + '%');
+    }
 }
