@@ -25,8 +25,8 @@ public class PostController {
     @GetMapping("/list/{id}")
     public ResponseEntity<List<IPostDto>> getList(@PathVariable int id) {
         List<IPostDto> list = this.iPostService.getPostList(id);
-        if( list.isEmpty()){
-            return new  ResponseEntity<>(HttpStatus.NO_CONTENT);
+        if(list.isEmpty()){
+            return new  ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<>(list,HttpStatus.OK);
         }
@@ -37,19 +37,20 @@ public class PostController {
         Post post = this.iPostService.findPostById(id);
 
         if (post == null ) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }else {
             return new ResponseEntity<>(post,HttpStatus.OK);
         }
     }
 
-    @PatchMapping("/update/{id}")
-    public ResponseEntity<Void> updatePost(@PathVariable Integer id , @RequestBody @Valid PostDto postDto,
+    @PatchMapping("/update")
+    public ResponseEntity<Void> updatePost( @RequestBody @Valid PostDto postDto,
                                            BindingResult bindingResult){
         Post post = new Post();
+         Post post1 = this.iPostService.findPostById(postDto.getIdPost());
           new PostDto().validate(postDto,bindingResult);
-          if (bindingResult.hasErrors()){
-             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+          if (bindingResult.hasErrors() || post1 == null ){
+             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
          } else {
              BeanUtils.copyProperties(postDto, post);
              this.iPostService.updatePost(post);

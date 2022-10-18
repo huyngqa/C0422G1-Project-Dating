@@ -27,7 +27,6 @@ public interface IPostRepository extends JpaRepository<Post, Integer> {
     List<IPostDto> getPostList(int id);
 
 
-
     @Query(value = "select p.content as ContentDto,\n" +
             "        p.id_user as IdDto,\n" +
             "        p.media as MediaDto,\n" +
@@ -38,7 +37,7 @@ public interface IPostRepository extends JpaRepository<Post, Integer> {
 
     @Query(value = "select p.id_post, p.id_user,p.content,p.media,p.time\n" +
             "from post as p\n" +
-            "where p.id_post = 1", nativeQuery = true)
+            "where p.id_post = ?1", nativeQuery = true)
     Post findPostById(int id);
 
     @Modifying
