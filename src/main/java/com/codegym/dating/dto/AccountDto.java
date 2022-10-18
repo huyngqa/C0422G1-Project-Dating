@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -22,18 +23,22 @@ public class AccountDto implements Validator {
 
     private Integer idAccount;
 
+    @NotBlank(message = "vui lòng nhập email !")
     @Email(message = "vui lòng nhập đúng định dạng !")
     private String email;
 
+    @NotBlank(message = "vui lòng nhập số điện thoại !")
+    @Pattern(regexp = "^(090|093|097)\\d{7}$", message = "vui lòng nhập đúng định dạng !")
     private String phone;
 
-    @Min(value = 6, message = "Mật khẩu yếu !")
-    @Max(value = 50, message = "Mật khẩu quá dài !")
+    @NotBlank(message = "vui lòng nhập số điện thoại!")
+    @Length(min = 6, message = "Mật khẩu yếu !")
+    @Length(max = 50, message = "Tối đa 50 ký tự")
     private String password;
 
     private Integer status;
 
-    private User user;
+    private UserDto userDto;
 
     private Set<AccountRole> accountRoles;
 
@@ -46,10 +51,10 @@ public class AccountDto implements Validator {
     public void validate(Object target, Errors errors) {
         AccountDto accountDto = (AccountDto) target;
 
-        AccountValidate.checkEmail(accountDto, errors);
-
-        AccountValidate.checkPhone(accountDto, errors);
-
-        AccountValidate.checkPassword(accountDto, errors);
+//        AccountValidate.checkEmail(accountDto, errors);
+//
+//        AccountValidate.checkPhone(accountDto, errors);
+//
+//        AccountValidate.checkPassword(accountDto, errors);
     }
 }

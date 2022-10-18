@@ -39,7 +39,7 @@ public class UserDto implements Validator {
 
     private Integer statusActive;
 
-    private Account account;
+    private AccountDto accountDto;
 
     private TypeUser typeUser;
 
