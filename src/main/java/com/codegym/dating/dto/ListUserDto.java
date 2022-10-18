@@ -1,4 +1,4 @@
-package com.codegym.dating.DTO;
+package com.codegym.dating.dto;
 
 public interface ListUserDto {
     String getIdUser();

@@ -1,6 +1,6 @@
 package com.codegym.dating.controller;
 
-import com.codegym.dating.DTO.ReportDetailDto;
+import com.codegym.dating.dto.ReportDetailDto;
 import com.codegym.dating.service.IReportDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

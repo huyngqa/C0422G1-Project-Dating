@@ -1,6 +1,7 @@
 package com.codegym.dating.service.impl;
 
 import com.codegym.dating.model.User;
+import com.codegym.dating.payload.request.UpdateStatusRequest;
 import com.codegym.dating.repository.IUserRepository;
 import com.codegym.dating.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,12 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void updateWarningUser(Integer id, User user) {
-        iUserRepository.updateStatusUserWarning(user.getAccount().getStatus(),id);
+    public void updateWarningUser(UpdateStatusRequest updateStatusRequest) {
+        Optional<User> userOpt = this.findByIdUser(updateStatusRequest.getIdUser());
+        if (userOpt.isPresent()) {
+            User user = userOpt.get();
+            user.getAccount().setStatus(updateStatusRequest.getStatus());
+            iUserRepository.save(user);
+        }
     }
 }

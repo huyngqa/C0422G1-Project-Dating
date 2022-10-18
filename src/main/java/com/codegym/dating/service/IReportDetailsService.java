@@ -1,7 +1,7 @@
 package com.codegym.dating.service;
 
-import com.codegym.dating.DTO.ReportDetailDto;
-import com.codegym.dating.DTO.UserReportDto;
+import com.codegym.dating.dto.ReportDetailDto;
+import com.codegym.dating.dto.UserReportDto;
 
 import java.util.List;
 

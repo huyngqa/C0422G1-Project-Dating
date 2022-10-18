@@ -1,7 +1,7 @@
 package com.codegym.dating.service.impl;
 
-import com.codegym.dating.DTO.ReportDetailDto;
-import com.codegym.dating.DTO.UserReportDto;
+import com.codegym.dating.dto.ReportDetailDto;
+import com.codegym.dating.dto.UserReportDto;
 import com.codegym.dating.repository.IReportDetailsRepository;
 import com.codegym.dating.service.IReportDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;

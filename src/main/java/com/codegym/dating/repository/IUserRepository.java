@@ -1,11 +1,10 @@
 package com.codegym.dating.repository;
 
-import com.codegym.dating.DTO.ListUserDto;
+import com.codegym.dating.dto.ListUserDto;
 import com.codegym.dating.model.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
@@ -63,10 +62,4 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
     @Query(value="select u from User u join TypeUser tu on tu.idTypeUser = u.typeUser.idTypeUser where u.name LIKE lower(concat('%', ?1,'%')) AND tu.typeUserName = ?2 ORDER BY u.idUser ASC")
     Page<User> findByTypeUser(String name, String typeUser, Pageable pageable);
 
-    @Modifying
-    @Query(value = "update account " +
-            "left join user on user.id_user = account.id_user " +
-            "set account.status = ?1" +
-            "where user.id_user = ?2", nativeQuery = true)
-    void updateStatusUserWarning(@Param("status") Integer status,@Param("id") Integer id);
 }

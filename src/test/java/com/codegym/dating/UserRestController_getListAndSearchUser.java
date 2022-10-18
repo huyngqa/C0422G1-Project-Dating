@@ -106,15 +106,15 @@ public class UserRestController_getListAndSearchUser {
                 .andExpect(status().isOk());
     }
 
-//    @Test
-//    public void getListAndSearchUser_nameTypeUser_7() throws Exception {
-//
-//        this.mockMvc.perform(
-//                        MockMvcRequestBuilders
-//                                .get("/api/admin/list/user?typeUser=null"))
-//                .andDo(print())
-//                .andExpect(status().is4xxClientError());
-//    }
+    @Test
+    public void getListAndSearchUser_nameTypeUser_7() throws Exception {
+
+        this.mockMvc.perform(
+                        MockMvcRequestBuilders
+                                .get("/api/admin/list/user?typeUser=null"))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
 
     @Test
     public void getListAndSearchUser_nameTypeUser_11() throws Exception {

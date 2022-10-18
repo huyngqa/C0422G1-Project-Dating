@@ -1,8 +1,9 @@
 package com.codegym.dating.controller;
 
-import com.codegym.dating.DTO.UserReportDto;
-import com.codegym.dating.DTO.UserSummaryDto;
+import com.codegym.dating.dto.UserReportDto;
+import com.codegym.dating.dto.UserSummaryDto;
 import com.codegym.dating.model.User;
+import com.codegym.dating.payload.request.UpdateStatusRequest;
 import com.codegym.dating.service.IReportDetailsService;
 import com.codegym.dating.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 import java.util.stream.Collectors;
+
 @CrossOrigin
 @RestController
 @RequestMapping(value = "api/admin")
@@ -62,10 +64,9 @@ public class RestUserFulController {
             return new ResponseEntity<>(userSummaryDtos, HttpStatus.OK);
         }
     }
-
-    @PatchMapping("list/update/{id}")
-    public ResponseEntity<Void> updatePatient(@RequestBody User user, @PathVariable Integer id) {
-        iUserService.updateWarningUser(id,user);
+    @PatchMapping("list/update/status")
+    public ResponseEntity<?> updatePatient(@RequestBody UpdateStatusRequest updateStatusRequest) {
+        iUserService.updateWarningUser(updateStatusRequest);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

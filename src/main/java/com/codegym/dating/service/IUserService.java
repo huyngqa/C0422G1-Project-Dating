@@ -1,6 +1,7 @@
 package com.codegym.dating.service;
 
 import com.codegym.dating.model.User;
+import com.codegym.dating.payload.request.UpdateStatusRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -14,5 +15,5 @@ public interface IUserService {
 
     Optional<User> findByIdUser(int id);
 
-    void updateWarningUser(Integer id,User user);
+    void updateWarningUser(UpdateStatusRequest updateStatusRequest);
 }
