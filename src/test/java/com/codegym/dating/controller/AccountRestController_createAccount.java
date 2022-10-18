@@ -78,28 +78,6 @@ public class AccountRestController_createAccount {
     }
 
     @Test
-    public void saveAccount_email_18() throws Exception {
-
-        AccountDto accountDto = new AccountDto();
-        accountDto.setEmail("letrong2929@gmail.com");
-        accountDto.setPhone("0934774152");
-        accountDto.setPassword("123456");
-        accountDto.setStatus(0);
-
-        UserDto userDto = new UserDto();
-        userDto.setIdUser(1);
-        accountDto.setUserDto(userDto);
-
-        this.mockMvc
-                .perform(MockMvcRequestBuilders
-                        .post("/api/public/account/save")
-                        .content(this.objectMapper.writeValueAsString(accountDto))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andDo(print())
-                .andExpect(status().is2xxSuccessful());
-    }
-
-    @Test
     public void saveAccount_phone_13() throws Exception {
 
         AccountDto accountDto = new AccountDto();
@@ -162,28 +140,6 @@ public class AccountRestController_createAccount {
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
-    }
-
-    @Test
-    public void saveAccount_phone_18() throws Exception {
-
-        AccountDto accountDto = new AccountDto();
-        accountDto.setEmail("huynguqua@gmail.com");
-        accountDto.setPhone("0934774152");
-        accountDto.setPassword("123456");
-        accountDto.setStatus(0);
-
-        UserDto userDto = new UserDto();
-        userDto.setIdUser(1);
-        accountDto.setUserDto(userDto);
-
-        this.mockMvc
-                .perform(MockMvcRequestBuilders
-                        .post("/api/public/account/save")
-                        .content(this.objectMapper.writeValueAsString(accountDto))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andDo(print())
-                .andExpect(status().is2xxSuccessful());
     }
 
     @Test
@@ -274,7 +230,7 @@ public class AccountRestController_createAccount {
     }
 
     @Test
-    public void saveAccount_password_18() throws Exception {
+    public void saveAccount_allItem_18() throws Exception {
 
         AccountDto accountDto = new AccountDto();
         accountDto.setEmail("minhtam@gmail.com");

@@ -9,6 +9,8 @@ import lombok.Setter;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Getter
@@ -19,16 +21,21 @@ public class UserDto implements Validator {
 
     private Integer idUser;
 
+    @NotBlank(message = "Vui lòng nhập tên !")
     private String name;
 
     private String dateOfBirth;
 
+    @NotNull(message = "Vui lòng chọn giới tính !")
     private Boolean gender;
 
+    @NotBlank(message = "Vui lòng nhập địa chỉ !")
     private String address;
 
+    @NotBlank(message = "Vui lòng nhập công việc !")
     private String job;
 
+    @NotNull(message = "Vui lòng chọn tình trạng hôn nhân !")
     private Boolean married;
 
     private String avatar;
@@ -66,22 +73,6 @@ public class UserDto implements Validator {
     public void validate(Object target, Errors errors) {
         UserDto userDto = (UserDto) target;
 
-        UserValidate.checkName(userDto, errors);
-
-        UserValidate.checkGender(userDto, errors);
-
         UserValidate.checkAge(userDto, errors);
-
-        UserValidate.checkJob(userDto, errors);
-
-        UserValidate.checkJob(userDto, errors);
-
-        UserValidate.checkAddress(userDto, errors);
-
-        UserValidate.checkMarried(userDto, errors);
-
-        UserValidate.checkHobbit(userDto, errors);
-
-        UserValidate.checkTarget(userDto, errors);
     }
 }
