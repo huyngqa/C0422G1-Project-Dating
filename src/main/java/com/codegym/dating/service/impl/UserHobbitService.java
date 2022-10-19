@@ -14,7 +14,6 @@ public class UserHobbitService implements IUserHobbitService {
 
     @Override
     public void saveUserHobbit(UserHobbit userHobbit) {
-
         this.iUserHobbitRepository.saveUserHobbit(userHobbit);
     }
 }

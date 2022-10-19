@@ -2,6 +2,7 @@ package com.codegym.dating.controller;
 
 import com.codegym.dating.dto.AccountDto;
 import com.codegym.dating.model.Account;
+import com.codegym.dating.model.User;
 import com.codegym.dating.service.IAccountService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ public class AccountRestController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Map<String, String>> saveAccount(@RequestBody @Valid AccountDto accountDto,
+    public ResponseEntity<?> saveAccount(@RequestBody @Valid AccountDto accountDto,
                                            BindingResult bindingResult){
 
         new AccountDto().validate(accountDto, bindingResult);
@@ -53,8 +54,9 @@ public class AccountRestController {
         Account account = new Account();
         BeanUtils.copyProperties(accountDto, account);
 
-        this.iAccountService.saveAccount(account);
+        User user = new User();
+        account.setUser(user);
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(this.iAccountService.saveAccount(account),HttpStatus.OK);
     }
 }

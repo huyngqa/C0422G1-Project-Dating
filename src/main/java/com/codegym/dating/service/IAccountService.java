@@ -11,7 +11,7 @@ public interface IAccountService {
 
     Account findAccountById(Integer id);
 
-    void saveAccount(Account account);
+    Account saveAccount(Account account);
 
     void updateAccount(Account account);
 }

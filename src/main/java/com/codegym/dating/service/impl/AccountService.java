@@ -33,13 +33,13 @@ public class AccountService implements IAccountService {
     }
 
     @Override
-    public void saveAccount(Account account) {
+    public Account saveAccount(Account account) {
 
         account.setPassword(bCryptPasswordEncoder.encode(account.getPassword()));
 
         account.setStatus(0);
 
-        this.iAccountRepository.saveAccount(account);
+        return this.iAccountRepository.save(account);
     }
 
     @Override

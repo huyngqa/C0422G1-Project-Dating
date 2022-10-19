@@ -31,7 +31,7 @@ public class AccountDto implements Validator {
     @Pattern(regexp = "^(090|093|097)\\d{7}$", message = "vui lòng nhập đúng định dạng !")
     private String phone;
 
-    @NotBlank(message = "vui lòng nhập số điện thoại!")
+    @NotBlank(message = "vui lòng nhập mật khẩu!")
     @Length(min = 6, message = "Mật khẩu yếu !")
     @Length(max = 50, message = "Tối đa 50 ký tự")
     private String password;

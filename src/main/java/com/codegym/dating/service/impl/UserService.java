@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Service
 public class UserService implements IUserService {
@@ -21,23 +20,24 @@ public class UserService implements IUserService {
     private ITypeUserRepository iTypeUserRepository;
 
     @Override
-    public List<User> findAllUser() {
-        return this.iUserRepository.findAllUser();
-    }
-
-    @Override
     public User findUserById(Integer id) {
         return this.iUserRepository.findUserById(id);
     }
 
     @Override
     public User saveUser(User user) {
+        return this.iUserRepository.save(user);
+    }
 
+    @Override
+    public void updateUser(User user) {
         TypeUser typeUser = this.iTypeUserRepository.findTypeUserById(1);
         user.setTypeUser(typeUser);
 
+        user.setCoin(0);
+
         user.setJoinDay(String.valueOf(LocalDate.now()));
 
-        return this.iUserRepository.save(user);
+        this.iUserRepository.save(user);
     }
 }

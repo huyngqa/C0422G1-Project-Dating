@@ -1,14 +1,8 @@
 package com.codegym.dating.controller;
 
 import com.codegym.dating.dto.UserDto;
-import com.codegym.dating.model.Account;
-import com.codegym.dating.model.User;
-import com.codegym.dating.model.UserHobbit;
-import com.codegym.dating.model.UserTarget;
-import com.codegym.dating.service.IAccountService;
-import com.codegym.dating.service.IUserHobbitService;
-import com.codegym.dating.service.IUserService;
-import com.codegym.dating.service.IUserTargetService;
+import com.codegym.dating.model.*;
+import com.codegym.dating.service.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @CrossOrigin
@@ -38,6 +33,12 @@ public class UserRestController {
     @Autowired
     private IAccountService iAccountService;
 
+    @Autowired
+    private IHobbitService iHobbitService;
+
+    @Autowired
+    private ITargetService iTargetService;
+
     @GetMapping("/find/{id}")
     public ResponseEntity<User> getUser(@PathVariable int id) {
 
@@ -50,51 +51,40 @@ public class UserRestController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping("/save/{idAccount}")
-    public ResponseEntity<Map<String, String>> saveUser(@PathVariable int idAccount,
-                                                        @RequestBody @Valid UserDto userDto,
-                                                        BindingResult bindingResult) {
+    @GetMapping("/get-all-hobbit")
+    public ResponseEntity<List<Hobbit>> getAllHobbit (){
+        return new ResponseEntity<>(this.iHobbitService.findAllHobbit(), HttpStatus.OK);
+    }
 
-        Account account = this.iAccountService.findAccountById(idAccount);
+    @GetMapping("/get-all-target")
+    public ResponseEntity<List<Target>> getAllTarget (){
+        return new ResponseEntity<>(this.iTargetService.findAllTarget(), HttpStatus.OK);
+    }
 
-        if (account != null){
-            if (account.getStatus() == 0){
+    @PatchMapping("/update")
+    public ResponseEntity<Map<String, String>> updateUser(@RequestBody @Valid UserDto userDto,
+                                                          BindingResult bindingResult) {
 
-                // validate
-                new UserDto().validate(userDto, bindingResult);
+        User user = this.iUserService.findUserById(userDto.getIdUser());
 
-                if (bindingResult.hasErrors()){
-                    Map<String, String> errMap = new HashMap<>();
+        if (user != null){
+            new UserDto().validate(userDto, bindingResult);
 
-                    for (FieldError fieldError : bindingResult.getFieldErrors()) {
-                        errMap.put(fieldError.getField(), fieldError.getDefaultMessage());
-                    }
-                    return new ResponseEntity<>(errMap, HttpStatus.BAD_REQUEST);
+            if (bindingResult.hasErrors()) {
+                Map<String, String> errMap = new HashMap<>();
+
+                for (FieldError fieldError : bindingResult.getFieldErrors()) {
+                    errMap.put(fieldError.getField(), fieldError.getDefaultMessage());
                 }
-
-                // save user
-                User user = new User();
-                BeanUtils.copyProperties(userDto, user);
-
-                User newUser = this.iUserService.saveUser(user);
-
-                for (UserHobbit userHobbit : userDto.getUserHobbits()) {
-                    userHobbit.getId().setIdUser(newUser.getIdUser());
-                    this.iUserHobbitService.saveUserHobbit(userHobbit);
-                }
-
-                for (UserTarget userTarget : userDto.getUserTargets()) {
-                    userTarget.getId().setIdUser(newUser.getIdUser());
-                    this.iUserTargetService.saveUserTarget(userTarget);
-                }
-
-                account.setUser(newUser);
-
-                this.iAccountService.updateAccount(account);
+                return new ResponseEntity<>(errMap, HttpStatus.BAD_REQUEST);
             }
-            return new ResponseEntity<>(HttpStatus.OK);
-        }
 
+            BeanUtils.copyProperties(userDto, user);
+
+            this.iUserService.updateUser(user);
+
+             return new ResponseEntity<>(HttpStatus.OK);
+        }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
