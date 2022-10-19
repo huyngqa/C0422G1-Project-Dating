@@ -29,3 +29,6 @@ public interface IFriendListRepository extends JpaRepository<FriendList, Integer
                 "        where (id_user1 = ?1 and id_user2 = ?2)", nativeQuery = true)
         void removeRequest(Integer idUser1, Integer idUser2);
 }
+
+
+
