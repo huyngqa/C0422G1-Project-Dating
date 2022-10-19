@@ -12,47 +12,31 @@ import org.springframework.stereotype.Service;
 public class FriendListService implements IFriendListService {
     @Autowired
     private IFriendListRepository iFriendListRepository;
-    @Override
-    public boolean checkFriend(Integer idUser1, Integer idUser2) {
-        RelationshipDto relationshipDto = this.iFriendListRepository.checkFriend(idUser1,idUser2);
-       if (relationshipDto == null) {
-           return false;
-       }
-       return true;
-    }
 
     @Override
-    public String checkFriend1(Integer idUser1, Integer idUser2) {
+    public String checkFriend(Integer idUser1, Integer idUser2) {
         RelationshipDto relationshipDto = this.iFriendListRepository.checkFriend(idUser1,idUser2);
         if (relationshipDto == null) {
-            return "Chưa có quan hệ"; //0
-        } else if (relationshipDto.getStatus() == 5) {
-                return "Đã gửi lời mời";//5
+            return "Chưa có quan hệ";
         } else if (relationshipDto.getStatus() == 6) {
-            return "Bạn bè";//6
-        } else  if (relationshipDto.getStatus() == 7){
-            return "Bị chặn";//7
-        }
-        return "";
-    }
-
-    @Override
-    public int checkFriend2(Integer idUser1, Integer idUser2) {
-        RelationshipDto relationshipDto = this.iFriendListRepository.checkFriend(idUser1, idUser2);
-        if (relationshipDto == null) {
-            return 0;//"Chưa có quan hệ"
-        } else if (relationshipDto.getStatus() == 6) {
-            return 6;//"Bạn bè"
+            return "Bạn bè";
         } else if (relationshipDto.getStatus() == 7) {
-            return 7; //Bị chặn
+            return "Bị chặn";
         } else if (relationshipDto.getStatus() == 5 && relationshipDto.getIdUser1() == idUser1) {
-            return 51; //User 1 gửi lời mời kết bạn
+            return "Đã gửi lời mời kết bạn";
+        } else{
+            return "Đã nhận lời mời";
         }
-        return 52; //User2 gửi lời mời kết bạn
-
     }
+
+
     @Override
     public void addRequest(Integer idUser1, Integer idUser2) {
         this.iFriendListRepository.addRequest(idUser1,idUser2);
+    }
+
+    @Override
+    public void removeRequest(Integer idUser1, Integer idUser2) {
+        this.iFriendListRepository.removeRequest(idUser1,idUser2);
     }
 }
