@@ -1,5 +1,6 @@
 package com.codegym.dating.controller;
 
+import com.codegym.dating.dto.ReportDetailDto;
 import com.codegym.dating.dto.UserReportDto;
 import com.codegym.dating.dto.UserSummaryDto;
 import com.codegym.dating.model.User;
@@ -64,9 +65,15 @@ public class RestUserFulController {
             return new ResponseEntity<>(userSummaryDtos, HttpStatus.OK);
         }
     }
-    @PatchMapping("list/update/status")
+    @PatchMapping("/update/status")
     public ResponseEntity<?> updatePatient(@RequestBody UpdateStatusRequest updateStatusRequest) {
         iUserService.updateWarningUser(updateStatusRequest);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/findId/{id}")
+    public ResponseEntity<?> findByIdUser(@PathVariable int id){
+        Optional<User> user = iUserService.findByIdUser(id);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 }

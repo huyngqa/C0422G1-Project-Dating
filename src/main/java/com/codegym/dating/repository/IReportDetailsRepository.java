@@ -12,9 +12,9 @@ import java.util.List;
 
 public interface IReportDetailsRepository extends JpaRepository<ReportDetails, Integer> {
     @Transactional
-    @Query(value = "select new com.codegym.dating.dto.ReportDetailDto(u.idUser, rd.timeReport, r.nameReport, rd.reporter.name) " +
-            "from ReportDetails rd left join Report r on r.idReport = rd.report.idReport " +
-            "left join User u on u.idUser = rd.reporter.idUser " +
+    @Query(value = "select new com.codegym.dating.dto.ReportDetailDto(u.idUser,u.name, rd.timeReport, r.nameReport, rd.reporter.name) " +
+            "from ReportDetails rd left join Report r on r.idReport = rd.report.idReport join Post p on p.idPost = rd.post.idPost " +
+            "left join User u on u.idUser = p.user.idUser  " +
             "where u.idUser = :id and rd.status = 9")
     List<ReportDetailDto> findByIdReportDetail(@Param("id") int id);
 

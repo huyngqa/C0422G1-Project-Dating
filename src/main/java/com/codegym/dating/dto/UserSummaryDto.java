@@ -15,7 +15,7 @@ public class UserSummaryDto {
     private Integer idUser;
     private String name;
     private Integer coin;
-    private LocalDate joinDate;
+    private LocalDate joinDay;
     private String typeUser;
     private long quantity;
 }
