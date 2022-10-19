@@ -29,6 +29,10 @@ public class FriendListService implements IFriendListService {
         }
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9ab891bb082b3cdb0744d4addb20f6dfdd52788a
     @Override
     public void addRequest(Integer idUser1, Integer idUser2) {
         this.iFriendListRepository.addRequest(idUser1,idUser2);
@@ -38,5 +42,8 @@ public class FriendListService implements IFriendListService {
     public void removeRequest(Integer idUser1, Integer idUser2) {
         this.iFriendListRepository.removeRequest(idUser1,idUser2);
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9ab891bb082b3cdb0744d4addb20f6dfdd52788a
 }

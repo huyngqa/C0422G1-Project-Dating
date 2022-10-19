@@ -2,6 +2,7 @@ package com.codegym.dating.controller;
 
 import com.codegym.dating.dto.UserDto;
 
+import com.codegym.dating.model.User;
 import com.codegym.dating.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
