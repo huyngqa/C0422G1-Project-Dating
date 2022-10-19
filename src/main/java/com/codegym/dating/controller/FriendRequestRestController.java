@@ -11,32 +11,32 @@ import org.springframework.web.bind.annotation.*;
 public class FriendRequestRestController {
     @Autowired
     private IFriendListService iFriendListService;
-//    @GetMapping("check/{idUser1}/{idUser2}")
-//    public ResponseEntity<Boolean>checkFriend(@PathVariable int idUser1, @PathVariable int idUser2){
-//        boolean isFriend = this.iFriendListService.checkFriend(idUser1,idUser2);
-//        return new ResponseEntity<>(isFriend, HttpStatus.OK);
-//    }
-
-//    @GetMapping("check/{idUser1}/{idUser2}")
-//    public ResponseEntity<String>checkFriend(@PathVariable int idUser1, @PathVariable int idUser2){
-//        String relationship = this.iFriendListService.checkFriend1(idUser1,idUser2);
-//        return new ResponseEntity<>(relationship, HttpStatus.OK);
-//    }
 
     @GetMapping("check/{idUser1}/{idUser2}")
-    public ResponseEntity<Integer>checkFriend(@PathVariable int idUser1, @PathVariable int idUser2){
-        int relationship = this.iFriendListService.checkFriend2(idUser1,idUser2);
+    public ResponseEntity<String>checkFriend(@PathVariable int idUser1, @PathVariable int idUser2){
+        String relationship = this.iFriendListService.checkFriend(idUser1,idUser2);
         return new ResponseEntity<>(relationship, HttpStatus.OK);
     }
 
+
     @PostMapping("addRequest/{idUser1}/{idUser2}")
     public ResponseEntity<Void>addRequest(@PathVariable int idUser1, @PathVariable int idUser2){
-        boolean isFriend = this.iFriendListService.checkFriend(idUser1,idUser2);
-        if (isFriend){
-            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+        String isFriend = this.iFriendListService.checkFriend(idUser1,idUser2);
+        if (isFriend == "Chưa có quan hệ"){
+            this.iFriendListService.addRequest(idUser1,idUser2);
+            return new ResponseEntity<>(HttpStatus.OK);
         }
-        this.iFriendListService.addRequest(idUser1,idUser2);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+    }
+
+    @DeleteMapping("removeRequest/{idUser1}/{idUser2}")
+    public ResponseEntity<Void>removeRequest(@PathVariable int idUser1, @PathVariable int idUser2){
+        String isFriend = this.iFriendListService.checkFriend(idUser1,idUser2);
+        if (isFriend == "Đã gửi lời mời kết bạn"){
+            this.iFriendListService.removeRequest(idUser1,idUser2);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
 }

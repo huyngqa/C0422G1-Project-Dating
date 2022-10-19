@@ -22,4 +22,10 @@ public interface IFriendListRepository extends JpaRepository<FriendList, Integer
         @Modifying
         @Query(value = "INSERT INTO `dating_c04`.`friend_list` (`status`, `id_user1`, `id_user2`) VALUES ('5', ?1, ?2)", nativeQuery = true)
         void addRequest(Integer idUser1, Integer idUser2);
+
+        @Modifying
+        @Query(value = "delete from friend_list\n" +
+                "        where (id_user1 = ?1 and id_user2 = ?2)", nativeQuery = true)
+        void removeRequest(Integer idUser1, Integer idUser2);
+
 }
