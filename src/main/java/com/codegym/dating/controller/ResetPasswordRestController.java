@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping("api/users/account")
+@RequestMapping("/api/users/account")
 public class ResetPasswordRestController {
 
     @Autowired
@@ -41,12 +41,10 @@ public class ResetPasswordRestController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-
     @PostMapping("/changePassword/{idAccount}")
     public ResponseEntity<?> doResetPassword(@RequestBody JwtRequest authenticationRequest,
                                              @PathVariable Integer idAccount) {
         Optional<Account> account = iAccountService.findById(idAccount);
-
 
         if (account.isPresent()) {
             if (BCrypt.checkpw(authenticationRequest.getPassword(), account.get().getPassword())) {
@@ -56,7 +54,6 @@ public class ResetPasswordRestController {
                 }
             }
         }
-
 
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
