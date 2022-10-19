@@ -18,11 +18,6 @@ public class FriendRequestRestController {
         return new ResponseEntity<>(relationship, HttpStatus.OK);
     }
 
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 9ab891bb082b3cdb0744d4addb20f6dfdd52788a
     @PostMapping("addRequest/{idUser1}/{idUser2}")
     public ResponseEntity<Void>addRequest(@PathVariable int idUser1, @PathVariable int idUser2){
         String isFriend = this.iFriendListService.checkFriend(idUser1,idUser2);
@@ -31,20 +26,8 @@ public class FriendRequestRestController {
             return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
-<<<<<<< HEAD
     }
 
-    @DeleteMapping("removeRequest/{idUser1}/{idUser2}")
-    public ResponseEntity<Void>removeRequest(@PathVariable int idUser1, @PathVariable int idUser2){
-        String isFriend = this.iFriendListService.checkFriend(idUser1,idUser2);
-        if (isFriend == "Đã gửi lời mời kết bạn"){
-            this.iFriendListService.removeRequest(idUser1,idUser2);
-            return new ResponseEntity<>(HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
-=======
->>>>>>> 9ab891bb082b3cdb0744d4addb20f6dfdd52788a
-    }
 
     @DeleteMapping("removeRequest/{idUser1}/{idUser2}")
     public ResponseEntity<Void>removeRequest(@PathVariable int idUser1, @PathVariable int idUser2){
