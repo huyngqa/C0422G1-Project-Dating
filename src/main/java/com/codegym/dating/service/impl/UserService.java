@@ -24,4 +24,29 @@ public class UserService implements IUserService {
         return this.iUserRepository.findByIdDto(id);
     }
 
+    @Override
+    public User findUserById(Integer id) {
+        return iUserRepository.findByIdNativeQuery(id);
+    }
+
+    @Override
+    public void updateCoin(Integer coin, Integer idUser) {
+        iUserRepository.updateCoin(coin,idUser);
+    }
+
+    @Override
+    public void updateTypeUser(Integer coin, Integer idUser) {
+        Integer idTypeUser = 0;
+        if (coin >= 0 && coin < 100){
+            idTypeUser = 1;
+        }else if (coin >= 100 && coin < 1000){
+            idTypeUser = 2;
+        }else if (coin >= 1000 && coin < 5000){
+            idTypeUser = 3;
+        }else if (coin >= 5000){
+            idTypeUser = 4;
+        }
+        this.iUserRepository.updateTypeUser(idTypeUser, idUser);
+    }
+
 }
