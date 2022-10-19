@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-@RequestMapping("/api/public/gift")
+@RequestMapping("/api/user/gift")
 public class GiveAGiftRestController {
 
     @Autowired
