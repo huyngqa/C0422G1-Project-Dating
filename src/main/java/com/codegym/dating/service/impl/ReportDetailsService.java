@@ -16,24 +16,28 @@ public class ReportDetailsService implements IReportDetailsService {
 
 
     @Override
-    public Page<ReportDetailsDto> findAll(Pageable pageable) {
-        return reportDetailsRepository.findByAllReportUser(pageable);
+    public Page<ReportDetailsDto> findAll(String keyWord, Pageable pageable) {
+        return reportDetailsRepository.findByAllReportUser(keyWord, pageable);
     }
 
     @Override
-    public void confirm(ReportDetails reportDetails) {
-        reportDetailsRepository.confirm(reportDetails.getStatus());
+    public void confirm(int id) {
+        ReportDetails reportDetails = findById(id);
+        reportDetails.setStatus(9);
+        reportDetailsRepository.save(reportDetails);;
     }
 
     @Override
     public void save(ReportDetails reportDetails) {
-        reportDetailsRepository.createReportDetails(reportDetails.getReport().getIdReport(), reportDetails.getPost().getIdPost(),
+        reportDetailsRepository.createReportDetails(reportDetails.getPost().getIdPost(), reportDetails.getReport().getIdReport(),
                 reportDetails.getReporter().getIdUser(),reportDetails.getTimeReport());
     }
 
     @Override
-    public void delete(ReportDetails reportDetails) {
-        reportDetailsRepository.deleteReportDetails(reportDetails.getStatus());
+    public void delete(int id) {
+        ReportDetails reportDetails = findById(id);
+        reportDetails.setStatus(13);
+        reportDetailsRepository.save(reportDetails);
     }
 
     @Override

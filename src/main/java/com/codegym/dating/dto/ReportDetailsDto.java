@@ -8,10 +8,12 @@ import java.time.LocalDateTime;
 
 public interface ReportDetailsDto {
     Integer getIdReportDetails();
-    Integer getPost();
-    Integer getReporter();
-    Integer getReport();
+    Integer getIdPost();
+    String getReporter();
+    Integer getIdReport();
     Integer getStatus();
-    Integer getUserPost();
+    String getUserPost();
+    String getPostContent();
+    String getReportContent();
     LocalDateTime getTimeReport();
 }

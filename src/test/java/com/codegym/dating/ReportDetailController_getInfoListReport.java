@@ -23,7 +23,7 @@ public class ReportDetailController_getInfoListReport {
 
         this.mockMvc.perform(
                         MockMvcRequestBuilders.get(
-                                "/rest/detail/{id}", "null"))
+                                "/api/report/detail/{id}", "null"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -33,7 +33,7 @@ public class ReportDetailController_getInfoListReport {
 
         this.mockMvc.perform(
                         MockMvcRequestBuilders.get(
-                                "/rest/detail/{id}", "1"))
+                                "/api/report/detail/{id}", "1"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("id").value(1))

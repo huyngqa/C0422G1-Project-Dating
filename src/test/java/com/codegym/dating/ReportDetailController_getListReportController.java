@@ -31,7 +31,7 @@ public class ReportDetailController_getListReportController {
 
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/rest/report-detail/"))
+                                .get("/api/admin/report-detail/"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -40,7 +40,7 @@ public class ReportDetailController_getListReportController {
 
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/rest/report-detail?page=1"))
+                                .get("/api/admin/report-detail?page=1"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("totalPages").value(4))
