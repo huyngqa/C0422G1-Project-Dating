@@ -1,11 +1,10 @@
 package com.codegym.dating.controller;
 
 import com.codegym.dating.dto.UserDto;
+
+import com.codegym.dating.model.User;
 import com.codegym.dating.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +12,17 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin
 @RestController
+@RequestMapping("api")
+public class UserRestController {
+@Autowired
+private IUserService iUserService;
+    @GetMapping("/users/users/{id}")
+    public ResponseEntity<UserDto>findById(@PathVariable int id) {
+        UserDto userDto = this.iUserService.findByIdDto(id).orElse(null);
+        if (userDto == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 @CrossOrigin("http://localhost:4200")
 @RequestMapping("/api")
 public class UserRestController {
@@ -63,6 +72,6 @@ public class UserRestController {
         } else {
             return new ResponseEntity<>(userDtoPage, HttpStatus.OK);
         }
+        return new ResponseEntity<>(userDto,HttpStatus.OK);
     }
 }
-

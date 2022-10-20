@@ -5,6 +5,8 @@ import java.time.LocalDate;
 public interface UserDto {
     Integer getIdUser();
 
+    String getAddress();
+
     LocalDate getDateOfBirth();
 
     String getName();
@@ -17,13 +19,28 @@ public interface UserDto {
 
     Integer getCoin();
 
+    LocalDate getDateOfBirth();
+
+    Boolean getGender();
+
+    String getJob();
+
+    LocalDate getJoinDay();
+
+    String getName();
+
+    Boolean getMarried();
+
+    Integer idStatusActive();
+
+    Integer getIdTypeUser();
     LocalDate getJoinDay();
 
     String getTypeUserName();
 
-    Boolean isMarried();
+    Boolean getIsMarried();
 
-    Boolean isGender();
+    Boolean getIsGender();
 
     String getHobbitName();
 }
