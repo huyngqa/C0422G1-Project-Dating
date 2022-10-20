@@ -1,11 +1,13 @@
 package com.codegym.dating.dto;
 
-public interface
-UserDto {
+import java.time.LocalDate;
+
+public interface UserDto {
+    Integer getIdUser();
+
+    LocalDate getDateOfBirth();
 
     String getName();
-
-    Boolean getGender();
 
     String getAddress();
 
@@ -15,4 +17,13 @@ UserDto {
 
     Integer getCoin();
 
+    LocalDate getJoinDay();
+
+    String getTypeUserName();
+
+    Boolean isMarried();
+
+    Boolean isGender();
+
+    String getHobbitName();
 }
