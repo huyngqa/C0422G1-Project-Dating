@@ -1,6 +1,6 @@
 package com.codegym.dating.repository;
 
-import com.codegym.dating.dto.ReportDetailsDto;
+import com.codegym.dating.dto.IReportDetailsDto;
 import com.codegym.dating.model.ReportDetails;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,10 +15,11 @@ public interface IReportDetailsRepository extends JpaRepository<ReportDetails, I
 
     @Transactional
     @Query(value = "SELECT " +
-            "report_details.id as idReportDetails, " +
-            "report_details.id_report as idReport, " +
-            "report_details.id_post as idPost," +
-            "reporter.`name` as reporter, "+
+            "report_details.id as id, " +
+            "report_details.id_report as report, " +
+            "report_details.id_post as post," +
+            "report_details.id_reporter as reporter," +
+            "reporter.`name` as userReport, "+
             "report_details.time_report as timeReport, " +
             "writer.`name` as userPost , " +
             "report_details.status as status, " +
@@ -53,21 +54,19 @@ public interface IReportDetailsRepository extends JpaRepository<ReportDetails, I
                     "`user` writer on writer.id_user = post.id_user " +
                     "WHERE " +
                     "report_details.status = 8 and (post.content like %:keyWord% or writer.`name` like %:keyWord%)) report_details")
-    Page<ReportDetailsDto> findByAllReportUser(@Param("keyWord") String keyWord, Pageable pageable);
+    Page<IReportDetailsDto> findByAllReportUser(@Param("keyWord") String keyWord, Pageable pageable);
 
     @Transactional
     @Query(value = "select report_details.id_report,report_details.id_post, report_details.id_reporter, report_details.time_report,report_details.status, report_details.id" +
-           " from  report_details where (report_details.id = :id and report_details.status = 8) ", nativeQuery = true)
+            " from  report_details where (report_details.id = :id and report_details.status = 8) ", nativeQuery = true)
     ReportDetails findReportDetailsByID(@Param("id") Integer id);
 
 
     @Modifying
     @Transactional
-    @Query(value = "insert into report_details(id_report, id_post, id_reporter, " +
+    @Query(value = "insert into report_details(id, id_report, id_post, id_reporter, " +
             "time_report, status)" +
-            "values (?1,?2,?3,?4,8)", nativeQuery = true)
-    void createReportDetails(@Param("post") Integer post,@Param("report")Integer report,@Param("reporter") Integer reporter,@Param("timeReport") LocalDateTime timeReport);
-
-
+            "values (?1,?2,?3,?4,?5,?6)", nativeQuery = true)
+    void createReportDetails(@Param("id") Integer id,@Param("report")Integer report,@Param("post") Integer post,@Param("reporter") Integer reporter,@Param("timeReport") LocalDateTime timeReport,@Param("status") Integer status);
 
 }

@@ -1,19 +1,64 @@
 package com.codegym.dating.dto;
 
-import com.codegym.dating.model.Post;
-import com.codegym.dating.model.Report;
-import com.codegym.dating.model.User;
-
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
-public interface ReportDetailsDto {
-    Integer getIdReportDetails();
-    Integer getIdPost();
-    String getReporter();
-    Integer getIdReport();
-    Integer getStatus();
-    String getUserPost();
-    String getPostContent();
-    String getReportContent();
-    LocalDateTime getTimeReport();
+public class ReportDetailsDto {
+    private Integer id;
+    private Integer post;
+    private Integer reporter;
+    private Integer report;
+    private Integer status;
+    private LocalDateTime timeReport;
+
+    public ReportDetailsDto() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getPost() {
+        return post;
+    }
+
+    public void setPost(Integer post) {
+        this.post = post;
+    }
+
+    public Integer getReporter() {
+        return reporter;
+    }
+
+    public void setReporter(Integer reporter) {
+        this.reporter = reporter;
+    }
+
+    public Integer getReport() {
+        return report;
+    }
+
+    public void setReport(Integer report) {
+        this.report = report;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public LocalDateTime getTimeReport() {
+        return timeReport;
+    }
+
+    public void setTimeReport(LocalDateTime timeReport) {
+        this.timeReport = timeReport;
+    }
 }

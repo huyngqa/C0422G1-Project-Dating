@@ -1,5 +1,6 @@
 package com.codegym.dating.service.impl;
 
+import com.codegym.dating.dto.IReportDetailsDto;
 import com.codegym.dating.dto.ReportDetailsDto;
 import com.codegym.dating.model.ReportDetails;
 import com.codegym.dating.repository.IReportDetailsRepository;
@@ -16,7 +17,7 @@ public class ReportDetailsService implements IReportDetailsService {
 
 
     @Override
-    public Page<ReportDetailsDto> findAll(String keyWord, Pageable pageable) {
+    public Page<IReportDetailsDto> findAll(String keyWord, Pageable pageable) {
         return reportDetailsRepository.findByAllReportUser(keyWord, pageable);
     }
 
@@ -28,9 +29,9 @@ public class ReportDetailsService implements IReportDetailsService {
     }
 
     @Override
-    public void save(ReportDetails reportDetails) {
-        reportDetailsRepository.createReportDetails(reportDetails.getPost().getIdPost(), reportDetails.getReport().getIdReport(),
-                reportDetails.getReporter().getIdUser(),reportDetails.getTimeReport());
+    public void save(ReportDetailsDto reportDetailsDto) {
+        reportDetailsRepository.createReportDetails(reportDetailsDto.getId(), reportDetailsDto.getReport(),
+                reportDetailsDto.getPost(),reportDetailsDto.getReporter(),reportDetailsDto.getTimeReport(),reportDetailsDto.getStatus());
     }
 
     @Override

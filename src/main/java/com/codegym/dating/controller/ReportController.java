@@ -1,5 +1,6 @@
 package com.codegym.dating.controller;
 
+import com.codegym.dating.dto.IReportDetailsDto;
 import com.codegym.dating.dto.ReportDetailsDto;
 import com.codegym.dating.dto.ReportDto;
 import com.codegym.dating.model.ReportDetails;
@@ -17,7 +18,7 @@ import java.util.Optional;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/admin")
+@RequestMapping("/api")
 public class ReportController {
     @Autowired
     private IReportService reportService;
@@ -31,38 +32,38 @@ public class ReportController {
     }
 
 
-        @GetMapping("/report-detail")
-    public ResponseEntity<Page<ReportDetailsDto>> getAllReportUser(@PageableDefault(3) Pageable pageable,
-                                                                   @RequestParam Optional<String> keyWord) {
-            String key = keyWord.orElse("");
-            Page<ReportDetailsDto> reportDetailsPage = reportDetailsService.findAll(key, pageable);
-            if (reportDetailsPage.isEmpty()){
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }else {
-                return new ResponseEntity<>(reportDetailsPage, HttpStatus.OK);
-            }
+    @GetMapping("/admin/report-detail")
+    public ResponseEntity<Page<IReportDetailsDto>> getAllReportUser(@PageableDefault(3) Pageable pageable,
+                                                                    @RequestParam Optional<String> keyWord) {
+        String key = keyWord.orElse("");
+        Page<IReportDetailsDto> reportDetailsPage = reportDetailsService.findAll(key, pageable);
+        if (reportDetailsPage.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }else {
+            return new ResponseEntity<>(reportDetailsPage, HttpStatus.OK);
+        }
     }
 
-    @PatchMapping("/confirm/{id}")
+    @PatchMapping("/admin/confirm/{id}")
     public ResponseEntity<Void> confirm(@PathVariable("id") Integer id) {
         this.reportDetailsService.confirm(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping("/report")
-    public ResponseEntity<Void> add(@RequestBody ReportDetails reportDetails) {
-        this.reportDetailsService.save(reportDetails);
+    @PostMapping("/public/report")
+    public ResponseEntity<Void> add(@RequestBody ReportDetailsDto ReportDetailsDto) {
+        this.reportDetailsService.save(ReportDetailsDto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PatchMapping("/delete/{id}")
+    @PatchMapping("/admin/delete/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") Integer id) {
         this.reportDetailsService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
 
-    @GetMapping(value = "/detail/{id}")
+    @GetMapping(value = "/admin/detail/{id}")
     public ResponseEntity<ReportDetails> getInfoReport(@PathVariable Integer id) {
 
         ReportDetails reportDetailsObj = this.reportDetailsService.findById(id);
