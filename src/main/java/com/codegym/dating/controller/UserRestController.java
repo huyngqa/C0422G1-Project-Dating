@@ -14,15 +14,15 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin("http://localhost:4200/")
-@RequestMapping("/api/users")
+@CrossOrigin("http://localhost:4200")
+@RequestMapping("/api")
 public class UserRestController {
 
     @Autowired
     private IUserService iUserService;
 
 
-    @GetMapping("/listAndSearch")
+    @GetMapping("/users/listAndSearch")
     public ResponseEntity<Page<UserDto>> userPage(@RequestParam Optional<String> name,
                                                   @RequestParam Optional<String> dateOfBirth,
                                                   @RequestParam Optional<String> address,
@@ -48,6 +48,21 @@ public class UserRestController {
         }
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
-
-
+    
+    @GetMapping("/public/searchPage")
+    public ResponseEntity<Page<UserDto>> goSearch(@PageableDefault(4) Pageable pageable,
+                                                @RequestParam Optional<String> name) {
+        String keyword = name.orElse("");
+        System.out.println(keyword);
+        Page<UserDto> userDtoPage = userService.findAllSearchPage(pageable,keyword);
+        if (keyword.length() > 30 || keyword.matches("^\\W+$")) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        if (!userDtoPage.hasContent()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(userDtoPage, HttpStatus.OK);
+        }
+    }
 }
+

@@ -13,7 +13,6 @@ public class UserService implements IUserService {
     @Autowired
     private IUserRepository iUserRepository;
 
-
     @Override
     public Page<UserDto> userPage(String name, String dateOfBirth, String address, String job, String gender, String hobbitName, Pageable pageable) {
         if (gender == "") {
@@ -47,5 +46,9 @@ public class UserService implements IUserService {
                             "%" + hobbitName + "%",
                             pageable);
         }
+
+    @Override
+    public Page<UserDto> findAllSearchPage(Pageable pageable, String name) {
+        return userRepository.getAllSearchPage(pageable, '%' + name + '%');
     }
 }
