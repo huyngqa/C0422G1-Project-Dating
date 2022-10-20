@@ -10,17 +10,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin
 @RestController
-@CrossOrigin("http://localhost:4200")
 @RequestMapping("api")
 public class UserRestController {
-
     @Autowired
     private IUserService iUserService;
-
 
     @GetMapping("/users/listAndSearch")
     public ResponseEntity<Page<UserDto>> userPage(@RequestParam Optional<String> name,
@@ -48,13 +45,13 @@ public class UserRestController {
         }
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
-    
+
     @GetMapping("/public/searchPage")
     public ResponseEntity<Page<UserDto>> goSearch(@PageableDefault(4) Pageable pageable,
-                                                @RequestParam Optional<String> name) {
+                                                  @RequestParam Optional<String> name) {
         String keyword = name.orElse("");
         System.out.println(keyword);
-        Page<UserDto> userDtoPage = iUserService.findAllSearchPage(pageable,keyword);
+        Page<UserDto> userDtoPage = iUserService.findAllSearchPage(pageable, keyword);
         if (keyword.length() > 30 || keyword.matches("^\\W+$")) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -64,5 +61,13 @@ public class UserRestController {
             return new ResponseEntity<>(userDtoPage, HttpStatus.OK);
         }
     }
-}
 
+    @GetMapping("/users/users/{id}")
+    public ResponseEntity<UserDto> findById(@PathVariable int id) {
+        UserDto userDto = this.iUserService.findByIdDto(id).orElse(null);
+        if (userDto == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(userDto, HttpStatus.OK);
+    }
+}

@@ -5,15 +5,58 @@ import com.codegym.dating.model.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
-
+import java.util.List;
+import java.util.Optional;
 @Transactional
-@Repository
 public interface IUserRepository extends JpaRepository<User, Integer> {
+
+    @Query(value = "SELECT \n" +
+            "    id_user AS idUser,\n" +
+            "    address,\n" +
+            "    avatar,\n" +
+            "    coin,\n" +
+            "    date_of_birth AS dateOfBirth,\n" +
+            "    gender,\n" +
+            "    job,\n" +
+            "    join_day AS joinDay,\n" +
+            "    married,\n" +
+            "    name,\n" +
+            "    id_status_active AS idStatusActive,\n" +
+            "    id_type_user AS idTypeUser\n" +
+            "FROM\n" +
+            "    user\n" +
+            "WHERE\n" +
+            "    id_user = ?1\n", nativeQuery = true)
+        Optional<UserDto> findByIdDto(Integer id);
+
+    @Query(value = "select * from user u\n" +
+            "join account as a  \n" +
+            "on u.id_user = a.id_user\n" +
+            "join type_user as tu \n" +
+            "on u.id_type_user = tu.id_type_user\n" +
+            "where u.id_user = :id ", nativeQuery = true)
+    User findByIdNativeQuery(@Param("id") Integer id);
+
+
+
+    @Modifying
+    @Query(value = "update user \n" +
+            "set coin = :coin \n" +
+            "where id_user = :id_user ", nativeQuery = true)
+    void updateCoin(@Param("coin") Integer coin,@Param("id_user") Integer idUser);
+
+
+    @Modifying
+    @Query(value = "update user \n" +
+            "set id_type_user = :id_type_user \n" +
+            "where id_user = :id_user ", nativeQuery = true)
+    void updateTypeUser(@Param("id_type_user") Integer idTypeUser,@Param("id_user") Integer idUser);
+
     @Query(nativeQuery = true,
             value = "select c.name , c.job , c.gender , h.hobbit_name as hobbitName ,c.date_of_birth as dateOfBirth, c.coin ,c.address, c.avatar " +
                     "from user as c " +
@@ -53,4 +96,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             nativeQuery = true)
     Page<UserDto> getAllSearchPage(Pageable pageable, @Param("name") String name);
 
+    @Query(value = "SELECT user.`name`,user.coin,user.gender,user. address,user.job,user .avatar FROM user where  user.`name` like :name"
+         , nativeQuery = true)
+    List<UserDto> getAllSearch(@Param("name") String name);
 }

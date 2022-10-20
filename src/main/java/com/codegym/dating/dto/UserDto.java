@@ -5,17 +5,25 @@ import java.time.LocalDate;
 public interface UserDto {
     Integer getIdUser();
 
+    String getAddress();
+
     LocalDate getDateOfBirth();
 
     String getName();
-
-    String getAddress();
 
     String getJob();
 
     String getAvatar();
 
     Integer getCoin();
+
+    Boolean getGender();
+
+    Boolean getMarried();
+
+    Integer idStatusActive();
+
+    Integer getIdTypeUser();
 
     LocalDate getJoinDay();
 
