@@ -26,20 +26,20 @@ public class ResetPasswordRestController {
         return new BCryptPasswordEncoder();
     }
 
-    @PatchMapping("/checkPassword/{password}/{newPassword}")
-    public ResponseEntity<?> checkPassword(@PathVariable String password,
-                                           @PathVariable String newPassword) {
-
-        Account account = this.iAccountService.findByPassword(password);
-
-        if (account != null) {
-            account.setPassword(passwordEncoder().encode(newPassword));
-            iAccountService.updatePassword(account);
-            return new ResponseEntity<>(account, HttpStatus.OK);
-        }
-
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
+//    @PatchMapping("/checkPassword/{password}/{newPassword}")
+//    public ResponseEntity<?> checkPassword(@PathVariable String password,
+//                                           @PathVariable String newPassword) {
+//
+//        Account account = this.iAccountService.findByPassword(password);
+//
+//        if (account != null) {
+//            account.setPassword(passwordEncoder().encode(newPassword));
+//            iAccountService.updatePassword(account);
+//            return new ResponseEntity<>(account, HttpStatus.OK);
+//        }
+//
+//        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//    }
 
     @PostMapping("/changePassword/{idAccount}")
     public ResponseEntity<?> doResetPassword(@RequestBody JwtRequest authenticationRequest,
@@ -54,7 +54,6 @@ public class ResetPasswordRestController {
                 }
             }
         }
-
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 }
