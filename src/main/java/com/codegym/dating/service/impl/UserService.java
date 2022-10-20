@@ -46,9 +46,9 @@ public class UserService implements IUserService {
                             "%" + hobbitName + "%",
                             pageable);
         }
-
-    @Override
-    public Page<UserDto> findAllSearchPage(Pageable pageable, String name) {
-        return userRepository.getAllSearchPage(pageable, '%' + name + '%');
     }
-}
+        @Override
+        public Page<UserDto> findAllSearchPage (Pageable pageable, String name){
+            return iUserRepository.getAllSearchPage(pageable, '%' + name + '%');
+        }
+    }
