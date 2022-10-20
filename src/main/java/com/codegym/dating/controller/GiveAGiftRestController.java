@@ -62,7 +62,7 @@ public class GiveAGiftRestController {
     }
 
     /*Method tặng quà cho user*/
-    @PatchMapping("/saveGiftUser")
+    @GetMapping("/saveGiftUser")
     public ResponseEntity<Void> updateGiftUser(@RequestParam Integer idGift, @RequestParam Integer idUserReceiver,
                                                @RequestParam Integer idUserSender, @RequestParam Integer quantity) {
         this.giftUserService.updateGiveAGift(idGift, idUserReceiver, idUserSender, quantity);
