@@ -51,7 +51,7 @@ public interface IFriendListRepository extends JpaRepository<FriendList, Integer
                 "        JOIN\n" +
                 "    friend_list fl ON fl.id_user2 = u.id_user\n" +
                 "WHERE\n" +
-                "    status = 5 AND id_user1 = ?1", nativeQuery = true)
+                "    status = 5 AND id_user2 = ?1", nativeQuery = true)
         List<UserDto> findAllRequestFriend(Integer id);
 
         @javax.transaction.Transactional
