@@ -68,12 +68,12 @@ public class UserService implements IUserService {
                 Multipart multipart = new MimeMultipart();
                 MimeBodyPart textBodyPart = new MimeBodyPart();
                 String htmlContent = "<h1>Dear anh/chị</h1>\n" +
-                        "<p>Gàn đây chúng tôi nhận được nhiều tố cáo về việc tài khoản vi phạm quy định của trang web</p>\n" +
+                        "<p>Gần đây chúng tôi nhận được nhiều tố cáo về việc tài khoản của bạn vi phạm quy định của trang web</p>\n" +
                         "<p>Chúng tôi xem xét và đưa ra quết định khóa account của quý khách.</p>\n" +
                         "<p>Nếu quý khách cảm thấy không hài lòng có thể khiếu nại tới</p><a href=\"abc.com\"></a>\n" +
                         "<h3 style=\"color:green\">Mr.Tuan</h3>\"\n" +
-                        "<b>Phone number:</b><span>0971450138</span>\";";
-                textBodyPart.setContent(htmlContent, "text/html");
+                        "<b>Phone number:</b><span>0344848457</span>\";";
+                textBodyPart.setContent(htmlContent, "text/html;charset=UTF-8");
 
                 multipart.addBodyPart(textBodyPart);
 
