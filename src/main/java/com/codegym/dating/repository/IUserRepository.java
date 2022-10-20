@@ -15,7 +15,7 @@ import javax.transaction.Transactional;
 @Repository
 public interface IUserRepository extends JpaRepository<User, Integer> {
     @Query(nativeQuery = true,
-            value = "select c.name , c.job , c.gender , h.hobbit_name as hobbitName ,c.date_of_birth as dateOfBirth, c.coin ,c.address " +
+            value = "select c.name , c.job , c.gender , h.hobbit_name as hobbitName ,c.date_of_birth as dateOfBirth, c.coin ,c.address, c.avatar " +
                     "from user as c " +
                     "join user_has_hobbit as uhh " +
                     "on c.id_user = uhh.id_user " +
@@ -27,7 +27,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
                     "and c.job like ?4 " +
                     "and (c.gender = ?5 or c.gender = ?6) " +
                     "and h.hobbit_name like ?7 group by c.id_user ",
-            countQuery = "select c.name , c.job , c.gender , h.hobbit_name as hobbitName ,c.date_of_birth as dateOfBirth, c.coin ,c.address " +
+            countQuery = "select c.name , c.job , c.gender , h.hobbit_name as hobbitName ,c.date_of_birth as dateOfBirth, c.coin ,c.address, c.avatar " +
                     "from user as c " +
                     "join user_has_hobbit as uhh " +
                     "on c.id_user = uhh.id_user " +

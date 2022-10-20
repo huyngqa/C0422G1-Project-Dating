@@ -21,9 +21,9 @@ public interface UserDto {
 
     String getTypeUserName();
 
-    Boolean isMarried();
+    Boolean getIsMarried();
 
-    Boolean isGender();
+    Boolean getIsGender();
 
     String getHobbitName();
 }
