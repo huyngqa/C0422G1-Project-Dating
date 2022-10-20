@@ -1,5 +1,6 @@
 package com.codegym.dating.service.impl;
 
+import com.codegym.dating.common.AuthenticationProvider;
 import com.codegym.dating.model.Account;
 import com.codegym.dating.repository.IAccountRepository;
 import com.codegym.dating.service.IAccountService;
@@ -12,7 +13,26 @@ public class AccountService implements IAccountService {
     private IAccountRepository iAccountRepository;
 
     @Override
-    public Account findAccountByEmail(String email) {
+    public Account getAccountByEmail(String email) {
         return iAccountRepository.findByEmail(email);
     }
+
+    @Override
+    public void createAccountForFacebook(String email, AuthenticationProvider authenticationProvider) {
+        Account account = new Account();
+        account.setEmail(email);
+        account.setAuthProvider(authenticationProvider);
+        iAccountRepository.save(account);
+    }
+
+    @Override
+    public void updateAccountIfExists(Account account, AuthenticationProvider authenticationProvider) {
+        account.setAuthProvider(authenticationProvider);
+        iAccountRepository.save(account);
+    }
+
+//    @Override
+//    public Account findAccountByEmail(String email) {
+//        return iAccountRepository.findByEmail(email);
+//    }
 }
