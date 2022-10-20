@@ -15,13 +15,13 @@ import java.util.Optional;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/list")
+@RequestMapping("/api/users/list")
 public class ListFriendRestController {
     @Autowired
     private IFriendListService iFriendListService;
 
     @GetMapping("/friend_list/{id}")
-    public ResponseEntity<Page<IUserDto>> showFriendList(@PageableDefault(size = 2) Pageable pageable,
+    public ResponseEntity<Page<IUserDto>> showFriendList(@PageableDefault(size = 4) Pageable pageable,
                                                          @PathVariable Integer id,
                                                          @RequestParam Optional<String> name) {
         String keyWord = name.orElse("");
@@ -32,14 +32,14 @@ public class ListFriendRestController {
         return new ResponseEntity<>(friendLists, HttpStatus.OK);
     }
 
-    @GetMapping("/delete/{idUser}")
-    public ResponseEntity<Void>delete(@PathVariable int idUser, @RequestBody Integer[] listFriend){
+    @PatchMapping("/delete/{idUser}")
+    public ResponseEntity<Void>delete(@PathVariable Integer idUser, @RequestBody Integer[] listFriend){
         this.iFriendListService.deleteFriend(idUser,listFriend);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/block/{idUser}")
-    public ResponseEntity<Void> block(@PathVariable int idUser,@RequestBody Integer[] listFriend){
+    @PatchMapping("/block/{idUser}")
+    public ResponseEntity<Void> block(@PathVariable Integer idUser,@RequestBody Integer[] listFriend){
         this.iFriendListService.blockFriend(idUser,listFriend);
         return new ResponseEntity<>(HttpStatus.OK);
     }
