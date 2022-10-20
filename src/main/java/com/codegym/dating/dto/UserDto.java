@@ -3,17 +3,16 @@ package com.codegym.dating.dto;
 public interface
 UserDto {
 
-     String getName();
+    String getName();
 
-     Boolean getGender();
+    Boolean getGender();
 
     String getAddress();
 
-     String getJob();
+    String getJob();
 
-     String getAvatar();
+    String getAvatar();
 
-     Integer getCoin();
-
+    Integer getCoin();
 
 }

@@ -20,7 +20,7 @@ public class UserRestController {
     @Autowired
     private IUserService userService;
     @GetMapping("/searchPage")
-    public ResponseEntity<Page<UserDto>> goSearch(@PageableDefault(3) Pageable pageable,
+    public ResponseEntity<Page<UserDto>> goSearch(@PageableDefault(4) Pageable pageable,
                                                 @RequestParam Optional<String> name) {
         String keyword = name.orElse("");
         System.out.println(keyword);
