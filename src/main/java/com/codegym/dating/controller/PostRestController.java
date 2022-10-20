@@ -1,5 +1,6 @@
 package com.codegym.dating.controller;
 
+import com.codegym.dating.dto.IPostDto;
 import com.codegym.dating.dto.PostDto;
 import com.codegym.dating.model.Post;
 import com.codegym.dating.model.User;
@@ -12,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @CrossOrigin("http://localhost:4200/")
@@ -40,5 +42,15 @@ public class PostRestController {
         BeanUtils.copyProperties(postDto,post);
         iPostService.save(post);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("personList/{id}")
+    public ResponseEntity<List<IPostDto>> getPersonList(@PathVariable int id){
+        List<IPostDto> list = this.iPostService.getUserPostList(id);
+        if (list.isEmpty()){
+            return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }else {
+            return new ResponseEntity<>(list,HttpStatus.OK);
+        }
     }
 }

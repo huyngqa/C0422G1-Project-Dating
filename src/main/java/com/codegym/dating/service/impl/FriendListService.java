@@ -1,8 +1,6 @@
 package com.codegym.dating.service.impl;
 
-import com.codegym.dating.dto.FriendListDto;
 import com.codegym.dating.dto.RelationshipDto;
-import com.codegym.dating.dto.UserDto;
 import com.codegym.dating.repository.IFriendListRepository;
 import com.codegym.dating.service.IFriendListService;
 import org.springframework.beans.factory.annotation.Autowired;

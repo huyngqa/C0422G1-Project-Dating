@@ -53,4 +53,5 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             "set id_type_user = :id_type_user \n" +
             "where id_user = :id_user ", nativeQuery = true)
     void updateTypeUser(@Param("id_type_user") Integer idTypeUser,@Param("id_user") Integer idUser);
+
 }
