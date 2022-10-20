@@ -67,12 +67,17 @@ public class UserService implements IUserService {
 
                 Multipart multipart = new MimeMultipart();
                 MimeBodyPart textBodyPart = new MimeBodyPart();
-                String htmlContent = "<h1>Dear anh/chị</h1>\n" +
-                        "<p>Gần đây chúng tôi nhận được nhiều tố cáo về việc tài khoản của bạn vi phạm quy định của trang web</p>\n" +
-                        "<p>Chúng tôi xem xét và đưa ra quết định khóa account của quý khách.</p>\n" +
-                        "<p>Nếu quý khách cảm thấy không hài lòng có thể khiếu nại tới</p><a href=\"abc.com\"></a>\n" +
-                        "<h3 style=\"color:green\">Mr.Tuan</h3>\"\n" +
-                        "<b>Phone number:</b><span>0344848457</span>\";";
+                String htmlContent = "<div style=\"width: 500px;height: 400px; background-color: #d4cfcc; margin: 0 auto;border-radius: 5px;padding: 10px\" >\n" +
+                        "    <h4>Kính gửi quý khách!</h4>\n" +
+                        "    <p>Gần đây chúng tôi nhận được nhiều phản ánh từ hệ thống tố cáo tài khoản sử dụng của bạn vi phạm điều lệ của trang web nhiều lần\n" +
+                        "      .Qua xác minh chúng tôi quyết định khóa account theo thời gian quy định\n" +
+                        "      Nếu bạn có bất kì khiếu nại gì thì vui lòng liên hệ đội ngũ suport để xử lý</p>\n" +
+                        "    <p>Mail suport: <span style=\"color: #1943c2\">tuannc1004@gmail.com</span></p>\n" +
+                        "    <p>Phone: <span style=\"color: #1943c2\">0344848457</span></p>\n" +
+                        "    <p>Website: <link style=\"color: #1943c2\" href=\"\" style=\"color: #e3274c\">webdaiting.com</p><br>\n" +
+                        "    <span>Trân trọng!</span>\n" +
+                        "    <h4>Đội ngũ Webdaiting</h4>\n" +
+                        "  </div>";
                 textBodyPart.setContent(htmlContent, "text/html;charset=UTF-8");
 
                 multipart.addBodyPart(textBodyPart);
