@@ -5,4 +5,6 @@ public interface FriendListDto {
     Integer getStatus();
     String getName();
     String getGender();
+
+
 }
