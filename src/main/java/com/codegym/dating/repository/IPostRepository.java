@@ -48,7 +48,7 @@ public interface IPostRepository extends JpaRepository<Post, Integer> {
             "from post as p\n" +
             " join user as u on p.id_user = u.id_user\n" +
             "where p.id_post= 1",nativeQuery = true)
-   IPostDto  findPostById(int id);
+    IPostDto  findPostById(int id);
 
     @Modifying
     @Query(value = "update post as p \n" +
