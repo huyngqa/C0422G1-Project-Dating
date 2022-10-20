@@ -28,7 +28,9 @@ public class User {
     private String avatar;
     private LocalDate joinDay;
     private Integer coin;
-    private Integer statusActive;
+    @ManyToOne
+    @JoinColumn(name = "id_status_active")
+    private StatusActive statusActive;
     @JsonBackReference(value = "user_account")
     @OneToOne(mappedBy = "user")
     private Account account;

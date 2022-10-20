@@ -7,6 +7,14 @@ public interface UserDto {
 
     String getAddress();
 
+    LocalDate getDateOfBirth();
+
+    String getName();
+
+    String getAddress();
+
+    String getJob();
+
     String getAvatar();
 
     Integer getCoin();
@@ -26,5 +34,13 @@ public interface UserDto {
     Integer idStatusActive();
 
     Integer getIdTypeUser();
+    LocalDate getJoinDay();
 
+    String getTypeUserName();
+
+    Boolean getIsMarried();
+
+    Boolean getIsGender();
+
+    String getHobbitName();
 }

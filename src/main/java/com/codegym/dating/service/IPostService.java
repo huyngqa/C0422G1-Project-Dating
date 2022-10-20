@@ -9,5 +9,4 @@ import java.util.List;
 public interface IPostService {
     void save(Post post);
     List<IPostDto> getUserPostList(int id);
-
 }

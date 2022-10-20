@@ -12,9 +12,6 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
-
 @Service
 public class UserService implements IUserService {
     @Autowired
@@ -22,28 +19,55 @@ public class UserService implements IUserService {
 
 
     @Override
-<<<<<<< HEAD
     public Optional<UserDto> findByIdDto(Integer id) {
         return this.iUserRepository.findByIdDto(id);
-=======
     public Page<UserDto> findAllPage(Pageable pageable) {
         return userRepository.getAllPage(pageable);
     }
 
     @Override
-    public List<UserDto> findAllSearch(String name) {
-        return userRepository.getAllSearch( '%' + name + '%');
-    }
+    public Page<UserDto> userPage(String name, String dateOfBirth, String address, String job, String gender, String hobbitName, Pageable pageable) {
+        if (gender == "") {
+            return iUserRepository.findAllUserAndSearch
+                    ("%" + name + "%",
+                            dateOfBirth,
+                            "%" + address + "%",
+                            "%" + job + "%",
+                            0,
+                            1,
+                            "%" + hobbitName + "%",
+                            pageable);
+        } else if (gender.equals("0")) {
+            return iUserRepository.findAllUserAndSearch
+                    ("%" + name + "%",
+                            dateOfBirth,
+                            "%" + address + "%",
+                            "%" + job + "%",
+                            0,
+                            0,
+                            "%" + hobbitName + "%",
+                            pageable);
+        } else {
+            return iUserRepository.findAllUserAndSearch
+                    ("%" + name + "%",
+                            dateOfBirth,
+                            "%" + address + "%",
+                            "%" + job + "%",
+                            1,
+                            1,
+                            "%" + hobbitName + "%",
+                            pageable);
+        }
 
     @Override
     public Page<UserDto> findAllSearchPage(Pageable pageable, String name) {
         return userRepository.getAllSearchPage(pageable,'%' + name + '%');
->>>>>>> origin/TrangNTT-SearchByName
     }
 
     @Override
     public User findUserById(Integer id) {
         return iUserRepository.findByIdNativeQuery(id);
+        return userRepository.getAllSearchPage(pageable, '%' + name + '%');
     }
 
     @Override

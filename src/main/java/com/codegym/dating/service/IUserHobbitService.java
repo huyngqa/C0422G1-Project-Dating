@@ -10,5 +10,4 @@ import java.util.List;
 public interface IUserHobbitService {
     List<HobbitDto> findAllByIdUser(Integer id);
 
-
 }

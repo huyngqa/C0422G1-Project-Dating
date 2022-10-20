@@ -20,5 +20,10 @@ public interface IFriendListService {
     void addRequest(Integer idUser1, Integer idUser2);
     void removeRequest(Integer idUser1, Integer idUser2);
 
+    Page<IUserDto> findAllFriendList(Integer id, String name, Pageable pageable);
+
+    void deleteFriend(Integer idUser, Integer[] friendList);
+
+    void blockFriend(Integer idUser, Integer[] friendList);
 
 }
