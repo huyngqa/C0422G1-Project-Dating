@@ -7,18 +7,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @RestController
-@RequestMapping("api/users/friendList")
+@RequestMapping("api")
 public class FriendRequestRestController {
     @Autowired
     private IFriendListService iFriendListService;
 
-    @GetMapping("check/{idUser1}/{idUser2}")
+    @GetMapping("/users/friendList/check/{idUser1}/{idUser2}")
     public ResponseEntity<String>checkFriend(@PathVariable int idUser1, @PathVariable int idUser2){
         String relationship = this.iFriendListService.checkFriend(idUser1,idUser2);
         return new ResponseEntity<>(relationship, HttpStatus.OK);
     }
 
-    @PostMapping("addRequest/{idUser1}/{idUser2}")
+    @PostMapping("/users/friendList/addRequest/{idUser1}/{idUser2}")
     public ResponseEntity<Void>addRequest(@PathVariable int idUser1, @PathVariable int idUser2){
         String isFriend = this.iFriendListService.checkFriend(idUser1,idUser2);
         if (isFriend == "Chưa có quan hệ"){
@@ -29,7 +29,7 @@ public class FriendRequestRestController {
     }
 
 
-    @DeleteMapping("removeRequest/{idUser1}/{idUser2}")
+    @DeleteMapping("/users/friendList/removeRequest/{idUser1}/{idUser2}")
     public ResponseEntity<Void>removeRequest(@PathVariable int idUser1, @PathVariable int idUser2){
         String isFriend = this.iFriendListService.checkFriend(idUser1,idUser2);
         if (isFriend == "Đã gửi lời mời kết bạn"){

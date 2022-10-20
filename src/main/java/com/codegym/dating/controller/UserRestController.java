@@ -10,11 +10,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @RestController
-@RequestMapping("api/users/users")
+@RequestMapping("api")
 public class UserRestController {
 @Autowired
 private IUserService iUserService;
-    @GetMapping("{id}")
+    @GetMapping("/users/users/{id}")
     public ResponseEntity<UserDto>findById(@PathVariable int id) {
         UserDto userDto = this.iUserService.findByIdDto(id).orElse(null);
         if (userDto == null){

@@ -17,7 +17,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("http://localhost:4200/")
-@RequestMapping("api/users/posts")
+@RequestMapping("api")
 public class PostRestController {
     @Autowired
     private IPostService iPostService;
@@ -25,7 +25,7 @@ public class PostRestController {
     @Autowired
     private IUserService iUserService;
 
-    @PostMapping("/save")
+    @PostMapping("/users/posts/save")
     public ResponseEntity<Void> savePost(@RequestBody @Valid PostDto postDto, BindingResult bindingResult){
         new PostDto().validate(postDto, bindingResult);
 
@@ -44,7 +44,7 @@ public class PostRestController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("personList/{id}")
+    @GetMapping("/users/posts/personList/{id}")
     public ResponseEntity<List<IPostDto>> getPersonList(@PathVariable int id){
         List<IPostDto> list = this.iPostService.getUserPostList(id);
         if (list.isEmpty()){

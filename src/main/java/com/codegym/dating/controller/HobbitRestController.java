@@ -11,11 +11,11 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("api/users/hobbits")
+@RequestMapping("api")
 public class HobbitRestController {
     @Autowired
     private IUserHobbitService iUserHobbitService;
-    @GetMapping("{id}")
+    @GetMapping("/users/hobbits/{id}")
     public ResponseEntity<List<HobbitDto>> findByIdUser(@PathVariable int id) {
         List<HobbitDto> hobbitDtoList = this.iUserHobbitService.findAllByIdUser(id);
         if (hobbitDtoList.isEmpty()){
