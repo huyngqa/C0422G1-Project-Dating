@@ -54,4 +54,8 @@ public class User {
     private List<GiftUser> giftSenders;
     @OneToMany(mappedBy = "receiver")
     private List<GiftUser> giftReceiver;
+
+    public User(Integer idUser) {
+        this.idUser = idUser;
+    }
 }
