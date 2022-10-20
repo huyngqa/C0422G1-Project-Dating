@@ -18,4 +18,9 @@ public class TargetService implements ITargetService {
     public List<Target> findAllTarget() {
         return this.iTargetRepository.findAllTarget();
     }
+
+    @Override
+    public Target findById(int id) {
+        return this.iTargetRepository.findById(id).get();
+    }
 }

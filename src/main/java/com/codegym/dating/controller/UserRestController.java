@@ -83,7 +83,23 @@ public class UserRestController {
 
             this.iUserService.updateUser(user);
 
-             return new ResponseEntity<>(HttpStatus.OK);
+            for (Integer idHobbit : userDto.getHobbits()) {
+                Hobbit hobbit = this.iHobbitService.findById(idHobbit);
+                UserHobbit userHobbit = new UserHobbit();
+                userHobbit.setHobbit(hobbit);
+                userHobbit.setUser(user);
+                this.iUserHobbitService.saveUserHobbit(userHobbit);
+            }
+
+            for (Integer idTarget : userDto.getTargets()) {
+                Target target = this.iTargetService.findById(idTarget);
+                UserTarget userTarget = new UserTarget();
+                userTarget.setTarget(target);
+                userTarget.setUser(user);
+                this.iUserTargetService.saveUserTarget(userTarget);
+            }
+
+            return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }

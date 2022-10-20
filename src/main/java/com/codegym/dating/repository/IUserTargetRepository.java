@@ -12,6 +12,6 @@ public interface IUserTargetRepository extends JpaRepository<UserTarget, UserTar
     @Transactional
     @Modifying
     @Query(value = "insert into user_target (id_target, id_user) " +
-            "value (:#{#userTarget.id.idTarget}, :#{#userTarget.id.idUser})", nativeQuery = true)
+            "value (:#{#userTarget.target.idTarget}, :#{#userTarget.user.idUser})", nativeQuery = true)
     void saveUserTarget(UserTarget userTarget);
 }

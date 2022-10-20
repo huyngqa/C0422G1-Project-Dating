@@ -14,6 +14,6 @@ public interface IUserHobbitRepository extends JpaRepository<UserHobbit, UserHob
     @Transactional
     @Modifying
     @Query(value = "insert into user_has_hobbit(id_user, id_hobbit) " +
-            "value (:#{#userHobbit.id.idUser}, :#{#userHobbit.id.idHobbit})", nativeQuery = true)
+            "value (:#{#userHobbit.user.idUser}, :#{#userHobbit.hobbit.idHobbit})", nativeQuery = true)
     void saveUserHobbit(UserHobbit userHobbit);
 }

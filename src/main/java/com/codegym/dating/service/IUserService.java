@@ -9,4 +9,6 @@ public interface IUserService {
     User saveUser(User user);
 
     void updateUser(User user);
+
+    User findById(int id);
 }

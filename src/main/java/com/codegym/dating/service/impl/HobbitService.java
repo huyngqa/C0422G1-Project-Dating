@@ -18,4 +18,9 @@ public class HobbitService implements IHobbitService {
     public List<Hobbit> findAllHobbit() {
         return this.iHobbitRepository.findAllHobbit();
     }
+
+    @Override
+    public Hobbit findById(int id) {
+        return this.iHobbitRepository.findById(id).get();
+    }
 }

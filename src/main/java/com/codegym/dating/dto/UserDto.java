@@ -40,6 +40,10 @@ public class UserDto implements Validator {
 
     private String avatar;
 
+    private List<Integer> hobbits;
+
+    private List<Integer> targets;
+
     private String joinDay;
 
     private Integer coin;

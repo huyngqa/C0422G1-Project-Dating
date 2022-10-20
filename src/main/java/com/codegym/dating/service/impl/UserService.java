@@ -40,4 +40,9 @@ public class UserService implements IUserService {
 
         this.iUserRepository.save(user);
     }
+
+    @Override
+    public User findById(int id) {
+        return this.iUserRepository.findById(id).get();
+    }
 }
