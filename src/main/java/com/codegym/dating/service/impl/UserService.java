@@ -38,6 +38,10 @@ public class UserService implements IUserService {
 
         user.setJoinDay(String.valueOf(LocalDate.now()));
 
+        if (user.getAvatar().isEmpty()){
+            user.setAvatar("https://scienceoxford.com/wp-content/uploads/2018/03/avatar-male.jpg");
+        }
+
         this.iUserRepository.save(user);
     }
 

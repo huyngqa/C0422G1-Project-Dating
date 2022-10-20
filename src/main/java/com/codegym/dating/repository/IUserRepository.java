@@ -10,9 +10,6 @@ import java.util.List;
 @Transactional
 public interface IUserRepository extends JpaRepository<User, Integer> {
 
-    @Query(value = "select * from user ", nativeQuery = true)
-    List<User> findAllUser();
-
     @Query(value = "select * from user where id_user = :id", nativeQuery = true)
     User findUserById(Integer id);
 
