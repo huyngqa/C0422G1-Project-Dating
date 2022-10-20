@@ -17,22 +17,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Optional;
-
 @RestController
-@RequestMapping("/rest")
+@RequestMapping("api/users")
 public class TestRestController {
-    @Autowired
-    private IAccountRoleRepository iAccountRoleRepository;
     @Autowired
     private IAccountRepository iAccountRepository;
 
-
     @GetMapping("/test")
     public ResponseEntity<String> listResponseEntity() {
-        Optional<Account> account = iAccountRepository.findById(1);
-        Optional<AccountRole> accountRole = iAccountRoleRepository.findById(new AccountRoleKey(1, 1));
-        return new ResponseEntity<>(accountRole.get().getAccount().getEmail() + accountRole.get().getRole().getRoleName(), HttpStatus.OK);
+        return new ResponseEntity<>(iAccountRepository.findById(7).get().getEmail(), HttpStatus.OK);
     }
 
 }
