@@ -31,4 +31,8 @@ public class AccountService implements IAccountService {
         iAccountRepository.save(account);
     }
 
+//    @Override
+//    public Account findAccountByEmail(String email) {
+//        return iAccountRepository.findByEmail(email);
+//    }
 }
