@@ -12,6 +12,8 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class UserService implements IUserService {
@@ -20,8 +22,23 @@ public class UserService implements IUserService {
 
 
     @Override
+<<<<<<< HEAD
     public Optional<UserDto> findByIdDto(Integer id) {
         return this.iUserRepository.findByIdDto(id);
+=======
+    public Page<UserDto> findAllPage(Pageable pageable) {
+        return userRepository.getAllPage(pageable);
+    }
+
+    @Override
+    public List<UserDto> findAllSearch(String name) {
+        return userRepository.getAllSearch( '%' + name + '%');
+    }
+
+    @Override
+    public Page<UserDto> findAllSearchPage(Pageable pageable, String name) {
+        return userRepository.getAllSearchPage(pageable,'%' + name + '%');
+>>>>>>> origin/TrangNTT-SearchByName
     }
 
     @Override

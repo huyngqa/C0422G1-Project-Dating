@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+<<<<<<< HEAD
 import java.util.Optional;
 @Transactional
 public interface IUserRepository extends JpaRepository<User, Integer> {
@@ -54,4 +55,23 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             "where id_user = :id_user ", nativeQuery = true)
     void updateTypeUser(@Param("id_type_user") Integer idTypeUser,@Param("id_user") Integer idUser);
 
+=======
+import java.util.List;
+
+
+public interface IUserRepository extends JpaRepository<User, Integer> {
+    @Query(value = "SELECT user.`name`,user.coin,user.gender,user. address,user.job,user .avatar FROM user  ",
+            countQuery = "select count(*) from (SELECT user.`name`,user.coin,user.gender,user. address,user.job,user .avatar FROM user )as pageCount",
+            nativeQuery = true)
+    Page<UserDto> getAllPage(Pageable pageable);
+
+  @Query(value = "SELECT user.`name`,user.coin,user.gender,user. address,user.job,user .avatar FROM user  where  user.`name` like :name ",
+            countQuery = "select count(*) from (SELECT user.`name`,user.coin,user.gender,user. address,user.job,user .avatar FROM user )as pageCount",
+            nativeQuery = true)
+    Page<UserDto> getAllSearchPage(Pageable pageable,@Param("name") String name);
+
+    @Query(value = "SELECT user.`name`,user.coin,user.gender,user. address,user.job,user .avatar FROM user where  user.`name` like :name"
+         , nativeQuery = true)
+    List<UserDto> getAllSearch(@Param("name") String name);
+>>>>>>> origin/TrangNTT-SearchByName
 }
