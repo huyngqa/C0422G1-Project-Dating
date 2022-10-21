@@ -23,7 +23,7 @@ public class GiftUserService implements IGiftUserService {
         List<GiftUser> giftUsers = findAllGiftUser();
         boolean flag = true;
         for (GiftUser item : giftUsers) {
-            if(item.getGift().getIdGift() == idGift && item.getSender().getIdUser() == idUserSender && item.getReceiver().getIdUser() == idUserReceiver ) {
+            if(item.getGift().getIdGift().equals(idGift)  && item.getSender().getIdUser().equals(idUserSender) && item.getReceiver().getIdUser().equals(idUserReceiver)  ) {
                 this.giftUserRepository.updateGiveAGift(idGift, idUserReceiver, idUserSender, quantity);
                 flag = false;
             }

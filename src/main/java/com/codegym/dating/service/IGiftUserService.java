@@ -1,6 +1,5 @@
 package com.codegym.dating.service;
 
-import com.codegym.dating.model.Gift;
 import com.codegym.dating.model.GiftUser;
 
 import java.util.List;
