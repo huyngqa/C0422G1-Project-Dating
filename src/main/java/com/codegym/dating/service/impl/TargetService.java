@@ -21,6 +21,7 @@ public class TargetService implements ITargetService {
 
     @Override
     public Target findById(int id) {
-        return this.iTargetRepository.findById(id).get();
+        Target target = this.iTargetRepository.findById(id).get();
+        return target;
     }
 }

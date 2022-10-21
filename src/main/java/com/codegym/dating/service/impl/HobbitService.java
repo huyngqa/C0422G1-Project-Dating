@@ -21,6 +21,7 @@ public class HobbitService implements IHobbitService {
 
     @Override
     public Hobbit findById(int id) {
-        return this.iHobbitRepository.findById(id).get();
+        Hobbit hobbit = this.iHobbitRepository.findById(id).get();
+        return hobbit;
     }
 }

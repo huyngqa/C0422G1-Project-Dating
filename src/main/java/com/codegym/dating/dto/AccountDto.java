@@ -1,18 +1,17 @@
 package com.codegym.dating.dto;
 
 import com.codegym.dating.model.AccountRole;
-import com.codegym.dating.model.User;
-import com.codegym.dating.ulti.AccountValidate;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.Range;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.util.Set;
 
 @Getter
@@ -49,12 +48,5 @@ public class AccountDto implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-        AccountDto accountDto = (AccountDto) target;
-
-//        AccountValidate.checkEmail(accountDto, errors);
-//
-//        AccountValidate.checkPhone(accountDto, errors);
-//
-//        AccountValidate.checkPassword(accountDto, errors);
     }
 }

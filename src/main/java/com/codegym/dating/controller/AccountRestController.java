@@ -37,7 +37,7 @@ public class AccountRestController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<?> saveAccount(@RequestBody @Valid AccountDto accountDto,
+    public ResponseEntity<Map<String, String>> saveAccount(@RequestBody @Valid AccountDto accountDto,
                                            BindingResult bindingResult){
 
         new AccountDto().validate(accountDto, bindingResult);
@@ -57,6 +57,8 @@ public class AccountRestController {
         User user = new User();
         account.setUser(user);
 
-        return new ResponseEntity<>(this.iAccountService.saveAccount(account),HttpStatus.OK);
+        this.iAccountService.saveAccount(account);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

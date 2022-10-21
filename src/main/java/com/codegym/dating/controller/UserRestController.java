@@ -52,12 +52,12 @@ public class UserRestController {
     }
 
     @GetMapping("/get-all-hobbit")
-    public ResponseEntity<List<Hobbit>> getAllHobbit (){
+    public ResponseEntity<List<Hobbit>> getAllHobbit() {
         return new ResponseEntity<>(this.iHobbitService.findAllHobbit(), HttpStatus.OK);
     }
 
     @GetMapping("/get-all-target")
-    public ResponseEntity<List<Target>> getAllTarget (){
+    public ResponseEntity<List<Target>> getAllTarget() {
         return new ResponseEntity<>(this.iTargetService.findAllTarget(), HttpStatus.OK);
     }
 
@@ -67,43 +67,40 @@ public class UserRestController {
 
         User user = this.iUserService.findUserById(userDto.getIdUser());
 
-        if (user != null){
-            new UserDto().validate(userDto, bindingResult);
+        new UserDto().validate(userDto, bindingResult);
 
-            if (bindingResult.hasErrors()) {
-                Map<String, String> errMap = new HashMap<>();
+        if (bindingResult.hasErrors()) {
+            Map<String, String> errMap = new HashMap<>();
 
-                for (FieldError fieldError : bindingResult.getFieldErrors()) {
-                    errMap.put(fieldError.getField(), fieldError.getDefaultMessage());
-                }
-                return new ResponseEntity<>(errMap, HttpStatus.BAD_REQUEST);
+            for (FieldError fieldError : bindingResult.getFieldErrors()) {
+                errMap.put(fieldError.getField(), fieldError.getDefaultMessage());
             }
-
-            BeanUtils.copyProperties(userDto, user);
-
-            this.iUserService.updateUser(user);
-
-            if (!userDto.getHobbits().isEmpty()){
-                for (Integer idHobbit : userDto.getHobbits()) {
-                    Hobbit hobbit = this.iHobbitService.findById(idHobbit);
-                    UserHobbit userHobbit = new UserHobbit();
-                    userHobbit.setHobbit(hobbit);
-                    userHobbit.setUser(user);
-                    this.iUserHobbitService.saveUserHobbit(userHobbit);
-                }
-            }
-
-            if (!userDto.getTargets().isEmpty()){
-                for (Integer idTarget : userDto.getTargets()) {
-                    Target target = this.iTargetService.findById(idTarget);
-                    UserTarget userTarget = new UserTarget();
-                    userTarget.setTarget(target);
-                    userTarget.setUser(user);
-                    this.iUserTargetService.saveUserTarget(userTarget);
-                }
-            }
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(errMap, HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        BeanUtils.copyProperties(userDto, user);
+
+        this.iUserService.updateUser(user);
+
+        if (!userDto.getHobbits().isEmpty()) {
+            for (Integer idHobbit : userDto.getHobbits()) {
+                Hobbit hobbit = this.iHobbitService.findById(idHobbit);
+                UserHobbit userHobbit = new UserHobbit();
+                userHobbit.setHobbit(hobbit);
+                userHobbit.setUser(user);
+                this.iUserHobbitService.saveUserHobbit(userHobbit);
+            }
+        }
+
+        if (!userDto.getTargets().isEmpty()) {
+            for (Integer idTarget : userDto.getTargets()) {
+                Target target = this.iTargetService.findById(idTarget);
+                UserTarget userTarget = new UserTarget();
+                userTarget.setTarget(target);
+                userTarget.setUser(user);
+                this.iUserTargetService.saveUserTarget(userTarget);
+            }
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
