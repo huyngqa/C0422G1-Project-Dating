@@ -26,33 +26,16 @@ public class ResetPasswordRestController {
         return new BCryptPasswordEncoder();
     }
 
-//    @PatchMapping("/checkPassword/{password}/{newPassword}")
-//    public ResponseEntity<?> checkPassword(@PathVariable String password,
-//                                           @PathVariable String newPassword) {
-//
-//        Account account = this.iAccountService.findByPassword(password);
-//
-//        if (account != null) {
-//            account.setPassword(passwordEncoder().encode(newPassword));
-//            iAccountService.updatePassword(account);
-//            return new ResponseEntity<>(account, HttpStatus.OK);
-//        }
-//
-//        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//    }
-
     @PostMapping("/changePassword/{idAccount}")
-    public ResponseEntity<?> doResetPassword(@RequestBody JwtRequest authenticationRequest,
-                                             @PathVariable Integer idAccount) {
+    public ResponseEntity<Void> doResetPassword(@RequestBody JwtRequest authenticationRequest,
+                                                @PathVariable Integer idAccount) {
         Optional<Account> account = iAccountService.findById(idAccount);
 
-        if (account.isPresent()) {
-            if (BCrypt.checkpw(authenticationRequest.getPassword(), account.get().getPassword())) {
-                if (!Objects.equals(authenticationRequest.getNewPassword(), "")) {
-                    iAccountService.saveNewPassword(passwordEncoder().encode(authenticationRequest.getNewPassword()), idAccount);
-                    return new ResponseEntity<>(HttpStatus.OK);
-                }
-            }
+        if (account.isPresent() && BCrypt.checkpw(authenticationRequest.getPassword(), account.get().getPassword()) &&
+                !Objects.equals(authenticationRequest.getNewPassword(), "")) {
+            iAccountService.saveNewPassword(passwordEncoder().encode(authenticationRequest.getNewPassword()), idAccount);
+            return new ResponseEntity<>(HttpStatus.OK);
+
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }

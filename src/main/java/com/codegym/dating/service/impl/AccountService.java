@@ -14,20 +14,10 @@ public class AccountService implements IAccountService {
     @Autowired
     private IAccountRepository iAccountRepository;
 
-//    @Override
-//    public Account findByPassword(String password) {
-//        return this.iAccountRepository.findByPassword(password);
-//    }
-
     @Override
     public Optional<Account> findById(Integer idAccount) {
         return iAccountRepository.findById(idAccount);
     }
-
-//    @Override
-//    public void updatePassword(Account account) {
-//        iAccountRepository.updatePassword(account);
-//    }
 
     @Override
     public void saveNewPassword(String password, Integer idAccount) {
