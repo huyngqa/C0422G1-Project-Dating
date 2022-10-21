@@ -137,6 +137,7 @@ public class UserRestController {
 
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
+
     @GetMapping("/public/user/get-all-hobbit")
     public ResponseEntity<List<Hobbit>> getAllHobbit() {
         return new ResponseEntity<>(this.iHobbitService.findAllHobbit(), HttpStatus.OK);
@@ -190,5 +191,9 @@ public class UserRestController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-
+    @GetMapping("users/my-user/{id}")
+    public ResponseEntity<User> getMyUser(@PathVariable Integer id) {
+        User user = iUserService.getUserByIdAccount(id);
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
 }

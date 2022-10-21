@@ -1,6 +1,5 @@
 package com.codegym.dating.service;
 
-import com.codegym.dating.dto.UserClassDto;
 import com.codegym.dating.dto.UserDto;
 import com.codegym.dating.model.User;
 import com.codegym.dating.payload.request.UpdateStatusRequest;
@@ -46,5 +45,5 @@ public interface IUserService {
 
     void updateUser(User user);
 
-
+    User getUserByIdAccount(Integer idAccount);
 }

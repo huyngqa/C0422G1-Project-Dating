@@ -215,10 +215,16 @@ public class UserService implements IUserService {
         this.iUserRepository.save(user);
     }
 
+    @Override
+    public User getUserByIdAccount(Integer idAccount) {
+        return iUserRepository.findByAccount_IdAccount(idAccount);
+    }
+
 
     @Override
     public User findById(Integer id) {
         User user = this.iUserRepository.findById(id).get();
         return user;
     }
+
 }

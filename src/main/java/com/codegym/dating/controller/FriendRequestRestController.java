@@ -32,7 +32,7 @@ public class FriendRequestRestController {
     @DeleteMapping("/users/friendList/removeRequest/{idUser1}/{idUser2}")
     public ResponseEntity<Void>removeRequest(@PathVariable int idUser1, @PathVariable int idUser2){
         int isFriend = this.iFriendListService.checkFriend(idUser1,idUser2);
-        if (isFriend == 0){
+        if (isFriend == 51){
             this.iFriendListService.removeRequest(idUser1,idUser2);
             return new ResponseEntity<>(HttpStatus.OK);
         }

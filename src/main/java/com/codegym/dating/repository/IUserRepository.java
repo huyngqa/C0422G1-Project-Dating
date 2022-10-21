@@ -121,4 +121,5 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
     @Query(value="select u from User u join TypeUser tu on tu.idTypeUser = u.typeUser.idTypeUser where u.name LIKE lower(concat('%', ?1,'%')) AND tu.typeUserName = ?2 ORDER BY u.idUser ASC")
     Page<User> findByTypeUser(String name, String typeUser, Pageable pageable);
 
+    User findByAccount_IdAccount(Integer idAccount);
 }

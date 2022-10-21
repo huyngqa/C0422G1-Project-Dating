@@ -24,7 +24,7 @@ public class ReportController {
     @Autowired
     private IReportDetailsService reportDetailsService;
 
-    @GetMapping("/report-list")
+    @GetMapping("/users/report-list")
     public ResponseEntity<List<ReportDto>> getAllReport() {
         List<ReportDto> reportList = iReportService.findAllReport();
         return new ResponseEntity<>(reportList, HttpStatus.OK);
@@ -49,7 +49,7 @@ public class ReportController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping("/public/report")
+    @PostMapping("/users/report")
     public ResponseEntity<Void> add(@RequestBody ReportDetailsDto reportDetailsDto) {
         this.reportDetailsService.save(reportDetailsDto);
         return new ResponseEntity<>(HttpStatus.OK);

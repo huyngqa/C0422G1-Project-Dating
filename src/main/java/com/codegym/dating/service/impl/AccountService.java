@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AccountService implements IAccountService {
@@ -65,6 +66,16 @@ public class AccountService implements IAccountService {
     public void updateAccountIfExists(Account account, AuthenticationProvider authenticationProvider) {
         account.setAuthProvider(authenticationProvider);
         iAccountRepository.save(account);
+    }
+
+    @Override
+    public Optional<Account> findById(Integer idAccount) {
+        return iAccountRepository.findById(idAccount);
+    }
+
+    @Override
+    public void saveNewPassword(String password, Integer idAccount) {
+        iAccountRepository.saveNewPassword(password, idAccount);
     }
 
 

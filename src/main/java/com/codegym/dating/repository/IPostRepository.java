@@ -68,7 +68,7 @@ public interface IPostRepository extends JpaRepository<Post, Integer> {
                 "         u.name as Username\n" +
                 "from post as p\n" +
                 " join user as u on p.id_user = u.id_user\n" +
-                "where p.id_post= 1",nativeQuery = true)
+                "where p.id_post= ?1 ",nativeQuery = true)
         IPostDto  findPostById(int id);
 
         @Modifying

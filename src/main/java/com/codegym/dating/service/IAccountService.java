@@ -4,6 +4,7 @@ import com.codegym.dating.common.AuthenticationProvider;
 import com.codegym.dating.model.Account;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IAccountService {
 //    void saveAccount(Account account);
@@ -22,4 +23,7 @@ public interface IAccountService {
     Account saveAccount(Account account);
 
     void updateAccount(Account account);
+    Optional<Account> findById(Integer idAccount);
+
+    void saveNewPassword(String password, Integer idAccount);
 }
