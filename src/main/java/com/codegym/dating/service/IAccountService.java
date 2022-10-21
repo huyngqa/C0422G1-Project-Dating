@@ -3,6 +3,8 @@ package com.codegym.dating.service;
 import com.codegym.dating.common.AuthenticationProvider;
 import com.codegym.dating.model.Account;
 
+import java.util.List;
+
 public interface IAccountService {
 //    void saveAccount(Account account);
 
@@ -11,4 +13,13 @@ public interface IAccountService {
     void createAccountForFacebook(String email, AuthenticationProvider authenticationProvider);
 
     void updateAccountIfExists(Account account, AuthenticationProvider authenticationProvider);
+    Account findAccountByEmail(String email);
+
+    List<Account> findAllAccount();
+
+    Account findAccountById(Integer id);
+
+    Account saveAccount(Account account);
+
+    void updateAccount(Account account);
 }

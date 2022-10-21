@@ -115,4 +115,10 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             "set user.id_status_active = :status \n" +
             "where user.id_user = :id_user", nativeQuery = true)
     void updateStatusActive(@Param("status") Integer status, @Param("id_user") Integer idUser);
+
+    Page<User> findByNameContaining(String name, Pageable pageable);
+
+    @Query(value="select u from User u join TypeUser tu on tu.idTypeUser = u.typeUser.idTypeUser where u.name LIKE lower(concat('%', ?1,'%')) AND tu.typeUserName = ?2 ORDER BY u.idUser ASC")
+    Page<User> findByTypeUser(String name, String typeUser, Pageable pageable);
+
 }

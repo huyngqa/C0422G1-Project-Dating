@@ -21,7 +21,11 @@ public interface IUserHobbitRepository extends JpaRepository<UserHobbit, UserHob
             "    ush.id_user = ?1",nativeQuery = true)
     List<HobbitDto> findAllByIdUser(Integer id);
 
-
+    @Transactional
+    @Modifying
+    @Query(value = "insert into user_has_hobbit(id_user, id_hobbit) " +
+            "value (:#{#userHobbit.user.idUser}, :#{#userHobbit.hobbit.idHobbit})", nativeQuery = true)
+    void saveUserHobbit(UserHobbit userHobbit);
 
 
 }

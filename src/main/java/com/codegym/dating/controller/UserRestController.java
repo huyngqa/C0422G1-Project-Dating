@@ -2,8 +2,8 @@ package com.codegym.dating.controller;
 
 import com.codegym.dating.dto.UserClassDto;
 import com.codegym.dating.dto.UserDto;
-import com.codegym.dating.model.User;
-import com.codegym.dating.service.IUserService;
+import com.codegym.dating.model.*;
+import com.codegym.dating.service.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,9 +12,13 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @CrossOrigin("*")
@@ -23,6 +27,20 @@ import java.util.Optional;
 public class UserRestController {
     @Autowired
     private IUserService iUserService;
+
+
+    @Autowired
+    private IUserHobbitService iUserHobbitService;
+
+    @Autowired
+    private IUserTargetService iUserTargetService;
+
+    @Autowired
+    private IHobbitService iHobbitService;
+
+    @Autowired
+    private ITargetService iTargetService;
+
 
     @GetMapping("/users/listAndSearch")
     public ResponseEntity<Page<UserDto>> userPage(@RequestParam Optional<String> name,
@@ -118,6 +136,58 @@ public class UserRestController {
 
 
         return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+    @GetMapping("/public/user/get-all-hobbit")
+    public ResponseEntity<List<Hobbit>> getAllHobbit() {
+        return new ResponseEntity<>(this.iHobbitService.findAllHobbit(), HttpStatus.OK);
+    }
+
+    @GetMapping("/public/user/get-all-target")
+    public ResponseEntity<List<Target>> getAllTarget() {
+        return new ResponseEntity<>(this.iTargetService.findAllTarget(), HttpStatus.OK);
+    }
+
+    @PatchMapping("/public/user/update")
+    public ResponseEntity<Map<String, String>> updateUser(@RequestBody @Valid UserClassDto userDto,
+                                                          BindingResult bindingResult) {
+
+        User user = this.iUserService.findById(userDto.getIdUser());
+
+        new UserClassDto().validate(userDto, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            Map<String, String> errMap = new HashMap<>();
+
+            for (FieldError fieldError : bindingResult.getFieldErrors()) {
+                errMap.put(fieldError.getField(), fieldError.getDefaultMessage());
+            }
+            return new ResponseEntity<>(errMap, HttpStatus.BAD_REQUEST);
+        }
+
+        BeanUtils.copyProperties(userDto, user);
+
+        this.iUserService.updateUser(user);
+
+        if (userDto.getHobbits() != null) {
+            for (Integer idHobbit : userDto.getHobbits()) {
+                Hobbit hobbit = this.iHobbitService.findById(idHobbit);
+                UserHobbit userHobbit = new UserHobbit();
+                userHobbit.setHobbit(hobbit);
+                userHobbit.setUser(user);
+                this.iUserHobbitService.saveUserHobbit(userHobbit);
+            }
+        }
+
+        if (userDto.getTargets() != null) {
+            for (Integer idTarget : userDto.getTargets()) {
+                Target target = this.iTargetService.findById(idTarget);
+                UserTarget userTarget = new UserTarget();
+                userTarget.setTarget(target);
+                userTarget.setUser(user);
+                this.iUserTargetService.saveUserTarget(userTarget);
+            }
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 

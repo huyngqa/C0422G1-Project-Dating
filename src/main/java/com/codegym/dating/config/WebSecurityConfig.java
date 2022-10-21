@@ -50,7 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/public/**", "/oauth2/**")
                 .permitAll()
                 .antMatchers("/api/users/**").hasAnyRole("USER","ADMIN")
-                .antMatchers("api/admin/**").hasRole("ADMIN")
+                .antMatchers("/api/admin/**").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()
