@@ -1,7 +1,7 @@
 package com.codegym.dating.service.impl;
 
 import com.codegym.dating.dto.RelationshipDto;
-import com.codegym.dating.dto.UserDto;
+import com.codegym.dating.dto.UserClassDto;
 import com.codegym.dating.projection_dto.IUserDto;
 import com.codegym.dating.repository.IFriendListRepository;
 import com.codegym.dating.service.IFriendListService;
@@ -18,7 +18,7 @@ public class FriendListService implements IFriendListService {
     private IFriendListRepository iFriendListRepository;
 
     @Override
-    public List<UserDto> findAllRequest(int id) {
+    public List<UserClassDto> findAllRequest(int id) {
         return iFriendListRepository.findAllRequestFriend(id);
     }
 
@@ -84,7 +84,7 @@ public class FriendListService implements IFriendListService {
         }
 
         @Override
-        public List<UserDto> requestSuggest (Integer idUser){
+        public List<UserClassDto> requestSuggest (Integer idUser){
             return iFriendListRepository.suggestRequest(idUser);
         }
 

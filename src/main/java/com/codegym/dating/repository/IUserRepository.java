@@ -1,5 +1,6 @@
 package com.codegym.dating.repository;
 
+import com.codegym.dating.dto.UserClassDto;
 import com.codegym.dating.dto.UserDto;
 import com.codegym.dating.model.User;
 import org.springframework.data.domain.Page;
@@ -99,4 +100,19 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
     @Query(value = "SELECT user.`name`,user.coin,user.gender,user. address,user.job,user .avatar FROM user where  user.`name` like :name"
          , nativeQuery = true)
     List<UserDto> getAllSearch(@Param("name") String name);
+
+
+
+    @Modifying
+    @Query(value = "update user \n" +
+            "set avatar = :avatar \n" +
+            "where id_user = :id_user ;", nativeQuery = true)
+    void updateAvatar(@Param("avatar") String avatar, @Param("id_user") Integer idUser);
+
+
+    @Modifying
+    @Query(value = "update user \n" +
+            "set user.id_status_active = :status \n" +
+            "where user.id_user = :id_user", nativeQuery = true)
+    void updateStatusActive(@Param("status") Integer status, @Param("id_user") Integer idUser);
 }

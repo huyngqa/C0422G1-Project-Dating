@@ -1,18 +1,23 @@
 package com.codegym.dating.controller;
 
+import com.codegym.dating.dto.UserClassDto;
 import com.codegym.dating.dto.UserDto;
+import com.codegym.dating.model.User;
 import com.codegym.dating.service.IUserService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
-@CrossOrigin
+@CrossOrigin("*")
 @RestController
 @RequestMapping("api")
 public class UserRestController {
@@ -70,4 +75,50 @@ public class UserRestController {
         }
         return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
+
+    @PatchMapping("/users/update_active/{id}")
+    public ResponseEntity<User> updateStatus(@PathVariable Integer id,
+                                             @RequestBody UserClassDto userDto, BindingResult bindingResult) {
+
+        userDto.setIdUser(id);
+
+        new UserClassDto().validate(userDto, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
+        User user = new User();
+
+        BeanUtils.copyProperties(userDto, user);
+
+        this.iUserService.updateStatusActive(user);
+
+        return new ResponseEntity<>(user, HttpStatus.OK);
+
+    }
+
+    @PatchMapping("/users/update_avatar/{id}")
+    public ResponseEntity<User> updateAvatar(@PathVariable Integer id,
+                                             @RequestBody @Valid UserClassDto userDto, BindingResult bindingResult) {
+
+        userDto.setIdUser(id);
+
+        new UserClassDto().validate(userDto, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
+        User user = new User();
+
+        BeanUtils.copyProperties(userDto, user);
+
+        this.iUserService.updateAvatar(user);
+
+
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+
 }

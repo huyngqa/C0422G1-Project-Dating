@@ -1,5 +1,6 @@
 package com.codegym.dating.service.impl;
 
+import com.codegym.dating.dto.UserClassDto;
 import com.codegym.dating.dto.UserDto;
 import com.codegym.dating.model.User;
 import com.codegym.dating.repository.IUserRepository;
@@ -103,6 +104,19 @@ public class UserService implements IUserService {
     @Override
     public List<UserDto> findAllSearch(String name) {
         return iUserRepository.getAllSearch(name);
+    }
+
+//    -------------
+
+    @Override
+    public void updateAvatar(User user) {
+        this.iUserRepository.updateAvatar(user.getAvatar(), user.getIdUser());
+    }
+
+    @Override
+    public void updateStatusActive(User user) {
+        this.iUserRepository.updateStatusActive(user.getStatusActive().getId(), user.getIdUser());
+        System.out.println(user.getIdUser());
     }
 
 }

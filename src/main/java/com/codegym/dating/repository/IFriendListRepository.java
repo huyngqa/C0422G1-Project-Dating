@@ -1,10 +1,8 @@
 package com.codegym.dating.repository;
 
-import com.codegym.dating.dto.FriendListDto;
 import com.codegym.dating.dto.RelationshipDto;
-import com.codegym.dating.dto.UserDto;
+import com.codegym.dating.dto.UserClassDto;
 import com.codegym.dating.model.FriendList;
-import com.codegym.dating.model.User;
 import com.codegym.dating.projection_dto.IUserDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,7 +24,7 @@ public interface IFriendListRepository extends JpaRepository<FriendList, Integer
                 "where id_user2 = 1)and (user.married = 0) and id_user <>1 \n" +
                 "limit 6;"
                 ,nativeQuery = true)
-        List<UserDto> suggestRequest(Integer userId);
+        List<UserClassDto> suggestRequest(Integer userId);
 
         @Modifying
         @Query(value = "INSERT INTO `dating_c04`.`friend_list` (`status`, `id_user1`, `id_user2`) VALUES ('5', ?1, ?2)", nativeQuery = true)
@@ -55,7 +53,7 @@ public interface IFriendListRepository extends JpaRepository<FriendList, Integer
                 "    friend_list fl ON fl.id_user2 = u.id_user\n" +
                 "WHERE\n" +
                 "    status = 5 AND id_user2 = ?1", nativeQuery = true)
-        List<UserDto> findAllRequestFriend(Integer id);
+        List<UserClassDto> findAllRequestFriend(Integer id);
 
         @javax.transaction.Transactional
         @Modifying

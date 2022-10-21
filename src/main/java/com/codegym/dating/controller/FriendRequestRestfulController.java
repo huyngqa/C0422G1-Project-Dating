@@ -1,8 +1,6 @@
 package com.codegym.dating.controller;
 
-import com.codegym.dating.dto.FriendListDto;
-import com.codegym.dating.dto.UserDto;
-import com.codegym.dating.model.User;
+import com.codegym.dating.dto.UserClassDto;
 import com.codegym.dating.service.IFriendListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,8 +18,8 @@ public class FriendRequestRestfulController {
     private IFriendListService friendListService;
 
     @GetMapping("users/request/{id}")
-    public ResponseEntity<List<UserDto>> findAllRequest(@PathVariable int id) {
-        List<UserDto> userDtoList = this.friendListService.findAllRequest(id);
+    public ResponseEntity<List<UserClassDto>> findAllRequest(@PathVariable int id) {
+        List<UserClassDto> userDtoList = this.friendListService.findAllRequest(id);
         if (userDtoList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -45,7 +43,7 @@ public class FriendRequestRestfulController {
     }
 
     @GetMapping("users/suggest/{idUserSuggest}")
-    public ResponseEntity<List<UserDto>> suggestRequest(@PathVariable Integer idUserSuggest) {
+    public ResponseEntity<List<UserClassDto>> suggestRequest(@PathVariable Integer idUserSuggest) {
         return new ResponseEntity<>(friendListService.requestSuggest(idUserSuggest),HttpStatus.OK);
     }
 

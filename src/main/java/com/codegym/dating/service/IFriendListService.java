@@ -1,6 +1,6 @@
 package com.codegym.dating.service;
 
-import com.codegym.dating.dto.UserDto;
+import com.codegym.dating.dto.UserClassDto;
 import com.codegym.dating.projection_dto.IUserDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -8,10 +8,10 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface IFriendListService {
-    List<UserDto> findAllRequest(int id);
+    List<UserClassDto> findAllRequest(int id);
     void acceptRequest(Integer idUser1 , Integer idUser2);
     void deniedRequest(Integer idUser1 , Integer idUser2);
-    List<UserDto> requestSuggest(Integer userId);
+    List<UserClassDto> requestSuggest(Integer userId);
 
     String checkFriend1(Integer idUser1, Integer idUser2);
     int checkFriend(Integer idUser1, Integer idUser2);

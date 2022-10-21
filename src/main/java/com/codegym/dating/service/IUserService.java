@@ -1,4 +1,6 @@
 package com.codegym.dating.service;
+
+import com.codegym.dating.dto.UserClassDto;
 import com.codegym.dating.dto.UserDto;
 import com.codegym.dating.model.User;
 import org.springframework.data.domain.Page;
@@ -18,12 +20,21 @@ public interface IUserService {
 
 
     Page<UserDto> userPage(String name,
-                           String dateOfBirth,
-                           String address,
-                           String job,
-                           String gender,
-                           String hobbitName,
-                           Pageable pageable);
+                                String dateOfBirth,
+                                String address,
+                                String job,
+                                String gender,
+                                String hobbitName,
+                                Pageable pageable);
 
     Page<UserDto> findAllSearchPage(Pageable pageable, String name);
+
+
+
+    void updateAvatar(User user);
+
+    void updateStatusActive(User user);
+
+
+
 }

@@ -21,7 +21,7 @@ public interface UserDto {
 
     Boolean getMarried();
 
-    Integer idStatusActive();
+    Integer statusActive();
 
     Integer getIdTypeUser();
 
