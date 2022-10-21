@@ -24,4 +24,21 @@ public class PostService  implements IPostService {
         return this.iPostRepository.getUserPostList(id);
     }
 
+
+    @Override
+    public List<IPostDto> getPostList(int id) {
+        return this.iPostRepository.getPostList(id);
+    }
+
+    @Override
+    public IPostDto findPostById(int id) {
+        return this.iPostRepository.findPostById(id);
+    }
+
+    @Override
+    public void updatePost(Post post) {
+        this.iPostRepository.updatePost(post.getContent(),post.getMedia() ,post.getUser().getIdUser(),post.getIdPost());
+    }
+
+
 }
