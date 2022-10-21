@@ -53,7 +53,6 @@ public class UserRestController {
     public ResponseEntity<Page<UserDto>> goSearch(@PageableDefault(4) Pageable pageable,
                                                 @RequestParam Optional<String> name) {
         String keyword = name.orElse("");
-        System.out.println(keyword);
         Page<UserDto> userDtoPage = iUserService.findAllSearchPage(pageable,keyword);
         if (keyword.length() > 30 || keyword.matches("^\\W+$")) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

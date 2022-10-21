@@ -62,62 +62,6 @@ public class SecurityRestController_authenticateUser {
     }
 
     @Test
-    public void authenticateUser_loginRequest_14() throws Exception {
-        LoginRequest loginRequest = new LoginRequest();
-        loginRequest.setUsername("");
-        loginRequest.setPassword("");
-        this.mockMvc
-                .perform(MockMvcRequestBuilders
-                        .post("/api/public/login")
-                        .content(this.objectMapper.writeValueAsString(loginRequest))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andDo(print())
-                .andExpect(status().is4xxClientError());
-    }
-
-    @Test
-    public void authenticateUser_Username_14() throws Exception {
-        LoginRequest loginRequest = new LoginRequest();
-        loginRequest.setUsername("");
-        loginRequest.setPassword("123123");
-        this.mockMvc
-                .perform(MockMvcRequestBuilders
-                        .post("/api/public/login")
-                        .content(this.objectMapper.writeValueAsString(loginRequest))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andDo(print())
-                .andExpect(status().is4xxClientError());
-    }
-
-    @Test
-    public void authenticateUser_Password_14() throws Exception {
-        LoginRequest loginRequest = new LoginRequest();
-        loginRequest.setUsername("minhhuyyy@gmail.com");
-        loginRequest.setPassword("");
-        this.mockMvc
-                .perform(MockMvcRequestBuilders
-                        .post("/api/public/login")
-                        .content(this.objectMapper.writeValueAsString(loginRequest))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andDo(print())
-                .andExpect(status().is4xxClientError());
-    }
-
-    @Test
-    public void authenticateUser_LoginRequest_16() throws Exception {
-        LoginRequest loginRequest = new LoginRequest();
-        loginRequest.setUsername("minhhuyyy@gmail.com");
-        loginRequest.setPassword("123321");
-        this.mockMvc
-                .perform(MockMvcRequestBuilders
-                        .post("/api/public/login")
-                        .content(this.objectMapper.writeValueAsString(loginRequest))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andDo(print())
-                .andExpect(status().is4xxClientError());
-    }
-
-    @Test
     public void authenticateUser_LoginRequest_18() throws Exception {
         LoginRequest loginRequest = new LoginRequest();
         loginRequest.setUsername("minhhuyyy@gmail.com");
