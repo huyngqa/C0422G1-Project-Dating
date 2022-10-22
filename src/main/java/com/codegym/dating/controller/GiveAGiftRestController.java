@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-@RequestMapping("/api/user/gift")
+@RequestMapping("api")
 public class GiveAGiftRestController {
 
     @Autowired
@@ -28,7 +28,7 @@ public class GiveAGiftRestController {
     private IUserService userService;
 
     /*List Gift*/
-    @GetMapping("/listGift")
+    @GetMapping("/users/gift/listGift")
     public ResponseEntity<List<Gift>> goListGift() {
         List<Gift> gifts = this.giftService.findAllGift();
         if (gifts.isEmpty()) {
@@ -38,7 +38,7 @@ public class GiveAGiftRestController {
     }
 
     /*Tìm kiếm 1 User theo Id*/
-    @GetMapping("/user/{idUser}")
+    @GetMapping("/users/gift/{idUser}")
     public ResponseEntity<User> findByIdUser(@PathVariable Integer idUser) {
         Optional<User> user = this.userService.findById(idUser);
 
@@ -50,7 +50,7 @@ public class GiveAGiftRestController {
     }
 
     /*Tìm kiếm quà tặng theo Id*/
-    @GetMapping("/gift/{idGift}")
+    @GetMapping("/users/gift/{idGift}")
     public ResponseEntity<Gift> findByIdGift(@PathVariable Integer idGift) {
         Optional<Gift> gift = this.giftService.findById(idGift);
 
@@ -62,7 +62,7 @@ public class GiveAGiftRestController {
     }
 
     /*Method tặng quà cho user*/
-    @GetMapping("/saveGiftUser")
+    @GetMapping("/users/gift/saveGiftUser")
     public ResponseEntity<Void> updateGiftUser(@RequestParam Integer idGift, @RequestParam Integer idUserReceiver,
                                                @RequestParam Integer idUserSender, @RequestParam Integer quantity) {
         this.giftUserService.updateGiveAGift(idGift, idUserReceiver, idUserSender, quantity);
