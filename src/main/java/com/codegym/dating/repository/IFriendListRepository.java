@@ -2,6 +2,7 @@ package com.codegym.dating.repository;
 
 import com.codegym.dating.dto.RelationshipDto;
 import com.codegym.dating.dto.UserClassDto;
+import com.codegym.dating.dto.UserDto;
 import com.codegym.dating.model.FriendList;
 import com.codegym.dating.projection_dto.IUserDto;
 import org.springframework.data.domain.Page;
@@ -40,20 +41,22 @@ public interface IFriendListRepository extends JpaRepository<FriendList, Integer
         RelationshipDto checkFriend(Integer idUser1, Integer idUser2);
 
 
-        @Query(value = "SELECT \n" +
-                "    fl.id,\n" +
-                "    fl.id_user2 AS idUser,\n" +
-                "    u.name,\n" +
-                "    u.gender,\n" +
-                "    (DATEDIFF(CURDATE(), u.date_of_birth) DIV 365) AS age,\n" +
-                "    u.avatar\n" +
-                "FROM\n" +
-                "    user u\n" +
-                "        JOIN\n" +
-                "    friend_list fl ON fl.id_user2 = u.id_user\n" +
-                "WHERE\n" +
-                "    status = 5 AND id_user2 = ?1", nativeQuery = true)
-        List<UserClassDto> findAllRequestFriend(Integer id);
+    @Query(value = "SELECT \n" +
+            "    id_user as idUser,\n" +
+            "    name,\n" +
+            "    avatar,\n" +
+            "    gender,\n" +
+            "    (DATEDIFF(CURDATE(), date_of_birth) DIV 365) AS age\n" +
+            "FROM\n" +
+            "    user\n" +
+            "WHERE\n" +
+            "    id_user IN (SELECT \n" +
+            "            id_user1\n" +
+            "        FROM\n" +
+            "            friend_list\n" +
+            "        WHERE\n" +
+            "            status = 5 AND id_user2 = ?1)", nativeQuery = true)
+    List<UserDto> findAllRequestFriend(Integer id);
 
         @javax.transaction.Transactional
         @Modifying
