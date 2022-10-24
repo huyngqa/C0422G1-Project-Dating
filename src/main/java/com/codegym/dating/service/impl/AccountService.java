@@ -15,12 +15,12 @@ public class AccountService implements IAccountService {
     private IAccountRepository iAccountRepository;
 
     @Override
-    public Optional<Account> findById(Integer idAccount) {
-        return iAccountRepository.findById(idAccount);
+    public Optional<Account> findByEmail(String email) {
+        return iAccountRepository.findByEmail(email);
     }
 
     @Override
-    public void saveNewPassword(String password, Integer idAccount) {
-        iAccountRepository.saveNewPassword(password, idAccount);
+    public void saveNewPassword(String password, String email) {
+        iAccountRepository.saveNewPassword(password, email);
     }
 }

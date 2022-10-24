@@ -14,11 +14,11 @@ public interface IAccountRepository extends JpaRepository<Account, Integer> {
     @Query(value = "SELECT * FROM account where password like :password", nativeQuery = true)
     Account findByPassword(String password);
 
-    @Query(value = "SELECT * FROM account where id_account =:idAccount", nativeQuery = true)
-    Optional<Account> findById(@Param("idAccount") Integer idAccount);
+    @Query(value = "SELECT * FROM account where email =:email", nativeQuery = true)
+    Optional<Account> findByEmail(@Param("email") String email);
 
     @Modifying
     @Transactional
-    @Query(value = "update account set password =?1 where id_account = ?2", nativeQuery = true)
-    void saveNewPassword(String password, Integer idAccount);
+    @Query(value = "update account set password =?1 where email = ?2", nativeQuery = true)
+    void saveNewPassword(String password, String email);
 }

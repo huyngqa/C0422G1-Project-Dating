@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping("/api/users/account")
+@RequestMapping("api")
 public class ResetPasswordRestController {
 
     @Autowired
@@ -26,14 +26,14 @@ public class ResetPasswordRestController {
         return new BCryptPasswordEncoder();
     }
 
-    @PostMapping("/changePassword/{idAccount}")
+    @PostMapping("/users/account/changePassword/{email}")
     public ResponseEntity<Void> doResetPassword(@RequestBody JwtRequest authenticationRequest,
-                                                @PathVariable Integer idAccount) {
-        Optional<Account> account = iAccountService.findById(idAccount);
+                                                @PathVariable String email) {
+        Optional<Account> account = iAccountService.findByEmail(email);
 
         if (account.isPresent() && BCrypt.checkpw(authenticationRequest.getPassword(), account.get().getPassword()) &&
                 !Objects.equals(authenticationRequest.getNewPassword(), "")) {
-            iAccountService.saveNewPassword(passwordEncoder().encode(authenticationRequest.getNewPassword()), idAccount);
+            iAccountService.saveNewPassword(passwordEncoder().encode(authenticationRequest.getNewPassword()), email);
             return new ResponseEntity<>(HttpStatus.OK);
 
         }

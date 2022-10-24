@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface IAccountService {
 
-    Optional<Account> findById(Integer idAccount);
+    Optional<Account> findByEmail(String email);
 
-    void saveNewPassword(String password, Integer idAccount);
+    void saveNewPassword(String password, String email);
 }
